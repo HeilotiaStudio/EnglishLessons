@@ -1,0 +1,10 @@
+wake
+walk
+see
+talk
+read
+visit
+eat
+buy
+arrive
+study

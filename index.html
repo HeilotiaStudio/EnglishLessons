@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>English Fill-In Exercise</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            padding: 30px;
+            max-width: 800px;
+            margin: auto;
+            background: linear-gradient(135deg, #d9f0ff, #b8e7e1);
+            color: #003b49;
+        }
+
+        h2, h3 {
+            color: #003b49;
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        input {
+            width: 150px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 2px solid #7ec8c9;
+            background: #ffffffd9;
+            font-size: 16px;
+            margin: 3px 0;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #2aa198;
+            outline: none;
+            box-shadow: 0 0 5px #2aa198;
+        }
+
+        button {
+            padding: 12px 25px;
+            background: #2aa198;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            display: block;
+            margin: 25px auto;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        button:hover {
+            background: #21867e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .word-box {
+            background: #ffffffcc;
+            padding: 15px;
+            border-radius: 10px;
+            list-style-position: inside;
+            font-size: 17px;
+            border: 2px solid #7ec8c9;
+        }
+
+        .correct {
+            color: #0b7d4a;
+            font-weight: bold;
+            background: #c9f5dd;
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+
+        .wrong {
+            color: #b40000;
+            font-weight: bold;
+            background: #ffd5d5;
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+
+        #result p {
+            margin: 6px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Fill in the blanks with the correct verb form</h2>
+
+<p>
+Yesterday, I <input id="a1"> up early because I wanted to enjoy the morning air.  
+I <input id="a2"> to the park and <input id="a3"> many people there.  
+Some of them <input id="a4"> with friends, while others <input id="a5"> quietly on the benches.
+<br><br>
+Later, I <input id="a6"> a small café and <input id="a7"> a sandwich.  
+Afterwards, I <input id="a8"> some notebooks.  
+When I <input id="a9"> home, I <input id="a10"> for a while.
+</p>
+
+<button onclick="checkAnswers()">Submit</button>
+
+<h3>Results</h3>
+<div id="result"></div>
+
+<h3>Words You Can Use</h3>
+<ul id="wordlist" class="word-box"></ul>
+
+<script>
+let answers = [];
+let words = [];
+
+// Load answers
+fetch("answers.txt")
+  .then(r => r.text())
+  .then(text => {
+    answers = text.trim().split("\n").map(a => a.trim().toLowerCase());
+  });
+
+// Load words
+fetch("words.txt")
+  .then(r => r.text())
+  .then(text => {
+    words = text.trim().split("\n");
+    const list = document.getElementById("wordlist");
+
+    words.forEach(w => {
+      const li = document.createElement("li");
+      li.textContent = w;
+      list.appendChild(li);
+    });
+  });
+
+function checkAnswers() {
+    const inputs = [];
+    for (let i = 1; i <= 10; i++) {
+        inputs.push(document.getElementById("a" + i).value.trim().toLowerCase());
+    }
+
+    let output = "";
+    for (let i = 0; i < 10; i++) {
+        if (inputs[i] === answers[i]) {
+            output += `<p class="correct">✔ Correct: ${inputs[i]}</p>`;
+        } else {
+            output += `<p class="wrong">✘ Incorrect: ${inputs[i]} — correct: <strong>${answers[i]}</strong></p>`;
+        }
+    }
+
+    document.getElementById("result").innerHTML = output;
+}
+</script>
+
+</body>
+</html>
+
+
