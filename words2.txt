@@ -1,0 +1,10 @@
+run
+jump
+catch
+teach
+write
+draw
+sleep
+drink
+buy
+play

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Exercise 3 – Fill the Correct Verb Forms</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #fff5e6;
+        padding: 30px;
+        line-height: 1.6;
+    }
+    h2 {
+        color: #b35f00;
+        text-align: center;
+    }
+    .input-field {
+        width: 140px;
+        padding: 5px;
+        border: 2px solid #ff9f43;
+        border-radius: 5px;
+        margin: 0 5px;
+        font-size: 16px;
+    }
+    #submitBtn {
+        padding: 10px 20px;
+        background: #ff9f43;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 20px;
+        font-size: 16px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #submitBtn:hover {
+        background: #e58e26;
+    }
+    #words-box {
+        padding: 10px;
+        background: #ffffff;
+        border: 2px solid #ff9f43;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .word {
+        background: #ffecd6;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: 1px solid #ff9f43;
+    }
+    .correct {
+        background: #c6ffd0;
+        border-color: #2ecc71;
+    }
+    .wrong {
+        background: #ffd6d6;
+        border-color: #e74c3c;
+    }
+</style>
+</head>
+<body>
+
+<h2>Exercise 3 – Put the correct verb forms</h2>
+
+<p id="words-title"><strong>Words to use:</strong></p>
+<div id="words-box">Loading words...</div>
+
+<p>
+This morning, I <input class="input-field" id="w1"> very fast to catch the bus.  
+Then I <input class="input-field" id="w2"> over a puddle and almost fell.  
+At school, I <input class="input-field" id="w3"> the ball during PE.  
+My teacher <input class="input-field" id="w4"> us a new lesson.  
+<br><br>
+After class, I <input class="input-field" id="w5"> a story in my notebook.  
+Later, I <input class="input-field" id="w6"> a picture of the playground.  
+At home, I <input class="input-field" id="w7"> for a few hours.  
+Then I <input class="input-field" id="w8"> some juice and a sandwich.  
+<br><br>
+Finally, I <input class="input-field" id="w9"> some toys for my little brother and <input class="input-field" id="w10"> outside with him.
+</p>
+
+<button id="submitBtn">Check Answers</button>
+
+<p id="results"></p>
+
+<script>
+let answers = [];
+let words = [];
+
+// Load answers
+fetch("answers2.txt")
+  .then(r => r.text())
+  .then(text => {
+    answers = text.trim().split("\n").map(a => a.trim().toLowerCase());
+  });
+
+// Load words
+fetch("words2.txt")
+  .then(r => r.text())
+  .then(text => {
+    words = text.trim().split("\n");
+    const list = document.getElementById("words-box");
+    list.innerHTML = "";
+    words.forEach(w => {
+      const span = document.createElement("span");
+      span.textContent = w;
+      span.className = "word";
+      list.appendChild(span);
+    });
+  });
+
+function checkAnswers() {
+    const inputs = [];
+    for (let i = 1; i <= 10; i++) {
+        inputs.push(document.getElementById("w" + i).value.trim().toLowerCase());
+    }
+
+    let output = "";
+    for (let i = 0; i < 10; i++) {
+        if (inputs[i] === answers[i]) {
+            output += `<p class="correct">✔ Correct: ${inputs[i]}</p>`;
+        } else {
+            output += `<p class="wrong">✘ Incorrect: ${inputs[i] || '[empty]'} — correct: <strong>${answers[i]}</strong></p>`;
+        }
+    }
+
+    document.getElementById("results").innerHTML = output;
+}
+</script>
+
+</body>
+</html>
+
