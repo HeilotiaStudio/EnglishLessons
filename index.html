@@ -1,117 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>English Fill-In Exercise</title>
-    <style>
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            padding: 30px;
-            max-width: 800px;
-            margin: auto;
-            background: linear-gradient(135deg, #d9f0ff, #b8e7e1);
-            color: #003b49;
-        }
-
-        h2, h3 {
-            color: #003b49;
-            text-align: center;
-        }
-
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
-
-        input {
-            width: 150px;
-            padding: 6px 10px;
-            border-radius: 6px;
-            border: 2px solid #7ec8c9;
-            background: #ffffffd9;
-            font-size: 16px;
-            margin: 3px 0;
-            transition: 0.2s;
-        }
-
-        input:focus {
-            border-color: #2aa198;
-            outline: none;
-            box-shadow: 0 0 5px #2aa198;
-        }
-
-        button {
-            padding: 12px 25px;
-            background: #2aa198;
-            color: white;
-            font-size: 18px;
-            border: none;
-            border-radius: 8px;
-            display: block;
-            margin: 25px auto;
-            cursor: pointer;
-            transition: 0.25s;
-        }
-
-        button:hover {
-            background: #21867e;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        .word-box {
-            background: #ffffffcc;
-            padding: 15px;
-            border-radius: 10px;
-            list-style-position: inside;
-            font-size: 17px;
-            border: 2px solid #7ec8c9;
-        }
-
-        .correct {
-            color: #0b7d4a;
-            font-weight: bold;
-            background: #c9f5dd;
-            padding: 6px 10px;
-            border-radius: 6px;
-        }
-
-        .wrong {
-            color: #b40000;
-            font-weight: bold;
-            background: #ffd5d5;
-            padding: 6px 10px;
-            border-radius: 6px;
-        }
-
-        #result p {
-            margin: 6px 0;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Exercise 2 – Fill the Correct Verb Forms</title>
+<style>
+    body { font-family: Arial, sans-serif; background: #fff5e6; padding: 30px; line-height: 1.6; }
+    h2 { color: #b35f00; text-align: center; }
+    .input-field { width: 140px; padding: 5px; border: 2px solid #ff9f43; border-radius: 5px; margin: 0 5px; font-size: 16px; }
+    #submitBtn { padding: 10px 20px; background: #ff9f43; color: white; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px; font-size: 16px; display: block; margin-left: auto; margin-right: auto; }
+    #submitBtn:hover { background: #e58e26; }
+    #words-box { padding: 10px; background: #ffffff; border: 2px solid #ff9f43; border-radius: 8px; margin-bottom: 20px; font-size: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .word { background: #ffecd6; padding: 5px 10px; border-radius: 5px; border: 1px solid #ff9f43; }
+    .correct { background: #c6ffd0; border-color: #2ecc71; }
+    .wrong { background: #ffd6d6; border-color: #e74c3c; }
+</style>
 </head>
 <body>
 
-<h2>Fill in the blanks with the correct verb form</h2>
+<h2>Exercise 2 – Put the correct verb forms</h2>
+
+<p id="words-title"><strong>Words to use:</strong></p>
+<div id="words-box">Loading words...</div>
 
 <p>
-Yesterday, I <input class="input-field" id="w1"> up early and  
-<input class="input-field" id="w2"> to the park. I  <input class="input-field" id="w3">
-many people there.  Some of them <input class="input-field" id="w4"> with friends, while others  
-<input class="input-field" id="w5"> quietly on the benches.<br><br>
-Later, I <input class="input-field" id="w6"> a picture of the playground.  
-At home, I <input class="input-field" id="w7"> for a few hours.  
-Then I <input class="input-field" id="w8"> some juice and a sandwich.  
-<br><br>
-Finally, I <input class="input-field" id="w9"> some toys for my little brother and <input class="input-field" id="w10"> outside with him.
+Yesterday, I <input class="input-field" id="w1"> up early and <input class="input-field" id="w2"> to the park. I <input class="input-field" id="w3"> many people there. Some of them <input class="input-field" id="w4"> with friends, while others <input class="input-field" id="w5"> quietly on the benches.<br><br>
+Later, I <input class="input-field" id="w6"> a small café and <input class="input-field" id="w7"> a sandwich. Afterwards, I <input class="input-field" id="w8"> some notebooks. When I <input class="input-field" id="w9"> home, I <input class="input-field" id="w10"> for a while.
 </p>
 
-<button onclick="checkAnswers()">Submit</button>
+<button id="submitBtn">Check Answers</button>
 
-<h3>Results</h3>
-<div id="result"></div>
-
-<h3>Words You Can Use</h3>
-<ul id="wordlist" class="word-box"></ul>
+<p id="results"></p>
 
 <script>
 let answers = [];
@@ -129,36 +47,54 @@ fetch("words.txt")
   .then(r => r.text())
   .then(text => {
     words = text.trim().split("\n");
-    const list = document.getElementById("wordlist");
-
+    const list = document.getElementById("words-box");
+    list.innerHTML = "";
     words.forEach(w => {
-      const li = document.createElement("li");
-      li.textContent = w;
-      list.appendChild(li);
+      const span = document.createElement("span");
+      span.textContent = w;
+      span.className = "word";
+      list.appendChild(span);
     });
   });
 
-function checkAnswers() {
-    const inputs = [];
-    for (let i = 1; i <= 10; i++) {
-        inputs.push(document.getElementById("a" + i).value.trim().toLowerCase());
-    }
-
+// Check answers for only filled inputs
+document.getElementById("submitBtn").addEventListener("click", () => {
+    let score = 0;
+    let totalChecked = 0;
     let output = "";
-    for (let i = 0; i < 10; i++) {
-        if (inputs[i] === answers[i]) {
-            output += `<p class="correct">✔ Correct: ${inputs[i]}</p>`;
+
+    for (let i = 1; i <= 10; i++) {
+        const field = document.getElementById("w" + i);
+        const userInput = field.value.trim().toLowerCase();
+        if (userInput !== "") {
+            totalChecked++;
+            if (userInput === answers[i-1].toLowerCase()) {
+                field.classList.remove("wrong");
+                field.classList.add("correct");
+                output += `<p class="correct">✔ Correct: ${userInput}</p>`;
+                score++;
+            } else {
+                field.classList.remove("correct");
+                field.classList.add("wrong");
+                output += `<p class="wrong">✘ Incorrect: ${userInput} — correct: <strong>${answers[i-1]}</strong></p>`;
+            }
         } else {
-            output += `<p class="wrong">✘ Incorrect: ${inputs[i]} — correct: <strong>${answers[i]}</strong></p>`;
+            field.classList.remove("correct","wrong");
         }
     }
 
-    document.getElementById("result").innerHTML = output;
-}
+    if(totalChecked === 0) {
+        document.getElementById("results").innerHTML = "<p>Please fill at least one word to check.</p>";
+    } else {
+        document.getElementById("results").innerHTML = `<p>You got ${score} out of ${totalChecked} checked correct.</p>` + output;
+    }
+});
 </script>
 
 </body>
 </html>
+
+
 
 
 
