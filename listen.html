@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Listening Quiz</title>
+<style>
+    body { font-family: Arial; padding: 20px; background: #eef3ff; }
+    .question-box {
+        background: #fff;
+        padding: 20px;
+        margin: 20px auto;
+        border: 2px solid #aac4ff;
+        border-radius: 10px;
+        max-width: 600px;
+    }
+    button {
+        padding: 10px 20px;
+        background: #4c6ef5;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<h2>Listening Quiz – Questions</h2>
+
+<!-- QUESTION 1 -->
+<div class="question-box">
+    <h3>Listening 1</h3>
+    <button onclick="playAudio(1)">▶ Play Recording</button>
+    <audio id="audio1" src="recordings/task1.mp3"></audio>
+    <p>1 - Where did the boy go after school?</p>
+    <form id="q1">
+        <div><input type="radio" name="q1" value="A"> A) To the store</div>
+        <div><input type="radio" name="q1" value="B"> B) To the park</div>
+        <div><input type="radio" name="q1" value="C"> C) To the cinema</div>
+        <br>
+        <button type="button" onclick="checkAnswer(1)">Check Answer</button>
+    </form>
+
+<p id="result1"></p>
+ <br>
+<p>2 - What did the boy buy?</p>
+    <form id="q2">
+        <div><input type="radio" name="q2" value="A"> A) A sandwich</div>
+        <div><input type="radio" name="q2" value="B"> B) An ice cream</div>
+        <div><input type="radio" name="q2" value="C"> C) A drink</div>
+        <br>
+        <button type="button" onclick="checkAnswer(2)">Check Answer</button>
+    </form>
+
+<p id="result2"></p>
+
+</div>
+
+<!-- QUESTION 2 (copy this whole block and change numbers) -->
+<div class="question-box">
+    <h3>Listening 2</h3>
+    
+
+    <button onclick="playAudio(2)">▶ Play Recording</button>
+    <audio id="audio2" src="recordings/task2.mp3"></audio>
+    <p>3 - How was the girl feeling in the morning?</p>
+    <form id="q3">
+        <div><input type="radio" name="q3" value="A"> A) Sad</div>
+        <div><input type="radio" name="q3" value="B"> B) Angry</div>
+        <div><input type="radio" name="q3" value="C"> C) Happy</div>
+        <br>
+        <button type="button" onclick="checkAnswer(3)">Check Answer</button>
+    </form>
+
+    <p id="result3"></p>
+
+ <br>
+<p>4 - What did she do while getting ready?</p>
+    <form id="q4">
+        <div><input type="radio" name="q4" value="A"> A) Watched TV</div>
+        <div><input type="radio" name="q4" value="B"> B) Listened to music</div>
+        <div><input type="radio" name="q4" value="C"> C) Read a book</div>
+        <br>
+        <button type="button" onclick="checkAnswer(4)">Check Answer</button>
+    </form>
+
+<p id="result4"></p>
+
+</div>
+<!-- QUESTION 5-6 -->
+<div class="question-box">
+    <h3>Listening 3</h3>
+    
+
+    <button onclick="playAudio(2)">▶ Play Recording</button>
+    <audio id="audio2" src="recordings/task2.mp3"></audio>
+    <p>5 - What did Daniel do in the morning at the shelter?</p>
+    <form id="q3">
+        <div><input type="radio" name="q3" value="A"> A) Painted the building and repaired windows</div>
+        <div><input type="radio" name="q3" value="B"> B) Cleaned cages, fed the animals, and walked the dogs</div>
+        <div><input type="radio" name="q3" value="C"> C) Delivered food to people around town</div>
+        <br>
+        <button type="button" onclick="checkAnswer(5)">Check Answer</button>
+    </form>
+
+    <p id="result5"></p>
+
+ <br>
+<p>6 - How did Daniel feel at the end of the day?</p>
+    <form id="q4">
+        <div><input type="radio" name="q4" value="A"> A) Angry</div>
+        <div><input type="radio" name="q4" value="B"> B) Tired but happy</div>
+        <div><input type="radio" name="q4" value="C"> C) Bored and disappointed</div>
+        <br>
+        <button type="button" onclick="checkAnswer(6)">Check Answer</button>
+    </form>
+
+<p id="result6"></p>
+
+</div>
+<!-- Repeat for questions 5–10 -->
+<script>
+const correctAnswers = {
+    1: "B",
+    2: "B",
+    3: "C",
+    4: "A",
+    3: "B",
+    4: "B",
+    // Add 5–10 here
+};
+
+function playAudio(n) {
+    document.getElementById("audio" + n).play();
+}
+
+function checkAnswer(n) {
+    const selected = document.querySelector(`input[name="q${n}"]:checked`);
+    const resultBox = document.getElementById("result" + n);
+
+    if (!selected) {
+        resultBox.innerHTML = "Please choose an answer.";
+        return;
+    }
+
+    if (selected.value === correctAnswers[n]) {
+        resultBox.innerHTML = "✔ Correct!";
+    } else {
+        resultBox.innerHTML = "✘ Wrong answer.";
+    }
+}
+</script>
+
+</body>
+</html>
