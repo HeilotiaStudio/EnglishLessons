@@ -1,0 +1,10 @@
+walk
+see
+find
+sit
+get
+write
+go
+drink
+say
+return

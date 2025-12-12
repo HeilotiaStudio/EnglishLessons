@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Exercise 2 – Fill the Correct Verb Forms</title>
+<style>
+    body { font-family: Arial, sans-serif; background: #fff5e6; padding: 30px; line-height: 1.6; }
+    h2 { color: #b35f00; text-align: center; }
+    .input-field { width: 140px; padding: 5px; border: 2px solid #ff9f43; border-radius: 5px; margin: 0 5px; font-size: 16px; }
+    #submitBtn { padding: 10px 20px; background: #ff9f43; color: white; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px; font-size: 16px; display: block; margin-left: auto; margin-right: auto; }
+    #submitBtn:hover { background: #e58e26; }
+    #words-box { padding: 10px; background: #ffffff; border: 2px solid #ff9f43; border-radius: 8px; margin-bottom: 20px; font-size: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .word { background: #ffecd6; padding: 5px 10px; border-radius: 5px; border: 1px solid #ff9f43; }
+    .correct { background: #c6ffd0; border-color: #2ecc71; }
+    .wrong { background: #ffd6d6; border-color: #e74c3c; }
+</style>
+</head>
+<body>
+
+<h2>Exercise 3 – Put the correct verb forms</h2>
+
+<p id="words-title"><strong>Words to use:</strong></p>
+<div id="words-box">Loading words...</div>
+
+<p>
+This afternoon, I <input class="input-field" id="w1"> to the library to finish my homework.  
+While walking, I <input class="input-field" id="w2"> a small cat sitting near the road.  
+At the library, I <input class="input-field" id="w3"> a quiet place to sit.  
+My friend <input class="input-field" id="w4"> next to me and started reading a book.
+<br><br>
+After a while, I <input class="input-field" id="w5"> a message from my teacher.  
+Then I <input class="input-field" id="w6"> some notes into my notebook.  
+When I felt hungry, I <input class="input-field" id="w7"> to the cafeteria.  
+There, I <input class="input-field" id="w8"> a warm cup of tea.
+<br><br>
+Before going home, I <input class="input-field" id="w9"> my friend goodbye and <input class="input-field" id="w10"> back to my house.
+</p>
+
+<button id="submitBtn">Check Answers</button>
+
+<p id="results"></p>
+
+<script>
+let answers = [];
+let words = [];
+
+// Load answers
+fetch("answers2.txt")
+  .then(r => r.text())
+  .then(text => {
+    answers = text.trim().split("\n").map(a => a.trim().toLowerCase());
+  });
+
+// Load words
+fetch("words2.txt")
+  .then(r => r.text())
+  .then(text => {
+    words = text.trim().split("\n");
+    const list = document.getElementById("words-box");
+    list.innerHTML = "";
+    words.forEach(w => {
+      const span = document.createElement("span");
+      span.textContent = w;
+      span.className = "word";
+      list.appendChild(span);
+    });
+  });
+
+// Check answers for only filled inputs
+document.getElementById("submitBtn").addEventListener("click", () => {
+    let score = 0;
+    let totalChecked = 0;
+    let output = "";
+
+    for (let i = 1; i <= 10; i++) {
+        const field = document.getElementById("w" + i);
+        const userInput = field.value.trim().toLowerCase();
+        if (userInput !== "") {
+            totalChecked++;
+            if (userInput === answers[i-1].toLowerCase()) {
+                field.classList.remove("wrong");
+                field.classList.add("correct");
+                output += `<p class="correct">✔ Correct: ${userInput}</p>`;
+                score++;
+            } else {
+                field.classList.remove("correct");
+                field.classList.add("wrong");
+                output += `<p class="wrong">✘ Incorrect: ${userInput} — correct: <strong>${answers[i-1]}</strong></p>`;
+            }
+        } else {
+            field.classList.remove("correct","wrong");
+        }
+    }
+
+    if(totalChecked === 0) {
+        document.getElementById("results").innerHTML = "<p>Please fill at least one word to check.</p>";
+    } else {
+        document.getElementById("results").innerHTML = `<p>You got ${score} out of ${totalChecked} checked correct.</p>` + output;
+    }
+});
+</script>
+
+</body>
+</html>
