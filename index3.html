@@ -45,14 +45,14 @@ let answers = [];
 let words = [];
 
 // Load answers
-fetch("answers2.txt")
+fetch("answers3.txt")
   .then(r => r.text())
   .then(text => {
     answers = text.trim().split("\n").map(a => a.trim().toLowerCase());
   });
 
 // Load words
-fetch("words2.txt")
+fetch("words3.txt")
   .then(r => r.text())
   .then(text => {
     words = text.trim().split("\n");
@@ -101,4 +101,5 @@ document.getElementById("submitBtn").addEventListener("click", () => {
 </script>
 
 </body>
+
 </html>
