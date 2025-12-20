@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Exercise 2 – Fill the Correct Verb Forms</title>
+<title>Exercise 3 – Fill the Correct Verb Forms</title>
 <style>
     body { font-family: Arial, sans-serif; background: #fff5e6; padding: 30px; line-height: 1.6; }
     h2 { color: #b35f00; text-align: center; }
@@ -23,17 +23,17 @@
 <div id="words-box">Loading words...</div>
 
 <p>
-This afternoon, I <input class="input-field" id="w1"> to the library to finish my homework.  
-While walking, I <input class="input-field" id="w2"> a small cat sitting near the road.  
-At the library, I <input class="input-field" id="w3"> a quiet place to sit.  
-My friend <input class="input-field" id="w4"> next to me and started reading a book.
+Yesterday evening, I <input class="input-field" id="w1"> home later than usual because I 
+<input class="input-field" id="w2"> on a group project.  
+While I <input class="input-field" id="w3"> for the bus, I 
+<input class="input-field" id="w4"> an old friend from school.
 <br><br>
-After a while, I <input class="input-field" id="w5"> a message from my teacher.  
-Then I <input class="input-field" id="w6"> some notes into my notebook.  
-When I felt hungry, I <input class="input-field" id="w7"> to the cafeteria.  
-There, I <input class="input-field" id="w8"> a warm cup of tea.
-<br><br>
-Before going home, I <input class="input-field" id="w9"> my friend goodbye and <input class="input-field" id="w10"> back to my house.
+We <input class="input-field" id="w5"> for a few minutes and 
+<input class="input-field" id="w6"> plans to meet again soon.  
+When I finally <input class="input-field" id="w7"> home, I 
+<input class="input-field" id="w8"> a quick meal and 
+<input class="input-field" id="w9"> my emails before I 
+<input class="input-field" id="w10"> to bed.
 </p>
 
 <button id="submitBtn">Check Answers</button>
@@ -45,14 +45,14 @@ let answers = [];
 let words = [];
 
 // Load answers
-fetch("answers3.txt")
+fetch("answers4.txt")
   .then(r => r.text())
   .then(text => {
     answers = text.trim().split("\n").map(a => a.trim().toLowerCase());
   });
 
 // Load words
-fetch("words3.txt")
+fetch("words4.txt")
   .then(r => r.text())
   .then(text => {
     words = text.trim().split("\n");
@@ -101,5 +101,4 @@ document.getElementById("submitBtn").addEventListener("click", () => {
 </script>
 
 </body>
-
 </html>
