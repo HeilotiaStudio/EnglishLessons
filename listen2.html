@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Listening Quiz Nr 2</title>
+<style>
+    body { font-family: Arial; padding: 20px; background: #eef3ff; }
+    .question-box {
+        background: #fff;
+        padding: 20px;
+        margin: 20px auto;
+        border: 2px solid #aac4ff;
+        border-radius: 10px;
+        max-width: 600px;
+    }
+    button {
+        padding: 10px 20px;
+        background: #4c6ef5;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<h2>Listening Quiz Nr 2</h2>
+
+<!-- QUESTION 1 -->
+<div class="question-box">
+    <h3>Listening 1</h3>
+    <button onclick="playAudio(1)">▶ Play Recording</button>
+    <audio id="audio1" src="recordings/dialog/task1.mp3"></audio>
+    <p>1 - Why did the report contain incorrect data, and how did David explain the issue to the client?</p>
+    <form id="q1">
+        <div><input type="radio" name="q1" value="A"> A) Server meltdown caused by a power loss. David explained that the issue happened because the server lost power, which led to a system meltdown.</div>
+        <div><input type="radio" name="q1" value="B"> B) Spreadsheet automatically refreshed with outdated numbers. He explained that the issue came from  system.</div>
+        <div><input type="radio" name="q1" value="C"> C) Hacker attack. He explained that it was caused by a cybersecurity breach.</div>
+        <br>
+        <button type="button" onclick="checkAnswer(1)">Check Answer</button>
+    </form>
+
+<p id="result1"></p>
+ <br>
+<p>2 - What actions did Emma and David decide to take to prevent this problem from happening again?</p>
+    <form id="q2">
+        <div><input type="radio" name="q2" value="A"> A) They plan to discard the current survey results and design a completely new study before submitting it for ethics review.</div>
+        <div><input type="radio" name="q2" value="B"> B) Nora will revise and rewrite the confusing survey questions, while Liam will complete the data analysis and check correlations before preparing the final draft for ethics review.</div>
+        <div><input type="radio" name="q2" value="C"> C) They plan to submit the project as it is and wait for feedback from the ethics committee before making any changes</div>
+        <br>
+        <button type="button" onclick="checkAnswer(2)">Check Answer</button>
+    </form>
+
+<p id="result2"></p>
+
+</div>
+
+<!-- QUESTION 2 (copy this whole block and change numbers) -->
+<div class="question-box">
+    <h3>Listening 2</h3>
+    
+
+    <button onclick="playAudio(2)">▶ Play Recording</button>
+    <audio id="audio2" src="recordings/dialog/task2.mp3"></audio>
+    <p>3 - What problems did Liam notice in the survey responses, and which question caused the most confusion?</p>
+    <form id="q3">
+        <div><input type="radio" name="q3" value="A"> A) Liam noticed that participants misunderstood the second question about weekly routines, especially how many hours they spend on personal development, which made the data hard to categorize.</div>
+        <div><input type="radio" name="q3" value="B"> B) Liam noticed that participants skipped the demographic section, and the final question about age caused the most confusion.</div>
+        <div><input type="radio" name="q3" value="C"> C) Liam noticed technical errors in the survey system, and the question about work experience caused the most confusion.</div>
+        <br>
+        <button type="button" onclick="checkAnswer(3)">Check Answer</button>
+    </form>
+
+    <p id="result3"></p>
+
+ <br>
+<p>4 - How do Nora and Liam plan to address the issues before submitting the project for ethics review?</p>
+    <form id="q4">
+        <div><input type="radio" name="q4" value="A"> A) They plan to remove the survey entirely and submit only the demographic data to the ethics committee.</div>
+        <div><input type="radio" name="q4" value="B"> B) Nora will revise and rewrite the confusing survey questions, while Liam will finish the data analysis and check for patterns before preparing the final draft.</div>
+        <div><input type="radio" name="q4" value="C"> C) Liam will ignore the unclear responses, and Nora will submit the project without making any changes to the questions.</div>
+        <br>
+        <button type="button" onclick="checkAnswer(4)">Check Answer</button>
+    </form>
+
+<p id="result4"></p>
+
+</div>
+<!-- QUESTION 5-6 
+<div class="question-box">
+    <h3>Listening 3</h3>
+    
+
+    <button onclick="playAudio(3)">▶ Play Recording</button>
+    <audio id="audio3" src="recordings/task3.mp3"></audio>
+    <p>5 - What did Daniel do in the morning at the shelter?</p>
+    <form id="q5">
+        <div><input type="radio" name="q5" value="A"> A) Painted the building and repaired windows</div>
+        <div><input type="radio" name="q5" value="B"> B) Cleaned cages, fed the animals, and walked the dogs</div>
+        <div><input type="radio" name="q5" value="C"> C) Delivered food to people around town</div>
+        <br>
+        <button type="button" onclick="checkAnswer(5)">Check Answer</button>
+    </form>
+
+    <p id="result5"></p>
+
+ <br>
+<p>6 - How did Daniel feel at the end of the day?</p>
+    <form id="q6">
+        <div><input type="radio" name="q6" value="A"> A) Angry</div>
+        <div><input type="radio" name="q6" value="B"> B) Bored and disappointed</div>
+        <div><input type="radio" name="q6" value="C"> C) Tired but happy</div>
+        <br>
+        <button type="button" onclick="checkAnswer(6)">Check Answer</button>
+    </form>
+
+<p id="result6"></p>
+
+</div>
+
+ QUESTION 7-8 
+
+<div class="question-box">
+    <h3>Listening 4</h3>
+    
+
+    <button onclick="playAudio(4)">▶ Play Recording</button>
+    <audio id="audio4" src="recordings/task4.mp3"></audio>
+    <p>7 - What were Sarah’s main duties at the bakery?</p>
+    <form id="q7">
+        <div><input type="radio" name="q7" value="A"> A) Taking photos, making coffee, and washing dishes</div>
+        <div><input type="radio" name="q7" value="B"> B) Preparing dough, organizing shelves, and helping customers</div>
+        <div><input type="radio" name="q7" value="C"> C) Cleaning offices and answering phone calls</div>
+        <br>
+        <button type="button" onclick="checkAnswer(7)">Check Answer</button>
+    </form>
+
+    <p id="result7"></p>
+
+ <br>
+<p>8 - Why did Sarah enjoy her job?</p>
+    <form id="q8">
+        <div><input type="radio" name="q8" value="A"> A) She liked the warm smell and friendly customers</div>
+        <div><input type="radio" name="q8" value="B"> B) She earned a lot of money</div>
+        <div><input type="radio" name="q8" value="C"> C) She could sleep late every day</div>
+        <br>
+        <button type="button" onclick="checkAnswer(8)">Check Answer</button>
+    </form>
+
+<p id="result8"></p>
+
+</div>-->
+<!-- Repeat for questions 5–10 -->
+<script>
+const correctAnswers = {
+    1: "B",
+    2: "C",
+    3: "A",
+    4: "B",
+    //5: "B",
+    //6: "C",
+    //7: "B",
+    //8: "A",
+    // Add 9–10 here
+};
+
+function playAudio(n) {
+    document.getElementById("audio" + n).play();
+}
+
+function checkAnswer(n) {
+    const selected = document.querySelector(`input[name="q${n}"]:checked`);
+    const resultBox = document.getElementById("result" + n);
+
+    if (!selected) {
+        resultBox.innerHTML = "Please choose an answer.";
+        return;
+    }
+
+    if (selected.value === correctAnswers[n]) {
+        resultBox.innerHTML = "✔ Correct!";
+    } else {
+        resultBox.innerHTML = "✘ Wrong answer.";
+    }
+}
+</script>
+
+</body>
+</html>
