@@ -1,0 +1,10 @@
+arrive
+work
+wait
+meet
+talk
+make
+get
+prepare
+check
+go
