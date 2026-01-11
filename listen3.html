@@ -31,23 +31,23 @@
 <div class="question-box">
     <h3>Listening 1</h3>
     <button onclick="playAudio(1)">▶ Play Recording</button>
-    <audio id="audio1" src="recordings/dialog/task1.mp3"></audio>
-    <p>1 - Why did the report contain incorrect data, and how did David explain the issue to the client?</p>
+    <audio id="audio1" src="recordings/dialog/task3.mp3"></audio>
+    <p>1 - What does DNA do inside the cell, according to Anna?</p>
     <form id="q1">
-        <div><input type="radio" name="q1" value="A"> A) Server meltdown caused by a power loss. David explained that the issue happened because the server lost power, which led to a system meltdown.</div>
-        <div><input type="radio" name="q1" value="B"> B) Spreadsheet automatically refreshed with outdated numbers. He explained that the issue came from  system.</div>
-        <div><input type="radio" name="q1" value="C"> C) Hacker attack. He explained that it was caused by a cybersecurity breach.</div>
+        <div><input type="radio" name="q1" value="A"> A) It cleans the cell and removes waste.</div>
+        <div><input type="radio" name="q1" value="B"> B) It gives the cell instructions on how the body should grow and look.</div>
+        <div><input type="radio" name="q1" value="C"> C) It produces energy for the cell like a battery.</div>
         <br>
         <button type="button" onclick="checkAnswer(1)">Check Answer</button>
     </form>
 
 <p id="result1"></p>
  <br>
-<p>2 - What actions did Emma and David decide to take to prevent this problem from happening again?</p>
+<p>2 - Why do Mark and his sister look similar but not exactly the same?</p>
     <form id="q2">
-        <div><input type="radio" name="q2" value="A"> A) They plan to discard the current survey results and design a completely new study before submitting it for ethics review.</div>
-        <div><input type="radio" name="q2" value="B"> B) Emma will re-run the analysis and rebuild the charts, while David will send a corrected version to the client and ask IT to fix the automatic refresh issue.</div>
-        <div><input type="radio" name="q2" value="C"> C) They plan to submit the project as it is and wait for feedback from the ethics committee before making any changes</div>
+        <div><input type="radio" name="q2" value="A"> A) They share many genes but not all of them.</div>
+        <div><input type="radio" name="q2" value="B"> B)  They eat the same food every day.</div>
+        <div><input type="radio" name="q2" value="C"> C)  They were born in the same season.</div>
         <br>
         <button type="button" onclick="checkAnswer(2)">Check Answer</button>
     </form>
@@ -155,9 +155,9 @@
 <script>
 const correctAnswers = {
     1: "B",
-    2: "B",
-    3: "A",
-    4: "B",
+    2: "A",
+  //  3: "A",
+  //  4: "B",
     //5: "B",
     //6: "C",
     //7: "B",
