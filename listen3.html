@@ -63,11 +63,11 @@
 
     <button onclick="playAudio(2)">▶ Play Recording</button>
     <audio id="audio2" src="recordings/dialog/task2.mp3"></audio>
-    <p>3 - What problems did Liam notice in the survey responses, and which question caused the most confusion?</p>
+    <p>3 - Why does Maria say that spending time outdoors “resets her mind”?</p>
     <form id="q3">
-        <div><input type="radio" name="q3" value="A"> A) Liam noticed that participants misunderstood the second question about weekly routines, especially how many hours they spend on personal development, which made the data hard to categorize.</div>
-        <div><input type="radio" name="q3" value="B"> B) Liam noticed that participants skipped the demographic section, and the final question about age caused the most confusion.</div>
-        <div><input type="radio" name="q3" value="C"> C) Liam noticed technical errors in the survey system, and the question about work experience caused the most confusion.</div>
+        <div><input type="radio" name="q3" value="A"> A) Because she feels bored at home and needs something to do.</div>
+        <div><input type="radio" name="q3" value="B"> B) Because she wants to train for a marathon and needs fresh air.</div>
+        <div><input type="radio" name="q3" value="C"> C) Because being surrounded by nature helps her forget the noise and stress of daily life. </div>
         <br>
         <button type="button" onclick="checkAnswer(3)">Check Answer</button>
     </form>
@@ -75,11 +75,11 @@
     <p id="result3"></p>
 
  <br>
-<p>4 - How do Nora and Liam plan to address the issues before submitting the project for ethics review?</p>
+<p>4 - What does Joseph compare hiking to, and why?</p>
     <form id="q4">
-        <div><input type="radio" name="q4" value="A"> A) They plan to remove the survey entirely and submit only the demographic data to the ethics committee.</div>
-        <div><input type="radio" name="q4" value="B"> B) Nora will revise and rewrite the confusing survey questions, while Liam will finish the data analysis and check for patterns before preparing the final draft.</div>
-        <div><input type="radio" name="q4" value="C"> C) Liam will ignore the unclear responses, and Nora will submit the project without making any changes to the questions.</div>
+        <div><input type="radio" name="q4" value="A"> A) He compares it to studying because he listens to educational podcasts while walking.</div>
+        <div><input type="radio" name="q4" value="B"> B) He compares it to meditation because the rhythm and quiet help him think more clearly.</div>
+        <div><input type="radio" name="q4" value="C"> C) He compares it to a competitive sport because he likes to challenge himself physically.</div>
         <br>
         <button type="button" onclick="checkAnswer(4)">Check Answer</button>
     </form>
@@ -157,8 +157,8 @@
 const correctAnswers = {
     1: "B",
     2: "A",
-  //  3: "A",
-  //  4: "B",
+    3: "C",
+    4: "B",
     //5: "B",
     //6: "C",
     //7: "B",
