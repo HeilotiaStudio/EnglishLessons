@@ -1,1 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Listening Quiz Nr 4</title>
+<style>
+    body { font-family: Arial; padding: 20px; background: #eef3ff; }
+    .question-box {
+        background: #fff;
+        padding: 20px;
+        margin: 20px auto;
+        border: 2px solid #aac4ff;
+        border-radius: 10px;
+        max-width: 600px;
+    }
+    button {
+        padding: 10px 20px;
+        background: #4c6ef5;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
 
+<h2>Listening Quiz Nr 4</h2>
+
+<!-- QUESTION 1 -->
+<div class="question-box">
+    <h3>Listening 4</h3>
+    <button onclick="playAudio(1)">▶ Play Recording</button>
+    <audio id="audio1" src="recordings/novel1.mp3"></audio>
+    <p>1 - Why does Valerio’s presence create tension between Aurora and Angelica?</p>
+    <form id="q1">
+        <div><input type="radio" name="q1" value="A"> A) Because Valerio wants to take the throne from their parents.</div>
+        <div><input type="radio" name="q1" value="B"> B) Because neither sister likes him, but they pretend to for political reasons.</div>
+        <div><input type="radio" name="q1" value="C"> C) Because both sisters develop feelings for him, which puts their relationship in conflict.</div>
+        <br>
+        <button type="button" onclick="checkAnswer(1)">Check Answer</button>
+    </form>
+
+<p id="result1"></p>
+ <br>
+<p>2 - Which sister is gifted with magic?</p>
+    <form id="q2">
+        <div><input type="radio" name="q2" value="A"> A) Angelica</div>
+        <div><input type="radio" name="q2" value="B"> B) Aurora</div>
+        <div><input type="radio" name="q2" value="C"> C) Neither of them</div>
+        <br>
+        <button type="button" onclick="checkAnswer(2)">Check Answer</button>
+        <br>
+         <p>Music: Vindsvept - Diverging Realms</p>
+    </form>
+
+<p id="result2"></p>
+
+</div>
+
+<!-- QUESTION 2 (copy this whole block and change numbers) -->
+<div class="question-box">
+    <h3>Listening 4.2</h3>
+    
+
+    <button onclick="playAudio(2)">▶ Play Recording</button>
+    <audio id="audio2" src="recordings/novel2.mp3"></audio>
+    <p>3 - Who is Cato?</p>
+    <form id="q3">
+        <div><input type="radio" name="q3" value="A"> A) Gardener</div>
+        <div><input type="radio" name="q3" value="B"> B) Poet</div>
+        <div><input type="radio" name="q3" value="C"> C) Sculptur</div>
+        <br>
+        <button type="button" onclick="checkAnswer(3)">Check Answer</button>
+    </form>
+
+    <p id="result3"></p>
+
+ <br>
+<p>4 - What connection is implied between Valerio's brother and the beast?</p>
+    <form id="q4">
+        <div><input type="radio" name="q4" value="A"> A) Cato explicitly states that Valerio's brother was the witch who cursed the woods centuries ago.</div>
+        <div><input type="radio" name="q4" value="B"> B) Valerio's brother was a famous hunter who went into the Dark Woods to kill the beast and never returned.</div>
+        <div><input type="radio" name="q4" value="C"> C) The timing is suspicious (six winters ago); the beast's appearance coincides with the disappearance, suggesting a possible link or transformation.</div>
+        <br>
+        <button type="button" onclick="checkAnswer(4)">Check Answer</button>
+        <br>
+        <p>Music: Vindsvept - Enchanted</p>
+    </form>
+
+<p id="result4"></p>
+
+</div>
+<!-- QUESTION 5-6 
+<div class="question-box">
+    <h3>Listening 3</h3>
+    
+
+    <button onclick="playAudio(3)">▶ Play Recording</button>
+    <audio id="audio3" src="recordings/task3.mp3"></audio>
+    <p>5 - What did Daniel do in the morning at the shelter?</p>
+    <form id="q5">
+        <div><input type="radio" name="q5" value="A"> A) Painted the building and repaired windows</div>
+        <div><input type="radio" name="q5" value="B"> B) Cleaned cages, fed the animals, and walked the dogs</div>
+        <div><input type="radio" name="q5" value="C"> C) Delivered food to people around town</div>
+        <br>
+        <button type="button" onclick="checkAnswer(5)">Check Answer</button>
+    </form>
+
+    <p id="result5"></p>
+
+ <br>
+<p>6 - How did Daniel feel at the end of the day?</p>
+    <form id="q6">
+        <div><input type="radio" name="q6" value="A"> A) Angry</div>
+        <div><input type="radio" name="q6" value="B"> B) Bored and disappointed</div>
+        <div><input type="radio" name="q6" value="C"> C) Tired but happy</div>
+        <br>
+        <button type="button" onclick="checkAnswer(6)">Check Answer</button>
+    </form>
+
+<p id="result6"></p>
+
+</div>
+
+ QUESTION 7-8 
+
+<div class="question-box">
+    <h3>Listening 4</h3>
+    
+
+    <button onclick="playAudio(4)">▶ Play Recording</button>
+    <audio id="audio4" src="recordings/task4.mp3"></audio>
+    <p>7 - What were Sarah’s main duties at the bakery?</p>
+    <form id="q7">
+        <div><input type="radio" name="q7" value="A"> A) Taking photos, making coffee, and washing dishes</div>
+        <div><input type="radio" name="q7" value="B"> B) Preparing dough, organizing shelves, and helping customers</div>
+        <div><input type="radio" name="q7" value="C"> C) Cleaning offices and answering phone calls</div>
+        <br>
+        <button type="button" onclick="checkAnswer(7)">Check Answer</button>
+    </form>
+
+    <p id="result7"></p>
+
+ <br>
+<p>8 - Why did Sarah enjoy her job?</p>
+    <form id="q8">
+        <div><input type="radio" name="q8" value="A"> A) She liked the warm smell and friendly customers</div>
+        <div><input type="radio" name="q8" value="B"> B) She earned a lot of money</div>
+        <div><input type="radio" name="q8" value="C"> C) She could sleep late every day</div>
+        <br>
+        <button type="button" onclick="checkAnswer(8)">Check Answer</button>
+    </form>
+
+<p id="result8"></p>
+
+</div>-->
+<!-- Repeat for questions 5–10 -->
+<script>
+const correctAnswers = {
+    1: "C",
+    2: "B",
+    3: "B",
+    4: "C",
+    //5: "B",
+    //6: "C",
+    //7: "B",
+    //8: "A",
+    // Add 9–10 here
+};
+
+function playAudio(n) {
+    document.getElementById("audio" + n).play();
+}
+
+function checkAnswer(n) {
+    const selected = document.querySelector(`input[name="q${n}"]:checked`);
+    const resultBox = document.getElementById("result" + n);
+
+    if (!selected) {
+        resultBox.innerHTML = "Please choose an answer.";
+        return;
+    }
+
+    if (selected.value === correctAnswers[n]) {
+        resultBox.innerHTML = "✔ Correct!";
+    } else {
+        resultBox.innerHTML = "✘ Wrong answer.";
+    }
+}
+</script>
+
+</body>
+</html>
