@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 3 – Nature Vocabulary: Place the correct word</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #eaffef; padding: 30px; line-height: 1.6; }
+        h2 { color: #2d6a4f; text-align: center; }
+        .input-field { width: 140px; padding: 5px; border: 2px solid #52b788; border-radius: 5px; margin: 0 5px; font-size: 16px; }
+        #submitBtn { padding: 10px 20px; background: #2d6a4f; color: white; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px; font-size: 16px; display: block; margin-left: auto; margin-right: auto; }
+        #submitBtn:hover { background: #1e4b3a; }
+        #words-box { padding: 10px; background: #ffffff; border: 2px solid #52b788; border-radius: 8px; margin-bottom: 20px; font-size: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
+        .word { background: #d0f0e4; padding: 5px 15px; border-radius: 20px; border: 1px solid #2d6a4f; color: #034b30; font-weight: bold; }
+        .correct { background: #c6ffd0; border-color: #2ecc71; }
+        .wrong { background: #ffd6d6; border-color: #e74c3c; }
+        .edit-note { background: #e9f5ec; border-left: 5px solid #2d6a4f; padding: 10px 20px; margin-top: 25px; border-radius: 0 8px 8px 0; color: #1e4b3a; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<h2>🌿 Nature Vocabulary – Place the correct word</h2>
+
+<p id="words-title"><strong>🌱 Words to place in the sentences:</strong></p>
+<div id="words-box">Loading nature vocabulary...</div>
+
+<!-- 🌄 NATURE VOCABULARY EXERCISE – fill in the blanks with the correct nature word -->
+<p id="story-text" style="background: #fefef7; padding: 18px; border-radius: 20px; border: 1px solid #a3d8c9; font-size: 1.1rem;">
+    <span style="font-weight: bold; color: #1e5b45;">🏞️ Complete the sentences with the correct nature word:</span> <br><br>
+    
+    The farmer owns a large piece of <input class="input-field" id="w1"> where he grows wheat. <br>
+    We climbed to the top of the <input class="input-field" id="w2"> to see the sunset. <br>
+    The bear slept in a dark <input class="input-field" id="w3"> during winter. <br>
+    Wildflowers bloom across the sunny <input class="input-field" id="w4"> in spring. <br>
+    The ship sailed along the rocky <input class="input-field" id="w5">. <br><br>
+    
+    Dense <input class="input-field" id="w6"> covers the northern part of the region. <br>
+    Herds of buffalo roam the vast <input class="input-field" id="w7">. <br>
+    Frogs croaked loudly near the small <input class="input-field" id="w8">. <br>
+    Ancient trees grow in the protected <input class="input-field" id="w9">. <br>
+    The river flows from the mountains down to the <input class="input-field" id="w10">.
+</p>
+
+<button id="submitBtn">Check Answers</button>
+
+<p id="results"></p>
+
+<!-- ========== NATURE VOCABULARY LISTS ========== -->
+<div style="margin-top: 40px; background: #e2f3e6; padding: 15px; border-radius: 12px; border: 1px dashed #2d6a4f;">
+    <p style="font-weight: bold; color: #034b30; margin-bottom: 5px;">📋 Current nature vocabulary exercise:</p>
+    <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+        <div id="default-list-display" style="background: #fff; padding: 12px; border-radius: 10px; min-width: 220px;">
+            <span style="font-weight: bold;">📝 Words to use (default list):</span><br>
+            <span id="default-words-output" style="font-size: 1.1rem; color: #1e5b45; font-weight: bold;">(loading...)</span>
+        </div>
+        <div id="right-answers-display" style="background: #fff; padding: 12px; border-radius: 10px; min-width: 220px;">
+            <span style="font-weight: bold;">✅ Correct answers:</span><br>
+            <span id="correct-answers-output" style="font-size: 1.1rem; color: #0f5132; font-weight: bold;">(loading...)</span>
+        </div>
+    </div>
+</div>
+
+<script>
+// ===== 🌲 NATURE VOCABULARY – WORDS TO PLACE =====
+// These are the nature words students will use to fill the blanks
+const FALLBACK_WORDS = [
+    "land",       // w1: piece of land
+    "hill",       // w2: top of the hill
+    "cave",       // w3: dark cave
+    "meadow",     // w4: sunny meadow
+    "coast",      // w5: rocky coast
+    "woodland",   // w6: dense woodland
+    "grassland",  // w7: vast grassland
+    "pond",       // w8: small pond
+    "forest",     // w9: protected forest
+    "valley"      // w10: down to the valley
+];
+
+// ===== ✅ CORRECT ANSWERS (same as words, this is a vocabulary placement exercise) =====
+const FALLBACK_ANSWERS = [
+    "land",       // w1
+    "hill",       // w2
+    "cave",       // w3
+    "meadow",     // w4
+    "coast",      // w5
+    "woodland",   // w6
+    "grassland",  // w7
+    "pond",       // w8
+    "forest",     // w9
+    "valley"      // w10
+];
+
+let answers = [];
+let words = [];
+
+// Function to update the displayed lists
+function updateDisplayedLists() {
+    const defaultEl = document.getElementById("default-words-output");
+    const correctEl = document.getElementById("correct-answers-output");
+    
+    if (words && words.length) {
+        defaultEl.textContent = words.join(" • ");
+    } else {
+        defaultEl.textContent = FALLBACK_WORDS.join(" • ");
+    }
+    
+    if (answers && answers.length) {
+        correctEl.textContent = answers.join(" • ");
+    } else {
+        correctEl.textContent = FALLBACK_ANSWERS.join(" • ");
+    }
+}
+
+// Load answers from answers5.txt (new file for vocabulary exercise)
+fetch("answers5.txt")
+    .then(r => {
+        if (!r.ok) throw new Error("answers5.txt not found – using nature vocabulary fallback");
+        return r.text();
+    })
+    .then(text => {
+        answers = text.trim().split("\n").map(a => a.trim().toLowerCase());
+        updateDisplayedLists();
+    })
+    .catch(() => {
+        console.warn("🌱 using embedded nature vocabulary answers");
+        answers = FALLBACK_ANSWERS.map(a => a.toLowerCase());
+        updateDisplayedLists();
+    });
+
+// Load words from words5.txt
+fetch("words5.txt")
+    .then(r => {
+        if (!r.ok) throw new Error("words5.txt not found – using nature vocabulary fallback");
+        return r.text();
+    })
+    .then(text => {
+        words = text.trim().split("\n").map(w => w.trim());
+        const list = document.getElementById("words-box");
+        list.innerHTML = "";
+        words.forEach(w => {
+            const span = document.createElement("span");
+            span.textContent = w;
+            span.className = "word";
+            list.appendChild(span);
+        });
+        updateDisplayedLists();
+    })
+    .catch(() => {
+        console.warn("🌲 using embedded nature vocabulary word list");
+        words = FALLBACK_WORDS;
+        const list = document.getElementById("words-box");
+        list.innerHTML = "";
+        words.forEach(w => {
+            const span = document.createElement("span");
+            span.textContent = w;
+            span.className = "word";
+            list.appendChild(span);
+        });
+        updateDisplayedLists();
+    });
+
+// Check answers
+document.getElementById("submitBtn").addEventListener("click", () => {
+    if (!answers || answers.length === 0) {
+        answers = FALLBACK_ANSWERS.map(a => a.toLowerCase());
+    }
+
+    let score = 0;
+    let totalChecked = 0;
+    let output = "";
+
+    for (let i = 1; i <= 10; i++) {
+        const field = document.getElementById("w" + i);
+        const userInput = field.value.trim().toLowerCase();
+        
+        if (userInput !== "") {
+            totalChecked++;
+            if (answers[i-1] && userInput === answers[i-1].toLowerCase()) {
+                field.classList.remove("wrong");
+                field.classList.add("correct");
+                output += `<p class="correct">✔ Correct: "${userInput}"</p>`;
+                score++;
+            } else {
+                field.classList.remove("correct");
+                field.classList.add("wrong");
+                let correctAnswer = answers[i-1] ? answers[i-1] : "?";
+                output += `<p class="wrong">✘ Incorrect: "${userInput}" — correct: <strong>${correctAnswer}</strong></p>`;
+            }
+        } else {
+            field.classList.remove("correct", "wrong");
+        }
+    }
+
+    if(totalChecked === 0) {
+        document.getElementById("results").innerHTML = "<p>Please fill at least one blank to check.</p>";
+    } else {
+        document.getElementById("results").innerHTML = `<p>🌳 You got ${score} out of ${totalChecked} correct.</p>` + output;
+    }
+});
+
+// Initialize display
+setTimeout(updateDisplayedLists, 60);
+</script>
+
+<!-- Quick reference for editing -->
+<div class="edit-note">
+    <strong>✅ This is now a VOCABULARY PLACEMENT exercise:</strong><br>
+    • Students place nature words (land, hill, cave, meadow, coast, woodland, grassland, pond, forest, valley) into correct sentences.<br>
+    • <strong>Default words (answers5.txt):</strong> land, hill, cave, meadow, coast, woodland, grassland, pond, forest, valley<br>
+    • <strong>Correct answers:</strong> same as default (vocabulary matching)<br>
+    • To change: Edit the <code>FALLBACK_WORDS</code> and <code>FALLBACK_ANSWERS</code> arrays in the script, or use <code>words5.txt</code>/<code>answers5.txt</code><br>
+    • File names changed from answers4.txt/words4.txt to <strong>answers5.txt/words5.txt</strong> to avoid confusion with verb exercises
+</div>
+
+</body>
+</html>
