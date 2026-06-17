@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Listening Quiz – Snowflakes</title>
+<style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #eef3ff; }
+    h2 { color: #2b3a67; }
+    .question-box {
+        background: #fff;
+        padding: 20px;
+        margin: 20px auto;
+        border: 2px solid #aac4ff;
+        border-radius: 10px;
+        max-width: 800px;
+    }
+    .controls {
+        margin-bottom: 15px;
+    }
+    button {
+        padding: 8px 16px;
+        background: #4c6ef5;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-right: 8px;
+    }
+    button:hover {
+        background: #364fc7;
+    }
+    .gap-line {
+        margin: 8px 0;
+    }
+    .gap-line input {
+        width: 260px;
+        padding: 4px 6px;
+        border-radius: 4px;
+        border: 1px solid #aac4ff;
+    }
+    .result {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    .correct { color: green; }
+    .incorrect { color: #c92a2a; }
+    .key {
+        margin-top: 15px;
+        font-size: 0.95em;
+        background: #f5f7ff;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px dashed #aac4ff;
+    }
+</style>
+</head>
+<body>
+
+<h2>Listening – Snowflake Project</h2>
+
+<div class="question-box">
+    <h3>Snowflakes – Notes Completion (11–20)</h3>
+
+    <div class="controls">
+        <button type="button" onclick="playAudio()">▶ Play</button>
+        <button type="button" onclick="pauseAudio()">⏸ Pause</button>
+        <button type="button" onclick="restartAudio()">⏮ Restart</button>
+        <audio id="audioSnow" src="recordings/snowflakes.mp3"></audio>
+    </div>
+
+    <p>Listen to the programme about a snowflake project. Complete the notes with up to four words or a number.</p>
+
+    <form id="snowForm" onsubmit="return false;">
+        <div class="gap-line">
+            11. Scientists and students are cooperating in a project called ‘
+            <input type="text" id="q11"> ’.
+        </div>
+        <div class="gap-line">
+            12. The students use a magnifying glass to make sure that the pictures are
+            <input type="text" id="q12">.
+        </div>
+        <div class="gap-line">
+            13. Because there is no snow, the students are taking pictures of
+            <input type="text" id="q13">.
+        </div>
+        <div class="gap-line">
+            14. To catch a snowflake, the students will use
+            <input type="text" id="q14">.
+        </div>
+        <div class="gap-line">
+            15. The project is important because other ways of studying snowflakes would
+            <input type="text" id="q15">.
+        </div>
+        <div class="gap-line">
+            16. Scientists want to understand how changes in climate can influence the
+            <input type="text" id="q16">.
+        </div>
+        <div class="gap-line">
+            17. The lead scientist enjoys the process of
+            <input type="text" id="q17"> the pictures of snowflakes.
+        </div>
+        <div class="gap-line">
+            18. Students from
+            <input type="text" id="q18"> schools are going to take part in this year’s project.
+        </div>
+        <div class="gap-line">
+            19. When someone buys a kit for studying snowflakes, another kit is sent to a school
+            <input type="text" id="q19">.
+        </div>
+        <div class="gap-line">
+            20. Scientists think that such activities are more than
+            <input type="text" id="q20">.
+        </div>
+
+        <br>
+        <button type="button" onclick="checkGaps()">Check Answers</button>
+        <button type="button" onclick="showKey()">Show Key</button>
+        <button type="button" onclick="clearAnswers()">Clear</button>
+
+        <p id="result" class="result"></p>
+        <div id="keyBox" class="key" style="display:none;"></div>
+    </form>
+</div>
+
+<script>
+const audio = document.getElementById('audioSnow');
+
+function playAudio() {
+    audio.play();
+}
+function pauseAudio() {
+    audio.pause();
+}
+function restartAudio() {
+    audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+}
+
+const correctTextAnswers = {
+    q11: ["project snowflake"],
+    q12: ["clear enough"],
+    q13: ["ice crystals"],
+    q14: ["a black piece of card"],
+    q15: ["damage the snowflakes"],
+    q16: ["shape of snowflakes"],
+    q17: ["comparing"],
+    q18: ["more than fifty", "more than 50"],
+    q19: ["in another country"],
+    q20: ["a school project"]
+};
+
+function normalise(str) {
+    return str.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function checkGaps() {
+    let correctCount = 0;
+    let total = 10;
+
+    for (let i = 11; i <= 20; i++) {
+        const id = "q" + i;
+        const input = document.getElementById(id);
+        const user = normalise(input.value);
+        const solutions = correctTextAnswers[id];
+
+        let isCorrect = false;
+        for (let sol of solutions) {
+            if (user === sol) {
+                isCorrect = true;
+                break;
+            }
+        }
+
+        if (isCorrect) {
+            input.style.borderColor = "green";
+            correctCount++;
+        } else {
+            input.style.borderColor = "#c92a2a";
+        }
+    }
+
+    const result = document.getElementById("result");
+    result.innerHTML = `You got <span class="correct">${correctCount}</span> out of ${total} correct.`;
+}
+
+function showKey() {
+    const keyBox = document.getElementById("keyBox");
+    keyBox.style.display = "block";
+    keyBox.innerHTML = `
+        <strong>Answer Key:</strong><br>
+        11. Project Snowflake<br>
+        12. clear enough<br>
+        13. ice crystals<br>
+        14. a black piece of card<br>
+        15. damage the snowflakes<br>
+        16. shape of snowflakes<br>
+        17. comparing<br>
+        18. more than fifty<br>
+        19. in another country<br>
+        20. a school project
+    `;
+}
+
+function clearAnswers() {
+    for (let i = 11; i <= 20; i++) {
+        const input = document.getElementById("q" + i);
+        input.value = "";
+        input.style.borderColor = "#aac4ff";
+    }
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("keyBox").style.display = "none";
+}
+</script>
+
+</body>
+</html>
