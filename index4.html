@@ -6,43 +6,45 @@
 
 <style>
     body {
-        background: #0d0d0d;
-        color: #e6e6e6;
+        background: #0a1a3a; /* dark blue */
+        color: #f2f2f2;
         font-family: Arial, sans-serif;
         padding: 20px;
     }
 
     h1 {
-        color: #00eaff;
-        text-shadow: 0 0 10px #00eaff;
+        color: #66d9ff;
+        text-shadow: 0 0 10px #66d9ff;
     }
 
     .sentence-box {
-        background: #1a1a1a;
+        background: #112b55; /* lighter navy */
         padding: 15px;
         margin-bottom: 20px;
-        border-left: 4px solid #00eaff;
+        border-left: 4px solid #66d9ff;
         border-radius: 6px;
     }
 
     input[type="text"] {
         width: 100%;
-        padding: 10px;
+        padding: 12px;
         margin-top: 10px;
-        background: #0d0d0d;
-        color: #e6e6e6;
-        border: 2px solid #00eaff;
+        background: #f8f8f8; /* light input */
+        color: #000;
+        border: 2px solid #66d9ff;
         border-radius: 4px;
         outline: none;
-        box-shadow: 0 0 5px #00eaff;
+        font-size: 16px;
+        box-shadow: 0 0 5px #66d9ff;
     }
 
     input[type="text"]:focus {
-        box-shadow: 0 0 10px #00eaff;
+        box-shadow: 0 0 10px #66d9ff;
+        border-color: #00eaff;
     }
 
     button {
-        background: #00eaff;
+        background: #66d9ff;
         color: #000;
         padding: 12px 20px;
         border: none;
@@ -50,7 +52,11 @@
         font-size: 16px;
         cursor: pointer;
         margin-top: 20px;
-        box-shadow: 0 0 10px #00eaff;
+        box-shadow: 0 0 10px #66d9ff;
+    }
+
+    button:hover {
+        background: #00c8ff;
     }
 
     .correct {
@@ -122,7 +128,7 @@ function checkAnswers() {
 
         if (userInput === "") {
             resultBox.innerHTML = "";
-            continue; // skip empty fields
+            continue;
         }
 
         if (userInput.toLowerCase() === pastSentences[i].toLowerCase()) {
@@ -136,3 +142,5 @@ function checkAnswers() {
 
 </body>
 </html>
+
+
