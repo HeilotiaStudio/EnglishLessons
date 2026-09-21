@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Present → Future Practice</title>
+
+<style>
+    body { font-family: Arial, sans-serif; background: #fff5e6; padding: 30px; line-height: 1.6; }
+    h2 { color: #b35f00; text-align: center; }
+    .input-field { width: 180px; padding: 5px; border: 2px solid #ff9f43; border-radius: 5px; margin: 0 5px; font-size: 16px; }
+    #submitBtn { padding: 10px 20px; background: #ff9f43; color: white; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px; font-size: 16px; display: block; margin-left: auto; margin-right: auto; }
+    #submitBtn:hover { background: #e58e26; }
+    .correct { background: #c6ffd0; border-color: #2ecc71; }
+    .wrong { background: #ffd6d6; border-color: #e74c3c; }
+    .sentence-box { margin-bottom: 20px; }
+</style>
+</head>
+
+<body>
+
+<h2>Present → Future Practice</h2>
+
+<p>Write the future version of each sentence:</p>
+
+<div id="exercise"></div>
+
+<button id="submitBtn">Check Answers</button>
+
+<p id="results"></p>
+
+<script>
+// Present → Future pairs
+const presentSentences = [
+    "This week, I work on my project.",
+    "Tomorrow, she meets her friend.",
+    "Next month, we start a new course.",
+    "Later today, he finishes the report.",
+    "This evening, they cook dinner together.",
+    "Next year, I travel more.",
+    "This morning, she cleans her room.",
+    "Next Monday, we have a meeting.",
+    "This afternoon, he studies for the test.",
+    "Tomorrow morning, they visit the museum."
+];
+
+const futureSentences = [
+    "Next week, I will work on my project.",
+    "Tomorrow, she will meet her friend.",
+    "Next month, we will start a new course.",
+    "Later today, he will finish the report.",
+    "This evening, they will cook dinner together.",
+    "Next year, I will travel more.",
+    "This morning, she will clean her room.",
+    "Next Monday, we will have a meeting.",
+    "This afternoon, he will study for the test.",
+    "Tomorrow morning, they will visit the museum."
+];
+
+// Build HTML
+const container = document.getElementById("exercise");
+
+presentSentences.forEach((sentence, i) => {
+    container.innerHTML += `
+        <div class="sentence-box">
+            <strong>${sentence}</strong><br>
+            <input class="input-field" id="w${i}" placeholder="Write future form...">
+        </div>
+    `;
+});
+
+// Check answers
+document.getElementById("submitBtn").addEventListener("click", () => {
+    let score = 0;
+    let checked = 0;
+    let output = "";
+
+    for (let i = 0; i < futureSentences.length; i++) {
+        const field = document.getElementById("w" + i);
+        const user = field.value.trim().toLowerCase();
+        const correct = futureSentences[i].toLowerCase();
+
+        if (user === "") {
+            field.classList.remove("correct", "wrong");
+            continue;
+        }
+
+        checked++;
+
+        if (user === correct) {
+            field.classList.remove("wrong");
+            field.classList.add("correct");
+            output += `<p class="correct">✔ Correct: ${user}</p>`;
+            score++;
+        } else {
+            field.classList.remove("correct");
+            field.classList.add("wrong");
+            output += `<p class="wrong">✘ Incorrect: ${user} — correct: <strong>${futureSentences[i]}</strong></p>`;
+        }
+    }
+
+    if (checked === 0) {
+        document.getElementById("results").innerHTML = "<p>Please fill at least one field.</p>";
+    } else {
+        document.getElementById("results").innerHTML =
+            `<p>You got ${score} out of ${checked} correct.</p>` + output;
+    }
+});
+</script>
+
+</body>
+</html>
