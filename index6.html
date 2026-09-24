@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Future Tense Practice – Advanced Predictions</title>
+
+<style>
+    body {
+        background: #0a1a3a;
+        color: #f2f2f2;
+        font-family: Arial, sans-serif;
+        padding: 25px;
+        line-height: 1.6;
+    }
+
+    h1 {
+        color: #66d9ff;
+        text-shadow: 0 0 10px #66d9ff;
+        text-align: center;
+    }
+
+    .sentence-box {
+        background: #112b55;
+        padding: 15px;
+        margin-bottom: 25px;
+        border-left: 4px solid #66d9ff;
+        border-radius: 6px;
+    }
+
+    .hint {
+        font-size: 14px;
+        color: #b3c7ff;
+        margin-top: 5px;
+        font-style: italic;
+    }
+
+    .options {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    label {
+        background: #f8f8f8;
+        color: #000;
+        padding: 6px 10px;
+        border-radius: 5px;
+        border: 2px solid #66d9ff;
+        cursor: pointer;
+        box-shadow: 0 0 5px #66d9ff;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 6px;
+    }
+
+    button {
+        background: #66d9ff;
+        color: #000;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+        box-shadow: 0 0 10px #66d9ff;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    button:hover {
+        background: #00c8ff;
+    }
+
+    .correct { color: #00ff88; font-weight: bold; margin-top: 5px; }
+    .wrong { color: #ff4444; font-weight: bold; margin-top: 5px; }
+</style>
+</head>
+
+<body>
+
+<h1>Future Tense Practice – Advanced Predictions</h1>
+
+<div id="exercise"></div>
+
+<button onclick="checkAnswers()">Check Answers</button>
+
+<script>
+const questions = [
+    {
+        sentence: "Some people think robots ______ most household tasks within ten years.",
+        hint: "(simple future)",
+        options: ["will do", "will be doing", "will have done"],
+        correct: "will do"
+    },
+    {
+        sentence: "By the time you read this message, I ______ the final report.",
+        hint: "(future perfect)",
+        options: ["will finish", "will be finishing", "will have finished"],
+        correct: "will have finished"
+    },
+    {
+        sentence: "This time tomorrow, we ______ the results of the experiment.",
+        hint: "(future continuous)",
+        options: ["will check", "will be checking", "will have checked"],
+        correct: "will be checking"
+    },
+    {
+        sentence: "Eventually, scientists ______ a way to grow food on Mars.",
+        hint: "(simple future)",
+        options: ["will discover", "will be discovering", "will have discovered"],
+        correct: "will discover"
+    },
+    {
+        sentence: "By next summer, they ______ enough money to open their café.",
+        hint: "(future perfect)",
+        options: ["will save", "will be saving", "will have saved"],
+        correct: "will have saved"
+    },
+    {
+        sentence: "Later this evening, I ______ whether the plan actually works.",
+        hint: "(simple future)",
+        options: ["will test", "will be testing", "will have tested"],
+        correct: "will test"
+    },
+    {
+        sentence: "At 9 p.m. tonight, she ______ her online class.",
+        hint: "(future continuous)",
+        options: ["will attend", "will be attending", "will have attended"],
+        correct: "will be attending"
+    },
+    {
+        sentence: "By the end of the decade, many jobs ______ completely automated.",
+        hint: "(simple future)",
+        options: ["will become", "will be becoming", "will have become"],
+        correct: "will become"
+    },
+    {
+        sentence: "Sooner or later, you ______ why this decision was important.",
+        hint: "(simple future)",
+        options: ["will understand", "will be understanding", "will have understood"],
+        correct: "will understand"
+    },
+    {
+        sentence: "By midnight, we ______ all the necessary data.",
+        hint: "(future perfect)",
+        options: ["will collect", "will be collecting", "will have collected"],
+        correct: "will have collected"
+    }
+];
+
+const container = document.getElementById("exercise");
+
+questions.forEach((q, i) => {
+    let html = `
+        <div class="sentence-box">
+            <strong>${i+1}. ${q.sentence}</strong>
+            <div class="hint">${q.hint}</div>
+            <div class="options">
+                ${q.options.map(opt => `
+                    <label><input type="checkbox" name="q${i}" value="${opt}">${opt}</label>
+                `).join("")}
+            </div>
+            <div id="result${i}"></div>
+        </div>
+    `;
+    container.innerHTML += html;
+});
+
+function checkAnswers() {
+    questions.forEach((q, i) => {
+        const checked = [...document.getElementsByName("q" + i)].filter(c => c.checked);
+        const resultBox = document.getElementById("result" + i);
+
+        if (checked.length === 0) {
+            resultBox.innerHTML = "";
+            return;
+        }
+
+        const userAnswer = checked[0].value;
+        if (userAnswer === q.correct) {
+            resultBox.innerHTML = "<div class='correct'>✔ Correct!</div>";
+        } else {
+            resultBox.innerHTML = "<div class='wrong'>✘ Incorrect. Correct answer: " + q.correct + "</div>";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
