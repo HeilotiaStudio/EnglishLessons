@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mixed Future & Conditionals – C1–C2 Level</title>
+
+<style>
+    body {
+        background: #0a1a3a;
+        color: #f2f2f2;
+        font-family: Arial, sans-serif;
+        padding: 25px;
+        line-height: 1.6;
+    }
+
+    h1 {
+        color: #66d9ff;
+        text-shadow: 0 0 10px #66d9ff;
+        text-align: center;
+    }
+
+    .sentence-box {
+        background: #112b55;
+        padding: 15px;
+        margin-bottom: 25px;
+        border-left: 4px solid #66d9ff;
+        border-radius: 6px;
+    }
+
+    .options {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    label {
+        background: #f8f8f8;
+        color: #000;
+        padding: 6px 10px;
+        border-radius: 5px;
+        border: 2px solid #66d9ff;
+        cursor: pointer;
+        box-shadow: 0 0 5px #66d9ff;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 6px;
+    }
+
+    button {
+        background: #66d9ff;
+        color: #000;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+        box-shadow: 0 0 10px #66d9ff;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    button:hover {
+        background: #00c8ff;
+    }
+
+    .correct { color: #00ff88; font-weight: bold; margin-top: 5px; }
+    .wrong { color: #ff4444; font-weight: bold; margin-top: 5px; }
+</style>
+</head>
+
+<body>
+
+<h1>Mixed Future & Conditionals – C1–C2 Level</h1>
+
+<div id="exercise"></div>
+
+<button onclick="checkAnswers()">Check Answers</button>
+
+<script>
+const questions = [
+    {
+        sentence: "If the negotiations collapse again, the board ______ a completely new strategy before the next quarter.",
+        options: ["will develop", "would develop", "will have developed"],
+        correct: "will develop"
+    },
+    {
+        sentence: "By the time the new infrastructure project is completed, the city ______ rapid population growth for nearly two decades.",
+        options: ["will experience", "will have been experiencing", "would be experiencing"],
+        correct: "will have been experiencing"
+    },
+    {
+        sentence: "If the research team had received funding earlier, they ______ the advanced prototype by now.",
+        options: ["will have finished", "would have finished", "will be finishing"],
+        correct: "would have finished"
+    },
+    {
+        sentence: "Experts warn that without immediate intervention, the region ______ severe water shortages within the next few years.",
+        options: ["will face", "would face", "will be facing"],
+        correct: "will face"
+    },
+    {
+        sentence: "If demand continues to rise at the current rate, the company ______ additional production facilities by early next year.",
+        options: ["will open", "will be opening", "will have opened"],
+        correct: "will be opening"
+    },
+    {
+        sentence: "Had the previous administration implemented stricter regulations, the industry ______ far fewer compliance issues today.",
+        options: ["will have", "would have", "will be having"],
+        correct: "would have"
+    },
+    {
+        sentence: "In the coming decade, international organizations ______ increasingly complex challenges related to digital ethics and global governance.",
+        options: ["will confront", "will be confronting", "would confront"],
+        correct: "will confront"
+    },
+    {
+        sentence: "If the pilot program proves successful, the ministry ______ it nationwide by the end of next year.",
+        options: ["will roll out", "would roll out", "will have rolled out"],
+        correct: "will roll out"
+    },
+    {
+        sentence: "By the time the conference begins, several keynote speakers ______ their final revisions to the presentation materials.",
+        options: ["will complete", "will have completed", "would have completed"],
+        correct: "will have completed"
+    },
+    {
+        sentence: "If the global market stabilizes, investors ______ more long-term commitments than they have in recent years.",
+        options: ["will make", "would make", "will be making"],
+        correct: "will make"
+    },
+    {
+        sentence: "Should the new regulations be approved, many companies ______ significant changes to their operational procedures.",
+        options: ["will implement", "would implement", "will be implementing"],
+        correct: "will implement"
+    },
+    {
+        sentence: "If the project continues at its current pace, the engineering team ______ the final testing phase much earlier than anticipated.",
+        options: ["will reach", "will be reaching", "will have reached"],
+        correct: "will reach"
+    }
+];
+
+const container = document.getElementById("exercise");
+
+questions.forEach((q, i) => {
+    let html = `
+        <div class="sentence-box">
+            <strong>${i+1}. ${q.sentence}</strong>
+            <div class="options">
+                ${q.options.map(opt => `
+                    <label><input type="checkbox" name="q${i}" value="${opt}">${opt}</label>
+                `).join("")}
+            </div>
+            <div id="result${i}"></div>
+        </div>
+    `;
+    container.innerHTML += html;
+});
+
+function checkAnswers() {
+    questions.forEach((q, i) => {
+        const checked = [...document.getElementsByName("q" + i)].filter(c => c.checked);
+        const resultBox = document.getElementById("result" + i);
+
+        if (checked.length === 0) {
+            resultBox.innerHTML = "";
+            return;
+        }
+
+        const userAnswer = checked[0].value;
+        if (userAnswer === q.correct) {
+            resultBox.innerHTML = "<div class='correct'>✔ Correct!</div>";
+        } else {
+            resultBox.innerHTML = "<div class='wrong'>✘ Incorrect. Correct answer: " + q.correct + "</div>";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
