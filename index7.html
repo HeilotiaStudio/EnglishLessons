@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Future Tense Practice – Complex Predictions</title>
+
+<style>
+    body {
+        background: #0a1a3a;
+        color: #f2f2f2;
+        font-family: Arial, sans-serif;
+        padding: 25px;
+        line-height: 1.6;
+    }
+
+    h1 {
+        color: #66d9ff;
+        text-shadow: 0 0 10px #66d9ff;
+        text-align: center;
+    }
+
+    .sentence-box {
+        background: #112b55;
+        padding: 15px;
+        margin-bottom: 25px;
+        border-left: 4px solid #66d9ff;
+        border-radius: 6px;
+    }
+
+    .options {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    label {
+        background: #f8f8f8;
+        color: #000;
+        padding: 6px 10px;
+        border-radius: 5px;
+        border: 2px solid #66d9ff;
+        cursor: pointer;
+        box-shadow: 0 0 5px #66d9ff;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 6px;
+    }
+
+    button {
+        background: #66d9ff;
+        color: #000;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+        box-shadow: 0 0 10px #66d9ff;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    button:hover {
+        background: #00c8ff;
+    }
+
+    .correct { color: #00ff88; font-weight: bold; margin-top: 5px; }
+    .wrong { color: #ff4444; font-weight: bold; margin-top: 5px; }
+</style>
+</head>
+
+<body>
+
+<h1>Future Tense Practice – Complex Predictions</h1>
+
+<div id="exercise"></div>
+
+<button onclick="checkAnswers()">Check Answers</button>
+
+<script>
+const questions = [
+    {
+        sentence: "Experts predict that by the time the new regulations take effect, companies ______ completely redesigned their data systems.",
+        options: ["will redesign", "will be redesigning", "will have redesigned"],
+        correct: "will have redesigned"
+    },
+    {
+        sentence: "This time next winter, thousands of travelers ______ across Europe despite the harsh weather conditions.",
+        options: ["will travel", "will be traveling", "will have traveled"],
+        correct: "will be traveling"
+    },
+    {
+        sentence: "Many scientists believe that within the next decade, artificial intelligence ______ a major role in medical diagnostics.",
+        options: ["will play", "will be playing", "will have played"],
+        correct: "will play"
+    },
+    {
+        sentence: "By the time the conference begins, the research team ______ all the necessary data for their presentation.",
+        options: ["will collect", "will be collecting", "will have collected"],
+        correct: "will have collected"
+    },
+    {
+        sentence: "Later this evening, the committee ______ whether the proposal meets all the required standards.",
+        options: ["will review", "will be reviewing", "will have reviewed"],
+        correct: "will review"
+    },
+    {
+        sentence: "At 11 p.m. tonight, the engineers ______ the final stress test on the new prototype.",
+        options: ["will run", "will be running", "will have run"],
+        correct: "will be running"
+    },
+    {
+        sentence: "By the end of the century, global temperatures ______ significantly higher than today’s averages.",
+        options: ["will be", "will be being", "will have been"],
+        correct: "will be"
+    },
+    {
+        sentence: "Sooner or later, people ______ that sustainable energy is not just an option but a necessity.",
+        options: ["will realize", "will be realizing", "will have realized"],
+        correct: "will realize"
+    },
+    {
+        sentence: "By the time you return from your trip, the renovation team ______ most of the interior work.",
+        options: ["will finish", "will be finishing", "will have finished"],
+        correct: "will have finished"
+    },
+    {
+        sentence: "Next year at this exact moment, our organization ______ its largest charity event to date.",
+        options: ["will host", "will be hosting", "will have hosted"],
+        correct: "will be hosting"
+    }
+];
+
+const container = document.getElementById("exercise");
+
+questions.forEach((q, i) => {
+    let html = `
+        <div class="sentence-box">
+            <strong>${i+1}. ${q.sentence}</strong>
+            <div class="options">
+                ${q.options.map(opt => `
+                    <label><input type="checkbox" name="q${i}" value="${opt}">${opt}</label>
+                `).join("")}
+            </div>
+            <div id="result${i}"></div>
+        </div>
+    `;
+    container.innerHTML += html;
+});
+
+function checkAnswers() {
+    questions.forEach((q, i) => {
+        const checked = [...document.getElementsByName("q" + i)].filter(c => c.checked);
+        const resultBox = document.getElementById("result" + i);
+
+        if (checked.length === 0) {
+            resultBox.innerHTML = "";
+            return;
+        }
+
+        const userAnswer = checked[0].value;
+        if (userAnswer === q.correct) {
+            resultBox.innerHTML = "<div class='correct'>✔ Correct!</div>";
+        } else {
+            resultBox.innerHTML = "<div class='wrong'>✘ Incorrect. Correct answer: " + q.correct + "</div>";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
