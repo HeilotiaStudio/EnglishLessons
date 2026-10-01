@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Future Tense Practice – C1–C2 Mixed Future Forms</title>
+
+<style>
+    body {
+        background: #0a1a3a;
+        color: #f2f2f2;
+        font-family: Arial, sans-serif;
+        padding: 25px;
+        line-height: 1.6;
+    }
+
+    h1 {
+        color: #66d9ff;
+        text-shadow: 0 0 10px #66d9ff;
+        text-align: center;
+    }
+
+    .sentence-box {
+        background: #112b55;
+        padding: 15px;
+        margin-bottom: 25px;
+        border-left: 4px solid #66d9ff;
+        border-radius: 6px;
+    }
+
+    .options {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    label {
+        background: #f8f8f8;
+        color: #000;
+        padding: 6px 10px;
+        border-radius: 5px;
+        border: 2px solid #66d9ff;
+        cursor: pointer;
+        box-shadow: 0 0 5px #66d9ff;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 6px;
+    }
+
+    button {
+        background: #66d9ff;
+        color: #000;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+        box-shadow: 0 0 10px #66d9ff;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    button:hover {
+        background: #00c8ff;
+    }
+
+    .correct { color: #00ff88; font-weight: bold; margin-top: 5px; }
+    .wrong { color: #ff4444; font-weight: bold; margin-top: 5px; }
+</style>
+</head>
+
+<body>
+
+<h1>Future Tense Practice – C1–C2 Mixed Future Forms</h1>
+
+<div id="exercise"></div>
+
+<button onclick="checkAnswers()">Check Answers</button>
+
+<script>
+const questions = [
+    {
+        sentence: "Analysts expect that by the end of the decade, global tech companies ______ entirely new business models driven by artificial intelligence.",
+        options: ["will adopt", "will be adopting", "will have adopted"],
+        correct: "will have adopted"
+    },
+    {
+        sentence: "This time next year, our research team ______ a large-scale study on climate-related migration patterns.",
+        options: ["will conduct", "will be conducting", "will have conducted"],
+        correct: "will be conducting"
+    },
+    {
+        sentence: "Within the next few years, autonomous vehicles ______ a significant impact on urban transport planning.",
+        options: ["will have", "will be having", "will have had"],
+        correct: "will have"
+    },
+    {
+        sentence: "By the time the new data protection framework is fully enforced, many organizations ______ their internal policies several times.",
+        options: ["will revise", "will be revising", "will have revised"],
+        correct: "will have revised"
+    },
+    {
+        sentence: "At this exact moment tomorrow, the negotiation team ______ the final terms of the international agreement.",
+        options: ["will discuss", "will be discussing", "will have discussed"],
+        correct: "will be discussing"
+    },
+    {
+        sentence: "Experts believe that in the near future, advanced language models ______ an essential role in cross-border communication.",
+        options: ["will play", "will be playing", "will have played"],
+        correct: "will play"
+    },
+    {
+        sentence: "By 2040, many coastal cities ______ extensive measures to protect themselves from rising sea levels.",
+        options: ["will implement", "will be implementing", "will have implemented"],
+        correct: "will have implemented"
+    },
+    {
+        sentence: "During the next few months, the development team ______ multiple prototypes before deciding on the final design.",
+        options: ["will test", "will be testing", "will have tested"],
+        correct: "will be testing"
+    },
+    {
+        sentence: "By the time the new satellite network becomes fully operational, engineers ______ its performance under extreme conditions for several years.",
+        options: ["will monitor", "will be monitoring", "will have been monitoring"],
+        correct: "will have been monitoring"
+    },
+    {
+        sentence: "In the coming decade, international organizations ______ increasingly complex challenges related to digital privacy and security.",
+        options: ["will face", "will be facing", "will have faced"],
+        correct: "will face"
+    },
+    {
+        sentence: "At this time next week, the board ______ whether to approve the long-term investment in renewable energy infrastructure.",
+        options: ["will decide", "will be deciding", "will have decided"],
+        correct: "will be deciding"
+    },
+    {
+        sentence: "By the time the global summit concludes, participating countries ______ a series of commitments aimed at reducing carbon emissions.",
+        options: ["will announce", "will be announcing", "will have announced"],
+        correct: "will have announced"
+    }
+];
+
+const container = document.getElementById("exercise");
+
+questions.forEach((q, i) => {
+    let html = `
+        <div class="sentence-box">
+            <strong>${i+1}. ${q.sentence}</strong>
+            <div class="options">
+                ${q.options.map(opt => `
+                    <label><input type="checkbox" name="q${i}" value="${opt}">${opt}</label>
+                `).join("")}
+            </div>
+            <div id="result${i}"></div>
+        </div>
+    `;
+    container.innerHTML += html;
+});
+
+function checkAnswers() {
+    questions.forEach((q, i) => {
+        const checked = [...document.getElementsByName("q" + i)].filter(c => c.checked);
+        const resultBox = document.getElementById("result" + i);
+
+        if (checked.length === 0) {
+            resultBox.innerHTML = "";
+            return;
+        }
+
+        const userAnswer = checked[0].value;
+        if (userAnswer === q.correct) {
+            resultBox.innerHTML = "<div class='correct'>✔ Correct!</div>";
+        } else {
+            resultBox.innerHTML = "<div class='wrong'>✘ Incorrect. Correct answer: " + q.correct + "</div>";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
