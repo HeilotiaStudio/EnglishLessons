@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tense Transformation Quiz</title>
+
+<style>
+body {
+    background: linear-gradient(135deg, #fff2cc, #ffd699);
+    font-family: Arial, sans-serif;
+    color: #4a2f00;
+    margin: 0;
+    padding: 25px;
+}
+
+h1 {
+    text-align: center;
+    color: #cc6600;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.sentence-box {
+    background: #fffaf0;
+    border-left: 6px solid #ff9900;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+}
+
+.sentence-box strong {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #ffd27f;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+label:hover {
+    background: #fff3e0;
+    border-color: #ff9900;
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+button {
+    display: block;
+    margin: 30px auto;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 8px;
+    background: #ff9900;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e67e00;
+}
+
+.correct {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.wrong {
+    color: crimson;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#score {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #cc6600;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Tense Transformation Quiz</h1>
+<div class="subtitle">
+Choose the sentence with the correct tense transformation.
+</div>
+
+<div id="exercise"></div>
+
+<button onclick="checkAnswers()">Check Answers</button>
+
+<div id="score"></div>
+
+<script>
+
+const questions = [
+
+{
+sentence: "Change to <b>Past Simple</b>:<br><br>The company regularly conducts market research to identify emerging consumer trends before launching new products.",
+options: [
+"The company regularly conducted market research to identify emerging consumer trends before launching new products.",
+"The company conducted market research to identify emerging consumer trends before launching new products.",
+"The company has conducted market research to identify emerging consumer trends before launching new products."
+],
+correct: 1
+},
+
+{
+sentence: "Change to <b>Future Simple</b>:<br><br>The engineering team is developing a new software solution that addresses several long-standing security concerns.",
+options: [
+"The engineering team developed a new software solution that addressed several long-standing security concerns.",
+"The engineering team will develop a new software solution that addresses several long-standing security concerns.",
+"The engineering team has developed a new software solution that addresses several long-standing security concerns."
+],
+correct: 1
+},
+
+{
+sentence: "Change to <b>Present Perfect</b>:<br><br>The researchers completed a comprehensive study examining the effects of remote work on employee productivity.",
+options: [
+"The researchers have completed a comprehensive study examining the effects of remote work on employee productivity.",
+"The researchers complete a comprehensive study examining the effects of remote work on employee productivity.",
+"The researchers will complete a comprehensive study examining the effects of remote work on employee productivity."
+],
+correct: 0
+},
+
+{
+sentence: "Change to <b>Past Perfect</b>:<br><br>The project team finished all critical tasks before the client arrived to review the final deliverables.",
+options: [
+"The project team had finished all critical tasks before the client arrived to review the final deliverables.",
+"The project team has finished all critical tasks before the client arrived to review the final deliverables.",
+"The project team will have finished all critical tasks before the client arrived to review the final deliverables."
+],
+correct: 0
+},
+
+{
+sentence: "Change to <b>Future Perfect</b>:<br><br>The university introduces several new international programmes every academic year.",
+options: [
+"The university will introduce several new international programmes every academic year.",
+"The university has introduced several new international programmes every academic year.",
+"The university will have introduced several new international programmes by the end of the academic year."
+],
+correct: 2
+},
+
+{
+sentence: "Change to <b>Past Simple</b>:<br><br>The organisation has expanded into several international markets and increased its customer base significantly.",
+options: [
+"The organisation expanded into several international markets and increased its customer base significantly.",
+"The organisation will expand into several international markets and increase its customer base significantly.",
+"The organisation had expanded into several international markets and increased its customer base significantly."
+],
+correct: 0
+},
+
+{
+sentence: "Change to <b>Future Simple</b>:<br><br>The marketing department reviews customer feedback regularly to identify opportunities for improvement.",
+options: [
+"The marketing department reviewed customer feedback regularly to identify opportunities for improvement.",
+"The marketing department has reviewed customer feedback regularly to identify opportunities for improvement.",
+"The marketing department will review customer feedback regularly to identify opportunities for improvement."
+],
+correct: 2
+},
+
+{
+sentence: "Change to <b>Present Perfect</b>:<br><br>The company invested substantial resources in developing technology that improves energy efficiency.",
+options: [
+"The company has invested substantial resources in developing technology that improves energy efficiency.",
+"The company had invested substantial resources in developing technology that improves energy efficiency.",
+"The company will invest substantial resources in developing technology that improves energy efficiency."
+],
+correct: 0
+},
+
+{
+sentence: "Change to <b>Future Perfect</b>:<br><br>The city council builds several new transportation hubs across the metropolitan area.",
+options: [
+"The city council has built several new transportation hubs across the metropolitan area.",
+"The city council will build several new transportation hubs across the metropolitan area.",
+"The city council will have built several new transportation hubs across the metropolitan area by 2030."
+],
+correct: 2
+},
+
+{
+sentence: "Change to <b>Past Perfect</b>:<br><br>The engineers discovered a critical design flaw after they tested the prototype under extreme conditions.",
+options: [
+"The engineers had discovered a critical design flaw after they had tested the prototype under extreme conditions.",
+"The engineers have discovered a critical design flaw after testing the prototype under extreme conditions.",
+"The engineers will discover a critical design flaw after they test the prototype under extreme conditions."
+],
+correct: 0
+}
+
+];
+
+const container = document.getElementById("exercise");
+
+questions.forEach((q, i) => {
+
+container.innerHTML += `
+<div class="sentence-box">
+    <strong>${i + 1}. ${q.sentence}</strong>
+
+    <div class="options">
+        ${q.options.map((opt, idx) => `
+        <label>
+            <input type="radio" name="q${i}" value="${idx}">
+            ${opt}
+        </label>
+        `).join("")}
+    </div>
+
+    <div id="result${i}"></div>
+</div>
+`;
+
+});
+
+function checkAnswers() {
+
+let score = 0;
+
+questions.forEach((q, i) => {
+
+const selected = document.querySelector(`input[name="q${i}"]:checked`);
+const result = document.getElementById(`result${i}`);
+
+if (!selected) {
+    result.innerHTML = "<div class='wrong'>Please select an answer.</div>";
+    return;
+}
+
+if (Number(selected.value) === q.correct) {
+    score++;
+    result.innerHTML = "<div class='correct'>✔ Correct</div>";
+}
+else {
+    result.innerHTML =
+        "<div class='wrong'>✘ Incorrect</div>";
+}
+
+});
+
+document.getElementById("score").innerHTML =
+`Score: ${score} / ${questions.length}`;
+
+}
+
+</script>
+
+</body>
+</html>
