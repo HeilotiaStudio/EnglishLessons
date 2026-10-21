@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening Practice</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#fff3dc;
+    padding:30px;
+    max-width:900px;
+    margin:auto;
+    color:#4d3200;
+}
+
+h1{
+    text-align:center;
+    color:#c76b00;
+}
+
+.audio-box{
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:10px;
+    border-left:6px solid #ffae42;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.audio-title{
+    font-weight:bold;
+    margin-bottom:10px;
+    font-size:18px;
+}
+
+button{
+    background:#ffae42;
+    border:none;
+    color:white;
+    padding:10px 18px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-right:8px;
+    margin-top:5px;
+}
+
+button:hover{
+    background:#e68a00;
+}
+
+</style>
+</head>
+<body>
+
+<h1>Listening Practice</h1>
+
+<div id="container"></div>
+
+<script>
+
+const audioFiles = [
+    "nr1.mp3",
+    "nr2.mp3",
+    "nr3.mp3",
+    "nr4.mp3",
+    "nr5.mp3",
+    "nr6.mp3",
+    "nr7.mp3",
+    "nr8.mp3",
+    "nr9.mp3"
+];
+
+const container = document.getElementById("container");
+
+audioFiles.forEach((file,index)=>{
+
+    container.innerHTML += `
+        <div class="audio-box">
+            <div class="audio-title">
+                Audio ${index + 1}
+            </div>
+
+            <audio id="audio${index}">
+                <source src="${file}" type="audio/mpeg">
+            </audio>
+
+            <button onclick="playAudio(${index})">
+                ▶ Play
+            </button>
+
+            <button onclick="pauseAudio(${index})">
+                ⏸ Pause
+            </button>
+
+            <button onclick="restartAudio(${index})">
+                ↺ Restart
+            </button>
+        </div>
+    `;
+
+});
+
+function stopAllExcept(current){
+
+    document.querySelectorAll("audio").forEach(audio => {
+
+        if(audio.id !== "audio" + current){
+            audio.pause();
+        }
+
+    });
+
+}
+
+function playAudio(index){
+
+    stopAllExcept(index);
+
+    const audio = document.getElementById("audio" + index);
+
+    audio.play();
+
+}
+
+function pauseAudio(index){
+
+    const audio = document.getElementById("audio" + index);
+
+    audio.pause();
+
+}
+
+function restartAudio(index){
+
+    const audio = document.getElementById("audio" + index);
+
+    audio.currentTime = 0;
+    audio.pause();
+
+}
+
+</script>
+
+</body>
+</html>
