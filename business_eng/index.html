@@ -28,12 +28,26 @@ h1{
     border-radius:10px;
     border-left:6px solid #ffae42;
     box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    transition:all 0.3s ease;
+}
+
+.audio-box.playing{
+    background:#fff8c9;
+    border-left-color:#28a745;
+    box-shadow:0 0 18px rgba(40,167,69,.4);
 }
 
 .audio-title{
     font-weight:bold;
     margin-bottom:10px;
     font-size:18px;
+}
+
+.status{
+    display:inline-block;
+    margin-left:15px;
+    font-weight:bold;
+    color:#777;
 }
 
 button{
@@ -50,6 +64,7 @@ button{
 button:hover{
     background:#e68a00;
 }
+
 
 </style>
 </head>
@@ -78,9 +93,13 @@ const container = document.getElementById("container");
 audioFiles.forEach((file,index)=>{
 
     container.innerHTML += `
-        <div class="audio-box">
+        <div class="audio-box" id="box${index}">
+
             <div class="audio-title">
                 Audio ${index + 1}
+                <span class="status" id="status${index}">
+                    ⏹ Stopped
+                </span>
             </div>
 
             <audio id="audio${index}">
@@ -98,17 +117,58 @@ audioFiles.forEach((file,index)=>{
             <button onclick="restartAudio(${index})">
                 ↺ Restart
             </button>
+
         </div>
     `;
 
 });
 
+audioFiles.forEach((_, index) => {
+
+    const audio = document.getElementById("audio" + index);
+
+    audio.addEventListener("ended", () => {
+
+        document
+            .getElementById("box" + index)
+            .classList.remove("playing");
+
+        document
+            .getElementById("status" + index)
+            .textContent = "⏹ Finished";
+
+    });
+
+});
+
+function clearHighlights(){
+
+    document.querySelectorAll(".audio-box")
+        .forEach(box => box.classList.remove("playing"));
+
+    document.querySelectorAll(".status")
+        .forEach(status => status.textContent = "⏹ Stopped");
+
+}
+
 function stopAllExcept(current){
 
     document.querySelectorAll("audio").forEach(audio => {
 
-        if(audio.id !== "audio" + current){
+        const id = Number(audio.id.replace("audio",""));
+
+        if(id !== current){
+
             audio.pause();
+
+            document
+                .getElementById("box" + id)
+                .classList.remove("playing");
+
+            document
+                .getElementById("status" + id)
+                .textContent = "⏹ Stopped";
+
         }
 
     });
@@ -121,6 +181,18 @@ function playAudio(index){
 
     const audio = document.getElementById("audio" + index);
 
+    document
+        .querySelectorAll(".audio-box")
+        .forEach(box => box.classList.remove("playing"));
+
+    document
+        .getElementById("box" + index)
+        .classList.add("playing");
+
+    document
+        .getElementById("status" + index)
+        .textContent = "▶ Playing";
+
     audio.play();
 
 }
@@ -131,14 +203,30 @@ function pauseAudio(index){
 
     audio.pause();
 
+    document
+        .getElementById("box" + index)
+        .classList.remove("playing");
+
+    document
+        .getElementById("status" + index)
+        .textContent = "⏸ Paused";
+
 }
 
 function restartAudio(index){
 
     const audio = document.getElementById("audio" + index);
 
-    audio.currentTime = 0;
     audio.pause();
+    audio.currentTime = 0;
+
+    document
+        .getElementById("box" + index)
+        .classList.remove("playing");
+
+    document
+        .getElementById("status" + index)
+        .textContent = "⏹ Restarted";
 
 }
 
