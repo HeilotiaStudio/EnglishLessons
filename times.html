@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personality Traits Quiz</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    background:linear-gradient(145deg,#fce9d8,#fdd9b5);
+    font-family:'Segoe UI',Roboto,system-ui,sans-serif;
+    color:#2e1f0f;
+    margin:0;
+    padding:1.5rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.main-container{
+    max-width:960px;
+    width:100%;
+}
+
+h1{
+    text-align:center;
+    color:#b25000;
+    margin-top:0;
+    margin-bottom:.25rem;
+    font-size:2rem;
+    text-shadow:1px 1px 0 #fff3e0;
+}
+
+.subhead{
+    text-align:center;
+    font-size:1.15rem;
+    margin-bottom:2rem;
+    color:#7a3e00;
+    border-bottom:2px dashed #d99b4c;
+    padding-bottom:.75rem;
+    font-weight:500;
+}
+
+.note-badge{
+    display:inline-block;
+    background:#f5e2cb;
+    border-radius:40px;
+    padding:.25rem 1rem;
+    font-size:.9rem;
+    font-weight:600;
+    color:#9b4b00;
+    border:1px solid #e0a55b;
+}
+
+.card{
+    background:#fffbf5;
+    border-radius:24px;
+    padding:1.5rem;
+    margin-bottom:1.6rem;
+    box-shadow:0 8px 20px rgba(172,100,20,.12);
+    border-left:8px solid #f0a44a;
+}
+
+.card:hover{
+    border-left-color:#d1791a;
+}
+
+.question-prompt{
+    font-weight:700;
+    font-size:1.05rem;
+    margin-bottom:1rem;
+    display:flex;
+    gap:8px;
+}
+
+.question-num{
+    background:#f0a44a;
+    color:#fff;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.options{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.option-item{
+    background:white;
+    border:2px solid #fad6ac;
+    padding:.85rem 1rem;
+    border-radius:16px;
+    display:flex;
+    gap:10px;
+    cursor:pointer;
+    transition:.15s;
+}
+
+.option-item:hover{
+    background:#fff8ed;
+    border-color:#e5953a;
+}
+
+input[type="radio"]{
+    accent-color:#d1791a;
+    margin-top:3px;
+}
+
+.feedback{
+    margin-top:12px;
+    font-weight:600;
+    padding:.4rem .8rem;
+    border-radius:30px;
+    display:inline-block;
+}
+
+.correct{
+    background:#dff0d8;
+    color:#1e6b2c;
+}
+
+.wrong{
+    background:#fce4e4;
+    color:#b52b2b;
+}
+
+.missing{
+    background:#fff0d0;
+    color:#a85e00;
+}
+
+button{
+    background:#d1791a;
+    border:none;
+    border-radius:60px;
+    padding:1rem 2.5rem;
+    font-size:1.2rem;
+    font-weight:700;
+    color:white;
+    cursor:pointer;
+    display:block;
+    margin:2rem auto;
+}
+
+button:hover{
+    background:#e08b2c;
+}
+
+.score-area{
+    text-align:center;
+    font-size:1.6rem;
+    font-weight:800;
+    color:#aa5500;
+    background:#fff4e2;
+    border:2px solid #ebb87a;
+    border-radius:100px;
+    padding:.7rem 1.5rem;
+}
+
+.footer-note{
+    text-align:center;
+    font-size:.85rem;
+    color:#a56b2b;
+    margin-top:10px;
+}
+
+@media(max-width:550px){
+    body{
+        padding:.8rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="main-container">
+
+<h1>🧠 Personality Traits Quiz</h1>
+
+<div class="subhead">Choose the personality trait that best matches the situation</div>
+
+<div style="text-align:center; margin-bottom:1.5rem;">
+    <span class="note-badge">Jealous · Envious · Bitter · Spiteful · Selfish · Arrogant · Hateful · Resentful</span>
+    <div class="footer-note">Read each situation carefully before choosing.</div>
+</div>
+
+<div id="quiz-container"></div>
+
+<button id="checkBtn">Check Answers</button>
+
+<div id="scoreDisplay" class="score-area">
+    Score: – / 8
+</div>
+
+</div>
+
+<script>
+
+const questions = [
+{
+    sentence: "Choose the correct sentence:",
+    options: [
+        "By next month, we will have completed the project.",
+        "By next month, we will complete the project yesterday.",
+        "By next month, we completed the project."
+    ],
+    correct: 0
+},
+{
+    sentence: "Choose the correct sentence:",
+    options: [
+        "She works for the company since 2020.",
+        "She has worked for the company since 2020.",
+        "She worked for the company since 2020."
+    ],
+    correct: 1
+},
+{
+    sentence: "Choose the correct sentence:",
+    options: [
+        "I was driving home when I saw the accident.",
+        "I drove home when I was seeing the accident.",
+        "I have driven home when I saw the accident."
+    ],
+    correct: 0
+},
+{
+    sentence: "Choose the correct sentence:",
+    options: [
+        "This time tomorrow, they will be flying to Madrid.",
+        "This time tomorrow, they fly to Madrid.",
+        "This time tomorrow, they have flown to Madrid."
+    ],
+    correct: 0
+},
+{
+    sentence: "Choose the correct sentence:",
+    options: [
+        "The meeting starts at 9 a.m. every Monday.",
+        "The meeting is starting at 9 a.m. every Monday forever.",
+        "The meeting has started at 9 a.m. every Monday."
+    ],
+    correct: 0
+},
+{
+    sentence: "Choose the correct sentence:",
+    options: [
+        "By the time we arrived, the film started.",
+        "By the time we arrived, the film had started.",
+        "By the time we arrived, the film has started."
+    ],
+    correct: 1
+},
+{
+    sentence: "Choose the correct sentence:",
+    options: [
+        "I have been waiting for almost two hours.",
+        "I am waiting for almost two hours.",
+        "I wait for almost two hours."
+    ],
+    correct: 0
+},
+{
+    sentence: "Choose the correct sentence:",
+    options: [
+        "If it rains tomorrow, we will stay indoors.",
+        "If it will rain tomorrow, we stay indoors.",
+        "If it rained tomorrow, we stayed indoors."
+    ],
+    correct: 0
+},
+{
+    sentence: "Choose the correct sentence:",
+    options: [
+        "At 10 p.m. yesterday, I watched television.",
+        "At 10 p.m. yesterday, I was watching television.",
+        "At 10 p.m. yesterday, I have watched television."
+    ],
+    correct: 1
+},
+{
+    sentence: "Choose the correct sentence:",
+    options: [
+        "Scientists believe that humans will live longer in the future.",
+        "Scientists believe that humans lived longer in the future.",
+        "Scientists believe that humans have living longer in the future."
+    ],
+    correct: 0
+}
+];
+
+
+const quizContainer = document.getElementById("quiz-container");
+
+questions.forEach((q,index)=>{
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+        <div class="question-prompt">
+            <span class="question-num">${index+1}</span>
+            <span>${q.sentence}</span>
+        </div>
+
+        <div class="options">
+            ${q.options.map((opt,optIndex)=>`
+                <label class="option-item">
+                    <input type="radio" name="q${index}" value="${optIndex}">
+                    <span>${opt}</span>
+                </label>
+            `).join("")}
+        </div>
+
+        <div id="feedback-${index}" class="feedback"></div>
+    `;
+
+    quizContainer.appendChild(card);
+});
+
+function checkAnswers(){
+
+    document.querySelectorAll('.option-item').forEach(item=>{
+        item.style.background='white';
+        item.style.borderColor='#fad6ac';
+    });
+
+    let score = 0;
+
+    questions.forEach((q,index)=>{
+
+        const feedback = document.getElementById(`feedback-${index}`);
+        feedback.className = "feedback";
+        feedback.textContent = "";
+
+        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+
+        if(!selected){
+            feedback.classList.add("missing");
+            feedback.textContent = "⚠ Please select an answer.";
+            return;
+        }
+
+        const answer = Number(selected.value);
+
+        if(answer === q.correct){
+
+            score++;
+
+            feedback.classList.add("correct");
+            feedback.textContent = "✓ Correct";
+
+        }else{
+
+            feedback.classList.add("wrong");
+            feedback.textContent =
+                "✗ Incorrect. Correct answer: " + q.options[q.correct];
+
+            const radios = document.querySelectorAll(`input[name="q${index}"]`);
+
+            radios.forEach((radio,i)=>{
+                if(i===q.correct){
+                    radio.closest(".option-item").style.background="#e9f7e9";
+                    radio.closest(".option-item").style.borderColor="#2e8b57";
+                }
+            });
+        }
+
+    });
+
+    document.getElementById("scoreDisplay").textContent =
+        `Score: ${score} / ${questions.length}`;
+}
+
+document.getElementById("checkBtn").addEventListener("click", checkAnswers);
+
+</script>
+
+</body>
+</html>
