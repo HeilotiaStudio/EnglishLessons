@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Continuous Tenses · Past & Present Perfect</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background: linear-gradient(145deg, #fce9d8, #fdd9b5);
+        font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        color: #2e1f0f;
+        margin: 0;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-container {
+        max-width: 960px;
+        width: 100%;
+    }
+
+    h1 {
+        text-align: center;
+        color: #b25000;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 0.25rem;
+        font-size: 2rem;
+        letter-spacing: -0.5px;
+        text-shadow: 1px 1px 0 #fff3e0;
+    }
+
+    .subhead {
+        text-align: center;
+        font-size: 1.15rem;
+        margin-bottom: 2rem;
+        color: #7a3e00;
+        border-bottom: 2px dashed #d99b4c;
+        padding-bottom: 0.75rem;
+        font-weight: 500;
+    }
+
+    .note-badge {
+        display: inline-block;
+        background: #f5e2cb;
+        border-radius: 40px;
+        padding: 0.25rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #9b4b00;
+        margin: 0 0 1rem 0;
+        border: 1px solid #e0a55b;
+    }
+
+    .card {
+        background: #fffbf5;
+        border-radius: 24px;
+        padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+        margin-bottom: 1.6rem;
+        box-shadow: 0 8px 20px rgba(172, 100, 20, 0.12), 0 2px 6px rgba(0,0,0,0.05);
+        border-left: 8px solid #f0a44a;
+        transition: all 0.15s ease;
+    }
+
+    .card:hover {
+        border-left-color: #d1791a;
+        box-shadow: 0 12px 24px rgba(172, 100, 20, 0.18);
+    }
+
+    .question-prompt {
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        color: #3b2a17;
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        align-items: baseline;
+    }
+
+    .question-num {
+        background: #f0a44a;
+        color: white;
+        font-weight: 700;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        margin-right: 8px;
+        flex-shrink: 0;
+    }
+
+    .transform-target {
+        background: #fae3c6;
+        border-radius: 30px;
+        padding: 0.2rem 0.8rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #9b4b00;
+        display: inline-block;
+        margin-left: 6px;
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 1rem 0 0.5rem 0;
+    }
+
+    .option-item {
+        background: white;
+        border: 2px solid #fad6ac;
+        border-radius: 16px;
+        padding: 0.8rem 1rem;
+        cursor: pointer;
+        transition: 0.15s;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        line-height: 1.5;
+        font-size: 1rem;
+    }
+
+    .option-item:hover {
+        background: #fff8ed;
+        border-color: #e5953a;
+        transform: scale(1.002);
+    }
+
+    input[type="radio"] {
+        margin-top: 3px;
+        accent-color: #d1791a;
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+
+    .option-text {
+        flex: 1;
+    }
+
+    .feedback {
+        margin-top: 12px;
+        font-weight: 600;
+        padding: 0.4rem 0.8rem;
+        border-radius: 30px;
+        display: inline-block;
+        font-size: 0.9rem;
+    }
+
+    .feedback.correct {
+        background: #dff0d8;
+        color: #1e6b2c;
+    }
+
+    .feedback.wrong {
+        background: #fce4e4;
+        color: #b52b2b;
+    }
+
+    .feedback.missing {
+        background: #fff0d0;
+        color: #a85e00;
+    }
+
+    button {
+        background: #d1791a;
+        border: none;
+        border-radius: 60px;
+        padding: 1rem 2.5rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 6px 0 #8b4b0e, 0 8px 16px rgba(0,0,0,0.1);
+        transition: 0.08s linear;
+        margin: 1.8rem auto 0.5rem auto;
+        display: block;
+        letter-spacing: 0.3px;
+        width: fit-content;
+    }
+
+    button:active {
+        transform: translateY(6px);
+        box-shadow: 0 2px 0 #8b4b0e, 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    button:hover {
+        background: #e08b2c;
+    }
+
+    .score-area {
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: #aa5500;
+        background: #fff4e2;
+        border-radius: 100px;
+        padding: 0.5rem 1.5rem;
+        margin: 2rem auto 0 auto;
+        display: inline-block;
+        min-width: 200px;
+        border: 2px solid #ebb87a;
+        letter-spacing: 0.5px;
+    }
+
+    .footer-note {
+        text-align: center;
+        font-size: 0.85rem;
+        color: #a56b2b;
+        margin-top: 1.2rem;
+        opacity: 0.9;
+    }
+
+    @media (max-width: 550px) {
+        body { padding: 0.8rem; }
+        .card { padding: 1.2rem; }
+        .option-item { padding: 0.7rem 0.8rem; font-size: 0.95rem; }
+        button { font-size: 1.1rem; padding: 0.9rem 1.8rem; }
+    }
+</style>
+</head>
+
+<body>
+<div class="main-container">
+    <h1>⏳ Continuous Tenses</h1>
+    <div class="subhead">Past Continuous · Present Perfect Continuous</div>
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+        <span class="note-badge">🔹 “was waiting” & “has been”</span>
+    </div>
+
+    <div id="quiz-container"></div>
+
+    <button id="checkBtn">Check Answers</button>
+    <div id="scoreDisplay" class="score-area">Score: – / 8</div>
+    <div class="footer-note">Select the correct transformation for each sentence.</div>
+</div>
+
+<script>
+    const questions = [
+        {
+            sentence: "Change to <b>Past Continuous</b>:<br><br>She waits for the bus every morning at the same stop.",
+            options: [
+                "She was waiting for the bus every morning at the same stop.",
+                "She has been waiting for the bus every morning at the same stop.",
+                "She had been waiting for the bus every morning at the same stop."
+            ],
+            correct: 0
+        },
+        {
+            sentence: "Change to <b>Present Perfect Continuous</b>:<br><br>They wait for the exam results since last Friday.",
+            options: [
+                "They were waiting for the exam results since last Friday.",
+                "They have been waiting for the exam results since last Friday.",
+                "They are waiting for the exam results since last Friday."
+            ],
+            correct: 1
+        },
+        {
+            sentence: "Change to <b>Past Continuous</b>:<br><br>The students wait outside the lecture hall when the professor arrives.",
+            options: [
+                "The students were waiting outside the lecture hall when the professor arrived.",
+                "The students have been waiting outside the lecture hall when the professor arrived.",
+                "The students had been waiting outside the lecture hall when the professor arrives."
+            ],
+            correct: 0
+        },
+        {
+            sentence: "Change to <b>Present Perfect Continuous</b>:<br><br>He waits for a call from the hospital all afternoon.",
+            options: [
+                "He was waiting for a call from the hospital all afternoon.",
+                "He has been waiting for a call from the hospital all afternoon.",
+                "He had been waiting for a call from the hospital all afternoon."
+            ],
+            correct: 1
+        },
+        {
+            sentence: "Change to <b>Past Continuous</b>:<br><br>We wait in the queue for hours before the ticket office opens.",
+            options: [
+                "We were waiting in the queue for hours before the ticket office opened.",
+                "We have been waiting in the queue for hours before the ticket office opened.",
+                "We had been waiting in the queue for hours before the ticket office opens."
+            ],
+            correct: 0
+        },
+        {
+            sentence: "Change to <b>Present Perfect Continuous</b>:<br><br>The team waits for the final decision from the committee since Monday.",
+            options: [
+                "The team was waiting for the final decision from the committee since Monday.",
+                "The team has been waiting for the final decision from the committee since Monday.",
+                "The team had been waiting for the final decision from the committee since Monday."
+            ],
+            correct: 1
+        },
+        {
+            sentence: "Change to <b>Past Continuous</b>:<br><br>I wait at the station when I hear the announcement.",
+            options: [
+                "I was waiting at the station when I heard the announcement.",
+                "I have been waiting at the station when I heard the announcement.",
+                "I had been waiting at the station when I hear the announcement."
+            ],
+            correct: 0
+        },
+        {
+            sentence: "Change to <b>Present Perfect Continuous</b>:<br><br>She waits for her visa approval for almost three months.",
+            options: [
+                "She was waiting for her visa approval for almost three months.",
+                "She has been waiting for her visa approval for almost three months.",
+                "She had been waiting for her visa approval for almost three months."
+            ],
+            correct: 1
+        }
+    ];
+
+    const quizContainer = document.getElementById('quiz-container');
+
+    // Build questions dynamically
+    questions.forEach((q, index) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        // prompt with number and transformation target
+        const promptDiv = document.createElement('div');
+        promptDiv.className = 'question-prompt';
+
+        // extract transformation target from sentence (simple approach: look for <b>...</b>)
+        let targetText = '';
+        const bMatch = q.sentence.match(/<b>(.*?)<\/b>/);
+        if (bMatch) {
+            targetText = bMatch[1];
+        }
+        // remove the <b>...</b> from sentence for cleaner display (optional but nice)
+        const cleanSentence = q.sentence.replace(/<b>.*?<\/b>/, '').trim();
+        const sentenceOnly = cleanSentence.replace(/^:<br><br>/, '').trim(); // remove leading colon if any
+
+        // Build inner HTML for prompt: number + target badge + sentence
+        promptDiv.innerHTML = `
+            <span class="question-num">${index + 1}</span>
+            <span style="flex:1">${sentenceOnly}</span>
+            <span class="transform-target">→ ${targetText}</span>
+        `;
+
+        card.appendChild(promptDiv);
+
+        // options container
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'options';
+
+        q.options.forEach((opt, optIndex) => {
+            const label = document.createElement('label');
+            label.className = 'option-item';
+
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = `q${index}`;
+            radio.value = optIndex;
+
+            const span = document.createElement('span');
+            span.className = 'option-text';
+            span.innerHTML = opt;  // allow bold inside options if needed
+
+            label.appendChild(radio);
+            label.appendChild(span);
+            optionsDiv.appendChild(label);
+        });
+
+        card.appendChild(optionsDiv);
+
+        // feedback placeholder
+        const feedbackDiv = document.createElement('div');
+        feedbackDiv.id = `feedback-${index}`;
+        feedbackDiv.className = 'feedback';
+        card.appendChild(feedbackDiv);
+
+        quizContainer.appendChild(card);
+    });
+
+    // Check answers function
+    function checkAnswers() {
+        let score = 0;
+        const total = questions.length;
+
+        questions.forEach((q, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            const feedbackEl = document.getElementById(`feedback-${index}`);
+
+            // clear previous feedback
+            feedbackEl.className = 'feedback';
+            feedbackEl.textContent = '';
+
+            if (!selected) {
+                feedbackEl.classList.add('missing');
+                feedbackEl.textContent = '⚠️ Please select an answer.';
+                return;
+            }
+
+            const selectedValue = Number(selected.value);
+            if (selectedValue === q.correct) {
+                score++;
+                feedbackEl.classList.add('correct');
+                feedbackEl.textContent = '✓ Correct!';
+            } else {
+                feedbackEl.classList.add('wrong');
+                feedbackEl.textContent = '✗ Incorrect. The correct answer is highlighted.';
+                // highlight correct option visually? (optional, but keep simple)
+                // we can add a subtle green border to correct label for user
+                const allLabels = document.querySelectorAll(`input[name="q${index}"]`);
+                allLabels.forEach((radio, optIdx) => {
+                    if (optIdx === q.correct) {
+                        radio.closest('.option-item').style.borderColor = '#2e8b57';
+                        radio.closest('.option-item').style.background = '#e9f7e9';
+                    }
+                });
+            }
+        });
+
+        // Also remove any leftover green borders from previous checks for correct feedback?
+        // To keep it clean, we'll reset borders on every check first
+        document.querySelectorAll('.option-item').forEach(label => {
+            label.style.borderColor = '#fad6ac';
+            label.style.background = 'white';
+        });
+
+        // after reset, apply correct highlighting for wrong answers only (and correct ones too for clarity)
+        questions.forEach((q, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            if (selected && Number(selected.value) !== q.correct) {
+                // highlight correct option for this question
+                const radios = document.querySelectorAll(`input[name="q${index}"]`);
+                radios.forEach((radio, optIdx) => {
+                    if (optIdx === q.correct) {
+                        radio.closest('.option-item').style.borderColor = '#2e8b57';
+                        radio.closest('.option-item').style.background = '#e9f7e9';
+                    }
+                });
+            }
+        });
+
+        document.getElementById('scoreDisplay').textContent = `Score: ${score} / ${total}`;
+    }
+
+    // Attach event listener
+    document.getElementById('checkBtn').addEventListener('click', checkAnswers);
+
+    // Optional: initial score display reset
+    window.addEventListener('load', () => {
+        document.getElementById('scoreDisplay').textContent = `Score: – / ${questions.length}`;
+    });
+</script>
+</body>
+</html>
