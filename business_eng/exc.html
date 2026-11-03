@@ -27,7 +27,8 @@
   ol { margin-top: 3px; margin-bottom: 8px; padding-left: 22px; }
   li { margin-bottom: 14px; }
 
-  .choices { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
+  /* Inline choices so the sentence stays on one line */
+  .choices { display: inline-flex; flex-wrap: wrap; gap: 6px; margin: 0 2px; vertical-align: middle; }
   .choice {
     font-family: inherit; font-size: 9.5pt; padding: 4px 11px; border-radius: 14px;
     border: 1.5px solid #9aa9bb; background: #fff; color: #1a1a1a; cursor: pointer;
@@ -46,6 +47,7 @@
   }
   .choice:disabled { cursor: default; opacity: 0.85; }
 
+  /* Explanation drops below the sentence line */
   .explain {
     display: none;
     font-size: 8.5pt;
@@ -53,9 +55,10 @@
     background: #fff4f4;
     border-left: 3px solid #c62828;
     padding: 4px 8px;
-    margin-top: 6px;
+    margin-top: 4px;
     border-radius: 0 3px 3px 0;
     line-height: 1.35;
+    clear: both;
   }
   .explain.show { display: block; }
   .explain.ok {
