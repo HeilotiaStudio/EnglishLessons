@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>English Tenses — Auth System Practice</title>
+<style>
+  @page { size: A4; margin: 15mm; }
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.45; font-size: 10pt;
+    max-width: 900px; margin: 0 auto; padding: 20px;
+  }
+  h1 { font-size: 20pt; color: #003366; border-bottom: 2px solid #003366;
+       padding-bottom: 5px; margin-top: 0; margin-bottom: 5px; }
+  .subtitle { font-size: 11pt; color: #555; margin-bottom: 20px; font-weight: bold; }
+  h2 { font-size: 14pt; color: #003366; margin-top: 26px;
+       border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+  h3 { font-size: 11pt; color: #2b6cb0; margin-top: 12px; margin-bottom: 4px; }
+  p { margin: 4px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+  th, td { border: 1px solid #cccccc; padding: 5px 8px; text-align: left; font-size: 9pt; }
+  th { background-color: #f0f4f8; color: #003366; font-weight: bold; }
+  .callout { background-color: #f9f9f9; border-left: 4px solid #003366;
+             padding: 6px 10px; margin: 8px 0; font-size: 9.5pt; }
+  .exercise { background-color: #fafafa; border: 1px dashed #aaa;
+              padding: 10px 14px; margin: 12px 0; border-radius: 4px; }
+  .exercise h4 { margin-top: 0; margin-bottom: 8px; color: #003366; font-size: 10.5pt; }
+  ol { margin-top: 3px; margin-bottom: 8px; padding-left: 22px; }
+  li { margin-bottom: 10px; }
+  input.answer {
+    border: none; border-bottom: 1.5px solid #333; background: transparent;
+    font-family: inherit; font-size: 10pt; padding: 1px 4px; min-width: 90px;
+    outline: none; transition: background 0.2s;
+  }
+  input.answer:focus { background: #fffbe6; border-bottom-color: #003366; }
+  input.answer.correct { border-bottom-color: #1a7f37; background: #e6f4ea; color: #1a7f37; }
+  input.answer.wrong   { border-bottom-color: #c62828; background: #fdecea; color: #c62828; }
+  input.answer-wide { min-width: 240px; }
+  .feedback { font-size: 8.5pt; margin-left: 6px; font-weight: bold; }
+  .feedback.ok { color: #1a7f37; }
+  .feedback.no { color: #c62828; }
+  .btn-row { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+  button {
+    font-family: inherit; font-size: 9pt; padding: 5px 12px; border-radius: 4px;
+    border: 1px solid #003366; background: #003366; color: #fff; cursor: pointer;
+  }
+  button.secondary { background: #fff; color: #003366; }
+  button:hover { opacity: 0.85; }
+  .score { font-size: 9.5pt; font-weight: bold; margin-top: 8px; color: #003366; }
+  .hint { font-size: 9pt; color: #666; margin-top: 4px; font-style: italic; }
+  .rule { font-size: 9.5pt; color: #2b6cb0; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>English Tenses — Auth System Practice</h1>
+<div class="subtitle">Past simple · past continuous · past perfect · future forms</div>
+
+<div class="callout">
+  <strong>How to use:</strong> type your answer in each blank, then press <em>Check answers</em>.
+  Punctuation and capital letters are ignored, and contractions are accepted (<em>couldn't</em> = <em>could not</em>).
+  But the tense itself must be right — <em>fixed</em> and <em>had fixed</em> are different answers.
+</div>
+
+<div class="callout">
+  <strong>Core idea:</strong> English signals time with the verb, not with extra words. Use <strong>past simple</strong>
+  for a finished action at a finished time. Use <strong>past continuous</strong> for something in progress around that time.
+  Use <strong>past perfect</strong> only when you need to show that one past action happened <em>before</em> another.
+  Use <strong>will / going to</strong> for future plans, and <strong>will have + past participle</strong> for something that
+  will be finished by a future deadline.
+</div>
+
+<!-- ================= 1. THE STORY CONTEXT ================= -->
+<h2>1. The situation (read first)</h2>
+<div class="callout">
+  Mark is a backend developer. He could not keep working on the auth system until the external provider fixed
+  a login bug. The fix came through on Tuesday. He then continued, but the team had already lost two days.
+  Next sprint they are going to add biometric authentication. By the end of Q3 they will have shipped it.
+</div>
+
+<!-- ================= 2. PAST SIMPLE ================= -->
+<h2>2. Past simple — finished action, finished time</h2>
+
+<table>
+  <thead><tr><th>Use</th><th>Example</th><th>Signal words</th></tr></thead>
+  <tbody>
+    <tr><td>A completed action in the past</td><td>The provider <strong>fixed</strong> the bug on Tuesday.</td><td>yesterday, last week, on Tuesday, in 2023</td></tr>
+    <tr><td>A sequence of finished actions</td><td>He <strong>stopped</strong>, <strong>waited</strong>, then <strong>resumed</strong>.</td><td>then, after that, finally</td></tr>
+    <tr><td>A finished state</td><td>Mark <strong>couldn't</strong> keep working.</td><td>until, when</td></tr>
+  </tbody>
+</table>
+
+<div class="exercise" id="ex1">
+  <h4>Exercise 1 — Put the verb in the past simple</h4>
+  <ol>
+    <li>Mark <input class="answer" data-answer="couldn't|could not|couldnt"> keep working until the provider
+        <input class="answer" data-answer="fixed"> the auth bug. <span class="hint">(can't → past; fix)</span></li>
+    <li>The provider <input class="answer" data-answer="deployed|shipped|released"> the patch last Tuesday.
+        <span class="hint">(deploy / ship / release — one finished action, finished time)</span></li>
+    <li>He <input class="answer" data-answer="waited"> two days for the fix. <span class="hint">(wait)</span></li>
+    <li>After the fix, the team <input class="answer" data-answer="resumed|continued|restarted"> work on the login flow.
+        <span class="hint">(resume / continue / restart)</span></li>
+    <li>The team <input class="answer" data-answer="lost"> two days in total. <span class="hint">(lose)</span></li>
+  </ol>
+  <div class="btn-row">
+    <button onclick="checkExercise('ex1')">Check answers</button>
+    <button class="secondary" onclick="revealExercise('ex1')">Show all answers</button>
+    <button class="secondary" onclick="resetExercise('ex1')">Reset</button>
+  </div>
+  <div class="score" id="ex1-score"></div>
+</div>
+
+<!-- ================= 3. PAST CONTINUOUS ================= -->
+<h2>3. Past continuous — action in progress</h2>
+
+<table>
+  <thead><tr><th>Use</th><th>Example</th><th>Signal words</th></tr></thead>
+  <tbody>
+    <tr><td>Action in progress at a past moment</td><td>Mark <strong>was working</strong> on the auth system at 10 a.m.</td><td>at 10 a.m., all morning, while</td></tr>
+    <tr><td>Background action interrupted by a shorter one</td><td>He <strong>was debugging</strong> when the provider called.</td><td>when + past simple</td></tr>
+    <tr><td>Two actions happening at the same time</td><td>She <strong>was testing</strong> while he <strong>was writing</strong> docs.</td><td>while, as</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Your example:</strong> "Mark <em>couldn't keep working</em> until the provider fixed it" is <strong>past simple</strong>
+  — a finished state with a clear endpoint ("until… fixed"). If you say "Mark <em>was working</em> on the auth system
+  when the provider fixed the bug," you are describing the action <em>in progress</em> at the moment of interruption.
+  Both are correct; the choice depends on what you want to focus on.
+</div>
+
+<div class="exercise" id="ex2">
+  <h4>Exercise 2 — Choose past simple or past continuous</h4>
+  <ol>
+    <li>Mark <input class="answer" data-answer="was working"> on the auth system when the provider
+        <input class="answer" data-answer="called">. <span class="hint">(work — in progress; call — short interruption)</span></li>
+    <li>While the team <input class="answer" data-answer="was testing"> the login flow, the server
+        <input class="answer" data-answer="crashed">. <span class="hint">(test — background; crash — sudden)</span></li>
+    <li>He <input class="answer" data-answer="was debugging"> all morning, then he
+        <input class="answer" data-answer="stopped"> for lunch. <span class="hint">(debug — duration; stop — finished)</span></li>
+    <li>They <input class="answer" data-answer="were waiting"> for the patch when it finally
+        <input class="answer" data-answer="arrived">. <span class="hint">(wait — in progress; arrive — event)</span></li>
+  </ol>
+  <div class="btn-row">
+    <button onclick="checkExercise('ex2')">Check answers</button>
+    <button class="secondary" onclick="revealExercise('ex2')">Show all answers</button>
+    <button class="secondary" onclick="resetExercise('ex2')">Reset</button>
+  </div>
+  <div class="score" id="ex2-score"></div>
+</div>
+
+<!-- ================= 4. PAST PERFECT ================= -->
+<h2>4. Past perfect — the "before that" tense</h2>
+
+<table>
+  <thead><tr><th>Use</th><th>Example</th><th>Signal words</th></tr></thead>
+  <tbody>
+    <tr><td>An action finished <em>before</em> another past action</td><td>The provider <strong>had fixed</strong> the bug before Mark resumed.</td><td>before, after, already, by the time</td></tr>
+    <tr><td>A past result visible at a past moment</td><td>The team <strong>had lost</strong> two days by Tuesday.</td><td>by Tuesday, by then</td></tr>
+    <tr><td>Reported speech / regret</td><td>He said he <strong>hadn't known</strong> about the bug.</td><td>said, realised, wished</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Rule of thumb:</strong> only reach for past perfect when the order of two past events would otherwise be unclear.
+  If you have "before" or "after" in the sentence, past simple often works too:
+  <em>The provider fixed it before Mark resumed</em> is fine. Past perfect is the <strong>safe choice</strong> when you
+  want the "earlier" action to be unmistakable: <em>The provider had fixed it by the time Mark resumed.</em>
+</div>
+
+<div class="exercise" id="ex3">
+  <h4>Exercise 3 — Put the verb in the past perfect where needed</h4>
+  <ol>
+    <li>By the time Mark resumed, the provider <input class="answer" data-answer="had fixed|'d fixed"> the bug.
+        <span class="hint">(fix — earlier action)</span></li>
+    <li>The team <input class="answer" data-answer="had already lost|had lost|'d already lost|'d lost"> two days
+        before the patch arrived. <span class="hint">(lose — earlier action)</span></li>
+    <li>He realised he <input class="answer" data-answer="hadn't tested|had not tested"> the edge case.
+        <span class="hint">(not test — earlier than the realisation)</span></li>
+    <li>After the provider <input class="answer" data-answer="had deployed|'d deployed"> the patch, the login flow
+        <input class="answer" data-answer="worked"> again. <span class="hint">(deploy — first; work — second)</span></li>
+  </ol>
+  <div class="btn-row">
+    <button onclick="checkExercise('ex3')">Check answers</button>
+    <button class="secondary" onclick="revealExercise('ex3')">Show all answers</button>
+    <button class="secondary" onclick="resetExercise('ex3')">Reset</button>
+  </div>
+  <div class="score" id="ex3-score"></div>
+</div>
+
+<!-- ================= 5. FUTURE ================= -->
+<h2>5. Future forms — the biometric auth next steps</h2>
+
+<table>
+  <thead><tr><th>Form</th><th>Use</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td><strong>will + base verb</strong></td><td>Decision made now, prediction, promise</td><td>I <strong>will</strong> check the logs.</td></tr>
+    <tr><td><strong>going to + base verb</strong></td><td>Plan already decided, visible evidence</td><td>We <strong>are going to add</strong> biometric auth next sprint.</td></tr>
+    <tr><td><strong>will be + -ing</strong></td><td>Action in progress at a future moment</td><td>At 10 a.m. tomorrow we <strong>will be testing</strong> the fingerprint flow.</td></tr>
+    <tr><td><strong>will have + past participle</strong></td><td>Finished <em>by</em> a future deadline</td><td>By the end of Q3 we <strong>will have shipped</strong> biometric auth.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Your next-step scenario:</strong> the team <em>is going to</em> add biometric authentication
+  (a plan already decided). While they are building it, they <em>will be testing</em> on real devices
+  (in progress at a future time). And by the release date they <em>will have shipped</em> it
+  (finished by a deadline). Three different future forms, three different jobs.
+</div>
+
+<div class="exercise" id="ex4">
+  <h4>Exercise 4 — Choose the correct future form</h4>
+  <ol>
+    <li>Next sprint we <input class="answer" data-answer="are going to add|'re going to add"> biometric authentication.
+        <span class="hint">(plan already decided → going to)</span></li>
+    <li>I <input class="answer" data-answer="will check|'ll check"> the provider's docs tonight.
+        <span class="hint">(decision made now → will)</span></li>
+    <li>At 10 a.m. tomorrow the team <input class="answer" data-answer="will be testing|'ll be testing"> the fingerprint flow.
+        <span class="hint">(in progress at a future moment → will be + -ing)</span></li>
+    <li>By the end of Q3 we <input class="answer" data-answer="will have shipped|'ll have shipped"> biometric auth.
+        <span class="hint">(finished by a future deadline → will have + past participle)</span></li>
+    <li>Don't worry — I <input class="answer" data-answer="will help|'ll help"> you with the migration.
+        <span class="hint">(promise → will)</span></li>
+  </ol>
+  <div class="btn-row">
+    <button onclick="checkExercise('ex4')">Check answers</button>
+    <button class="secondary" onclick="revealExercise('ex4')">Show all answers</button>
+    <button class="secondary" onclick="resetExercise('ex4')">Reset</button>
+  </div>
+  <div class="score" id="ex4-score"></div>
+</div>
+
+<!-- ================= 6. MIXED ================= -->
+<h2>6. Mixed practice — your own example, all tenses</h2>
+
+<div class="exercise" id="ex5">
+  <h4>Exercise 5 — Fill in the correct tense</h4>
+  <ol>
+    <li>Mark <input class="answer" data-answer="couldn't|could not|couldnt"> keep working on the auth system
+        until the provider <input class="answer" data-answer="fixed"> the bug.
+        <span class="hint">(finished state + finished action → past simple both)</span></li>
+    <li>While Mark <input class="answer" data-answer="was waiting"> for the fix, he
+        <input class="answer" data-answer="was reviewing|reviewed"> other tickets.
+        <span class="hint">(two things in progress, or background + activity)</span></li>
+    <li>By the time the patch arrived, the team <input class="answer" data-answer="had lost|'d lost"> two days.
+        <span class="hint">(earlier result → past perfect)</span></li>
+    <li>Next sprint we <input class="answer" data-answer="are going to add|'re going to add"> biometric auth.
+        <span class="hint">(plan → going to)</span></li>
+    <li>By the release date we <input class="answer" data-answer="will have shipped|'ll have shipped"> it.
+        <span class="hint">(finished by deadline → will have + pp)</span></li>
+    <li>Translate: "He couldn't keep working until the provider fixed it."
+        <input class="answer answer-wide" data-answer="he couldn't keep working until the provider fixed it|he could not keep working until the provider fixed it|he couldnt keep working until the provider fixed it">
+    </li>
+    <li>Translate: "By the end of Q3 we will have shipped biometric authentication."
+        <input class="answer answer-wide" data-answer="by the end of q3 we will have shipped biometric authentication|by the end of q3 we'll have shipped biometric authentication">
+    </li>
+  </ol>
+  <div class="btn-row">
+    <button onclick="checkExercise('ex5')">Check answers</button>
+    <button class="secondary" onclick="revealExercise('ex5')">Show all answers</button>
+    <button class="secondary" onclick="resetExercise('ex5')">Reset</button>
+  </div>
+  <div class="score" id="ex5-score"></div>
+</div>
+
+<div class="callout">
+  <strong>Quick self-check:</strong> Can you say these three from memory?
+  <em>He couldn't keep working until the provider fixed it</em> (past simple) —
+  <em>He was working when the provider called</em> (past continuous) —
+  <em>By the time he resumed, the provider had fixed it</em> (past perfect) —
+  <em>By Q3 we will have shipped biometric auth</em> (future perfect).
+  If one feels shaky, redo that exercise before moving on.
+</div>
+
+<script>
+/* Normalise an answer: lowercase, trim, collapse spaces,
+   strip punctuation, and expand common contractions so learners
+   aren't punished for "couldnt" vs "couldn't" vs "could not". */
+function normalise(s) {
+  return s
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, ' ')
+    .replace(/[.,!?;:"]/g, '')
+    .replace(/\u2019/g, "'")            // curly apostrophe → straight
+    .replace(/\bcouldnt\b/g, "couldn't")
+    .replace(/\bcouldn't\b/g, "could not")
+    .replace(/\bcan't\b/g, "can not")
+    .replace(/\bwon't\b/g, "will not")
+    .replace(/\bdon't\b/g, "do not")
+    .replace(/\bdidn't\b/g, "did not")
+    .replace(/\bhadn't\b/g, "had not")
+    .replace(/\bhasn't\b/g, "has not")
+    .replace(/\bhaven't\b/g, "have not")
+    .replace(/\bisn't\b/g, "is not")
+    .replace(/\baren't\b/g, "are not")
+    .replace(/\bwasn't\b/g, "was not")
+    .replace(/\bweren't\b/g, "were not")
+    .replace(/\b'll\b/g, " will")
+    .replace(/\b'd\b/g, " had")
+    .replace(/\b're\b/g, " are")
+    .replace(/\b've\b/g, " have")
+    .replace(/\bi'm\b/g, "i am")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function acceptableAnswers(raw) {
+  return raw.split('|').map(function (s) { return normalise(s); });
+}
+
+function checkExercise(id) {
+  var ex = document.getElementById(id);
+  var inputs = ex.querySelectorAll('input.answer');
+  var correct = 0;
+  inputs.forEach(function (input) {
+    var accepted = acceptableAnswers(input.dataset.answer);
+    var val = normalise(input.value);
+    var ok = val !== '' && accepted.indexOf(val) !== -1;
+    input.classList.remove('correct', 'wrong');
+    input.classList.add(ok ? 'correct' : 'wrong');
+    if (ok) correct++;
+  });
+  var scoreEl = document.getElementById(id + '-score');
+  scoreEl.textContent = 'Score: ' + correct + ' / ' + inputs.length +
+    (correct === inputs.length ? ' — perfect!' : '');
+}
+
+function revealExercise(id) {
+  var ex = document.getElementById(id);
+  var inputs = ex.querySelectorAll('input.answer');
+  inputs.forEach(function (input) {
+    var first = input.dataset.answer.split('|')[0];
+    input.value = first;
+    input.classList.remove('correct', 'wrong');
+    input.classList.add('correct');
+  });
+  document.getElementById(id + '-score').textContent =
+    'All answers shown. Press Reset to try again.';
+}
+
+function resetExercise(id) {
+  var ex = document.getElementById(id);
+  var inputs = ex.querySelectorAll('input.answer');
+  inputs.forEach(function (input) {
+    input.value = '';
+    input.classList.remove('correct', 'wrong');
+  });
+  document.getElementById(id + '-score').textContent = '';
+}
+
+document.querySelectorAll('input.answer').forEach(function (input) {
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      var ex = input.closest('.exercise');
+      if (ex) checkExercise(ex.id);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
