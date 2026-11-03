@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Relative Clauses — Auth System Practice</title>
+<style>
+  @page { size: A4; margin: 15mm; }
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #1a1a1a; line-height: 1.45; font-size: 10pt;
+    max-width: 900px; margin: 0 auto; padding: 20px;
+  }
+  h1 { font-size: 20pt; color: #003366; border-bottom: 2px solid #003366;
+       padding-bottom: 5px; margin-top: 0; margin-bottom: 5px; }
+  .subtitle { font-size: 11pt; color: #555; margin-bottom: 20px; font-weight: bold; }
+  h2 { font-size: 14pt; color: #003366; margin-top: 26px;
+       border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+  p { margin: 4px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+  th, td { border: 1px solid #cccccc; padding: 5px 8px; text-align: left; font-size: 9pt; vertical-align: top; }
+  th { background-color: #f0f4f8; color: #003366; font-weight: bold; }
+  .callout { background-color: #f9f9f9; border-left: 4px solid #003366;
+             padding: 6px 10px; margin: 8px 0; font-size: 9.5pt; }
+  .exercise { background-color: #fafafa; border: 1px dashed #aaa;
+              padding: 10px 14px; margin: 12px 0; border-radius: 4px; }
+  .exercise h4 { margin-top: 0; margin-bottom: 8px; color: #003366; font-size: 10.5pt; }
+  ol { margin-top: 3px; margin-bottom: 8px; padding-left: 22px; }
+  li { margin-bottom: 14px; }
+
+  .legend { font-size: 9pt; margin: 8px 0 4px; }
+  .legend span { display: inline-block; padding: 2px 9px; border-radius: 11px;
+                 border: 1.5px solid; margin-right: 8px; font-weight: bold; }
+  .legend .green { color: #1a7f37; border-color: #1a7f37; background: #e6f4ea; }
+  .legend .orange { color: #b45309; border-color: #d97706; background: #fff7ed; }
+  .legend .red { color: #c62828; border-color: #c62828; background: #fdecea; }
+
+  .choices { display: inline-flex; flex-wrap: wrap; gap: 6px; margin: 0 2px; vertical-align: middle; }
+  .choice {
+    font-family: inherit; font-size: 9.5pt; padding: 4px 11px; border-radius: 14px;
+    border: 1.5px solid #9aa9bb; background: #fff; color: #1a1a1a; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .choice:hover { border-color: #003366; background: #eef3f9; }
+  .choice.selected-wrong {
+    border-color: #c62828; background: #fdecea; color: #c62828;
+    text-decoration: line-through;
+  }
+  .choice.selected-close {
+    border-color: #d97706; background: #fff7ed; color: #b45309; font-weight: bold;
+  }
+  .choice.correct-reveal {
+    border-color: #1a7f37; background: #e6f4ea; color: #1a7f37; font-weight: bold;
+  }
+  .choice.selected-correct {
+    border-color: #1a7f37; background: #e6f4ea; color: #1a7f37; font-weight: bold;
+  }
+  .choice:disabled { cursor: default; opacity: 0.85; }
+
+  .explain {
+    display: none;
+    font-size: 8.5pt;
+    color: #8a2020;
+    background: #fff4f4;
+    border-left: 3px solid #c62828;
+    padding: 4px 8px;
+    margin-top: 4px;
+    border-radius: 0 3px 3px 0;
+    line-height: 1.35;
+    clear: both;
+  }
+  .explain.show { display: block; }
+  .explain.ok {
+    color: #1a5a25;
+    background: #f0faf1;
+    border-left-color: #1a7f37;
+  }
+  .explain.close {
+    color: #7c4a03;
+    background: #fff7ed;
+    border-left-color: #d97706;
+  }
+
+  .btn-row { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+  button.action {
+    font-family: inherit; font-size: 9pt; padding: 5px 12px; border-radius: 4px;
+    border: 1px solid #003366; background: #003366; color: #fff; cursor: pointer;
+  }
+  button.action.secondary { background: #fff; color: #003366; }
+  button.action:hover { opacity: 0.85; }
+  .score { font-size: 9.5pt; font-weight: bold; margin-top: 8px; color: #003366; }
+</style>
+</head>
+<body>
+
+<h1>Relative Clauses — Auth System Practice</h1>
+<div class="subtitle">who · which · that · whose · where · when · defining vs non-defining</div>
+
+<div class="callout">
+  <strong>How to use:</strong> click the option that fits each blank best. The answer locks in immediately.
+  Read the explanation, then move on.
+</div>
+
+<div class="legend">
+  <span class="green">Green</span> best fit for this sentence —
+  <span class="orange">Orange</span> grammatical, but a different focus —
+  <span class="red">Red</span> not grammatical in this slot
+</div>
+
+<div class="callout">
+  <strong>The one idea behind this whole sheet:</strong> a relative clause tells you <em>which one</em>
+  (defining: no commas, can't be removed) or gives you <em>extra information</em> (non-defining: commas, can be removed).
+  Choose the pronoun by what it replaces — <em>person → who</em>, <em>thing → which / that</em>,
+  <em>possession → whose</em>, <em>place → where</em>, <em>time → when</em>.
+</div>
+
+<!-- ================= 1. THE PRONOUNS ================= -->
+<h2>1. The pronouns — one table</h2>
+
+<table>
+  <thead><tr><th>Replaces</th><th>Defining (no commas)</th><th>Non-defining (with commas)</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>person (subject)</td><td><strong>who</strong> / <strong>that</strong></td><td><strong>who</strong> only</td><td>The dev <strong>who</strong> wrote the patch is Mark.</td></tr>
+    <tr><td>person (object)</td><td><strong>who</strong> / <strong>that</strong> / — (omitted)</td><td><strong>who</strong> only</td><td>The dev (<strong>who</strong>) we hired is Mark.</td></tr>
+    <tr><td>thing (subject)</td><td><strong>which</strong> / <strong>that</strong></td><td><strong>which</strong> only</td><td>The bug <strong>which</strong> crashed the server is fixed.</td></tr>
+    <tr><td>thing (object)</td><td><strong>which</strong> / <strong>that</strong> / — (omitted)</td><td><strong>which</strong> only</td><td>The patch (<strong>which</strong>) he shipped worked.</td></tr>
+    <tr><td>possession</td><td><strong>whose</strong></td><td><strong>whose</strong></td><td>The dev <strong>whose</strong> code broke is Mark.</td></tr>
+    <tr><td>place</td><td><strong>where</strong></td><td><strong>where</strong></td><td>The room <strong>where</strong> we test is upstairs.</td></tr>
+    <tr><td>time</td><td><strong>when</strong></td><td><strong>when</strong></td><td>The day <strong>when</strong> it broke was a Tuesday.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Two rules that cover almost everything:</strong>
+  (1) after a comma, <em>that</em> is never correct — use <em>who</em> or <em>which</em>;
+  (2) if the relative pronoun is the object of the clause, it can be dropped in defining clauses
+  (<em>the dev we hired</em>) but never in non-defining ones (<em>Mark, who we hired,</em> — not <em>Mark, we hired</em>).
+</div>
+
+<!-- ================= 2. PRONOUN CHOICE ================= -->
+<h2>2. Choosing the right pronoun</h2>
+
+<div class="exercise" id="ex1">
+  <h4>Exercise 1 — Choose the relative pronoun</h4>
+  <ol>
+    <li>The developer <span class="blank" data-answer="who" data-also-ok="that" data-options="who|that|which"
+        data-explain="<strong>Who</strong> refers to a person. <em>That</em> (orange) is also grammatical in defining clauses. <em>Which</em> is for things, not people — red."></span>
+        fixed the auth bug is Mark.</li>
+
+    <li>The patch <span class="blank" data-answer="that" data-also-ok="which" data-options="that|which|who"
+        data-explain="Both <strong>that</strong> and <em>which</em> (orange) work for a thing in a defining clause. <em>Who</em> is for people — red."></span>
+        shipped on Tuesday finally worked.</li>
+
+    <li>The room <span class="blank" data-answer="where" data-options="where|which|who"
+        data-explain="<strong>Where</strong> replaces a place. <em>Which</em> would need <em>in</em> after it (<em>the room in which we test</em>); <em>who</em> is for people."></span>
+        we run the biometric tests is on the second floor.</li>
+
+    <li>The day <span class="blank" data-answer="when" data-options="when|which|where"
+        data-explain="<strong>When</strong> replaces a time expression. <em>Which</em> would need a preposition (<em>on which</em>); <em>where</em> is for places."></span>
+        the provider pushed the fix was a Tuesday.</li>
+
+    <li>The engineer <span class="blank" data-answer="whose" data-options="whose|who's|which"
+        data-explain="<strong>Whose</strong> shows possession. <em>Who's</em> = <em>who is</em> — different word. <em>Which</em> is for things."></span>
+        code broke the login flow is on call this week.</li>
+
+    <li>The tool <span class="blank" data-answer="that" data-also-ok="which" data-options="that|which|where"
+        data-explain="Both <strong>that</strong> and <em>which</em> (orange) work for a thing. <em>Where</em> would need to replace a place, not a tool."></span>
+        we use for testing is open source.</li>
+  </ol>
+  <div class="btn-row">
+    <button class="action secondary" onclick="resetExercise('ex1')">Reset</button>
+  </div>
+  <div class="score" id="ex1-score"></div>
+</div>
+
+<!-- ================= 3. DEFINING VS NON-DEFINING ================= -->
+<h2>3. Defining vs non-defining — the comma decides</h2>
+
+<table>
+  <thead><tr><th>Type</th><th>Form</th><th>Meaning</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Defining</strong></td><td>no commas, can use <em>that</em>, can drop the object pronoun</td><td>tells you <em>which one</em> — the clause is essential</td><td>The developer <strong>who wrote the patch</strong> is Mark. (there are several developers; this identifies which one)</td></tr>
+    <tr><td><strong>Non-defining</strong></td><td>commas, <strong>never</strong> <em>that</em>, pronoun cannot be dropped</td><td>gives extra information — the person/thing is already identified</td><td>Mark<strong>, who wrote the patch,</strong> is on call. (there's only one Mark; the clause just adds info)</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Comma changes the meaning:</strong>
+  <em>The devs who tested the biometric flow</em> = only the devs who tested it (subset);
+  <em>The devs, who tested the biometric flow,</em> = all the devs, and by the way they tested it.
+</div>
+
+<div class="exercise" id="ex2">
+  <h4>Exercise 2 — Defining or non-defining?</h4>
+  <ol>
+    <li>Mark, <span class="blank" data-answer="who" data-options="who|that|which"
+        data-explain="After a comma (non-defining), <strong>who</strong> is the only option. <em>That</em> is never used after a comma; <em>which</em> is for things."></span>
+        wrote the patch, is on call this week.</li>
+
+    <li>The developer <span class="blank" data-answer="that" data-also-ok="who" data-options="that|who|whose"
+        data-explain="In a defining clause both <strong>that</strong> and <em>who</em> (orange) work for a person. <em>Whose</em> would need to replace a possessive, not a subject."></span>
+        wrote the patch is on call this week.</li>
+
+    <li>The patch, <span class="blank" data-answer="which" data-options="which|that|who"
+        data-explain="After a comma, <strong>which</strong> is the only option for a thing. <em>That</em> is never used after a comma."></span>
+        shipped on Tuesday, fixed the login bug.</li>
+
+    <li>The patch <span class="blank" data-answer="that" data-also-ok="which" data-options="that|which|who"
+        data-explain="In a defining clause, both <strong>that</strong> and <em>which</em> (orange) work for a thing. <em>Who</em> is for people."></span>
+        shipped on Tuesday fixed the login bug.</li>
+
+    <li>The biometric flow, <span class="blank" data-answer="which" data-options="which|that|where"
+        data-explain="After a comma, <strong>which</strong> is the only option for a thing. <em>That</em> is banned; <em>where</em> is for places."></span>
+        we tested last sprint, is still unstable.</li>
+
+    <li>The team <span class="blank" data-answer="that" data-also-ok="which" data-options="that|which|whose"
+        data-explain="For a team (a group treated as a thing), both <strong>that</strong> and <em>which</em> (orange) work in defining clauses. <em>Whose</em> would need to replace a possessive."></span>
+        shipped the patch is getting a bonus.</li>
+  </ol>
+  <div class="btn-row">
+    <button class="action secondary" onclick="resetExercise('ex2')">Reset</button>
+  </div>
+  <div class="score" id="ex2-score"></div>
+</div>
+
+<!-- ================= 4. DROPPING THE OBJECT PRONOUN ================= -->
+<h2>4. Dropping the object pronoun</h2>
+
+<div class="callout">
+  <strong>Rule:</strong> if the relative pronoun is the <em>object</em> of the clause, you can drop it in a defining clause.
+  <em>The dev (who) we hired</em> = <em>The dev we hired</em>. But if it's the <em>subject</em> of the clause, you can't:
+  <em>The dev who wrote it</em> — you can't say <em>The dev wrote it is Mark</em> (that means something else).
+  <br><br>
+  And in a non-defining clause, you can never drop it: <em>Mark, who we hired,</em> — not <em>Mark, we hired,</em>.
+</div>
+
+<div class="exercise" id="ex3">
+  <h4>Exercise 3 — Which is correct?</h4>
+  <ol>
+    <li>The developer <span class="blank" data-answer="— (omitted)" data-also-ok="who" data-options="— (omitted)|who|that"
+        data-explain="<strong>Omitted</strong> is best — the pronoun is the <em>object</em> of the clause (<em>we hired [the dev]</em>), so it can be dropped. <em>Who</em> and <em>that</em> (orange) are also correct — dropping is optional, not required."></span>
+        we hired last month is doing great.</li>
+
+    <li>The developer <span class="blank" data-answer="who" data-options="who|— (omitted)|whose"
+        data-explain="<strong>Who</strong> is required — here the pronoun is the <em>subject</em> of the clause (<em>who wrote the patch</em>). It cannot be dropped. <em>Whose</em> would need a possessive."></span>
+        wrote the patch is on call.</li>
+
+    <li>Mark, <span class="blank" data-answer="who" data-options="who|— (omitted)|that"
+        data-explain="<strong>Who</strong> is required — in a non-defining clause (with commas), the pronoun can never be dropped, and <em>that</em> is banned."></span>
+        we hired last month, is doing great.</li>
+
+    <li>The patch <span class="blank" data-answer="— (omitted)" data-also-ok="that" data-options="— (omitted)|that|who"
+        data-explain="<strong>Omitted</strong> is best — the pronoun is the <em>object</em> of the clause (<em>he shipped [the patch]</em>), so it can be dropped. <em>That</em> (orange) is also correct. <em>Who</em> is for people."></span>
+        he shipped on Tuesday fixed the bug.</li>
+
+    <li>The patch <span class="blank" data-answer="that" data-also-ok="which" data-options="that|which|— (omitted)"
+        data-explain="Here the pronoun is the <em>subject</em> of the clause (<em>that shipped on Tuesday</em>), so it cannot be dropped. Both <strong>that</strong> and <em>which</em> (orange) work."></span>
+        shipped on Tuesday fixed the bug.</li>
+
+    <li>The team, <span class="blank" data-answer="which" data-options="which|— (omitted)|that"
+        data-explain="Non-defining clause — the pronoun can never be dropped, and <em>that</em> is banned. <strong>Which</strong> is the only option."></span>
+        had been waiting two weeks, finally resumed.</li>
+  </ol>
+  <div class="btn-row">
+    <button class="action secondary" onclick="resetExercise('ex3')">Reset</button>
+  </div>
+  <div class="score" id="ex3-score"></div>
+</div>
+
+<!-- ================= 5. THAT VS WHICH ================= -->
+<h2>5. <em>That</em> vs <em>which</em> — where the two overlap</h2>
+
+<div class="callout">
+  <strong>Short version:</strong> in <em>defining</em> clauses, both <em>that</em> and <em>which</em> are grammatical —
+  <em>the bug that crashed the server</em> and <em>the bug which crashed the server</em> are both correct. In <em>non-defining</em>
+  clauses (with commas), <strong>only</strong> <em>which</em> is grammatical. And after a preposition, only <em>which</em>:
+  <em>the tool with which we test</em> — never <em>with that</em>.
+  <br><br>
+  So a blank can't have <em>that</em> and <em>which</em> as only options — one of them must be clearly wrong
+  (with a comma, or after a preposition). Where they're interchangeable, both are orange-or-green, never red.
+</div>
+
+<div class="exercise" id="ex4">
+  <h4>Exercise 4 — Choose the correct option</h4>
+  <ol>
+    <li>The bug <span class="blank" data-answer="that" data-also-ok="which" data-options="that|which|who"
+        data-explain="Defining clause — both <strong>that</strong> and <em>which</em> (orange) work. <em>Who</em> is for people."></span>
+        crashed the server is fixed.</li>
+
+    <li>The bug, <span class="blank" data-answer="which" data-options="which|that|who"
+        data-explain="After a comma, <strong>which</strong> is the only option. <em>That</em> is banned in non-defining clauses."></span>
+        crashed the server, is fixed.</li>
+
+    <li>The tool <span class="blank" data-answer="with which" data-options="with which|with that|with who"
+        data-explain="After a preposition, <strong>with which</strong> is the only option. <em>With that</em> and <em>with who</em> are both ungrammatical."></span>
+        we test the biometric flow is open source.</li>
+
+    <li>The server <span class="blank" data-answer="on which" data-options="on which|on that|where on"
+        data-explain="After a preposition, <strong>on which</strong> is the only option. <em>Where on</em> is not a relative structure."></span>
+        the tests run went down last night.</li>
+
+    <li>The developer <span class="blank" data-answer="to whom" data-options="to whom|to who|to that"
+        data-explain="After a preposition referring to a person, <strong>to whom</strong> is the formal correct form. <em>To who</em> and <em>to that</em> are both ungrammatical."></span>
+        I reported the bug fixed it the next day.</li>
+
+    <li>The patch <span class="blank" data-answer="that" data-also-ok="which" data-options="that|which|whose"
+        data-explain="Defining clause, subject position — both <strong>that</strong> and <em>which</em> (orange) work. <em>Whose</em> would need to replace a possessive."></span>
+        landed on Tuesday fixed the login flow.</li>
+  </ol>
+  <div class="btn-row">
+    <button class="action secondary" onclick="resetExercise('ex4')">Reset</button>
+  </div>
+  <div class="score" id="ex4-score"></div>
+</div>
+
+<!-- ================= 6. REDUCED RELATIVE CLAUSES ================= -->
+<h2>6. Reduced relative clauses</h2>
+
+<div class="callout">
+  <strong>Short version:</strong> you can shorten a relative clause by dropping the pronoun and the auxiliary:
+  <em>the dev who is working on it</em> → <em>the dev working on it</em>;
+  <em>the bug that was fixed on Tuesday</em> → <em>the bug fixed on Tuesday</em>.
+  The reduction always keeps the participle (-ing for active, past participle for passive).
+</div>
+
+<div class="exercise" id="ex5">
+  <h4>Exercise 5 — Choose the correct reduced form</h4>
+  <ol>
+    <li>The developer <span class="blank" data-answer="working" data-options="working|who working|worked"
+        data-explain="Active meaning → <strong>working</strong>. <em>Who working</em> is ungrammatical — after dropping <em>who</em>, you also drop <em>is</em>. <em>Worked</em> would be passive."></span>
+        on the biometric flow is Mark.</li>
+
+    <li>The bug <span class="blank" data-answer="fixed" data-options="fixed|fixing|fix"
+        data-explain="Passive meaning → <strong>fixed</strong> (past participle). <em>Fixing</em> would be active — the bug doesn't fix anything."></span>
+        on Tuesday is now in production.</li>
+
+    <li>The team <span class="blank" data-answer="waiting" data-options="waiting|waited|who waiting"
+        data-explain="Active meaning → <strong>waiting</strong>. <em>Waited</em> would be passive — the team was waiting, not being waited. <em>Who waiting</em> is ungrammatical."></span>
+        for the fix lost two weeks.</li>
+
+    <li>The documentation <span class="blank" data-answer="written" data-options="written|writing|write"
+        data-explain="Passive meaning → <strong>written</strong> (past participle). <em>Writing</em> would be active — the docs don't write anything."></span>
+        by the provider is confusing.</li>
+
+    <li>The test <span class="blank" data-answer="running" data-options="running|ran|run"
+        data-explain="Active meaning → <strong>running</strong>. <em>Ran</em> would be past simple, not a participle. <em>Run</em> would be passive — the test doesn't get run here, it's running."></span>
+        on the staging server failed.</li>
+
+    <li>The patch <span class="blank" data-answer="shipped" data-options="shipped|shipping|ship"
+        data-explain="Passive meaning → <strong>shipped</strong>. <em>Shipping</em> would be active — the patch doesn't ship anything."></span>
+        last Tuesday broke the login flow.</li>
+  </ol>
+  <div class="btn-row">
+    <button class="action secondary" onclick="resetExercise('ex5')">Reset</button>
+  </div>
+  <div class="score" id="ex5-score"></div>
+</div>
+
+<div class="callout">
+  <strong>Quick self-check:</strong> Can you say these from memory?
+  <em>The dev who wrote the patch</em> (defining, person) —
+  <em>Mark, who wrote the patch,</em> (non-defining, person) —
+  <em>The bug that / which crashed the server</em> (thing, defining) —
+  <em>The tool with which we test</em> (preposition) —
+  <em>The dev working on it</em> (reduced, active) —
+  <em>The bug fixed on Tuesday</em> (reduced, passive).
+</div>
+
+<script>
+function buildBlanks() {
+  document.querySelectorAll('.blank').forEach(function (blank) {
+    var options = blank.dataset.options.split('|');
+    var correct = blank.dataset.answer;
+    var alsoOk = (blank.dataset.alsoOk || '').split('|').filter(Boolean);
+    var explain = blank.dataset.explain || '';
+
+    var wrap = document.createElement('span');
+    wrap.className = 'choices';
+
+    var explainEl = document.createElement('div');
+    explainEl.className = 'explain';
+
+    options.forEach(function (opt) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'choice';
+      btn.textContent = opt;
+      btn.dataset.value = opt;
+      btn.addEventListener('click', function () {
+        if (wrap.dataset.answered === '1') return;
+        wrap.dataset.answered = '1';
+
+        var isCorrect = (opt === correct);
+        var isAlsoOk = alsoOk.indexOf(opt) !== -1;
+
+        wrap.querySelectorAll('.choice').forEach(function (b) {
+          b.disabled = true;
+          if (b.dataset.value === correct && b !== btn) {
+            b.classList.add('correct-reveal');
+          }
+        });
+
+        if (isCorrect) {
+          btn.classList.add('selected-correct');
+          explainEl.innerHTML = '✓ Correct. ' + explain;
+          explainEl.classList.add('show', 'ok');
+        } else if (isAlsoOk) {
+          btn.classList.add('selected-close');
+          explainEl.innerHTML = '⚠ Grammatical, but not the best fit here. ' + explain;
+          explainEl.classList.add('show', 'close');
+        } else {
+          btn.classList.add('selected-wrong');
+          explainEl.innerHTML = '✗ Not grammatical in this slot. ' + explain;
+          explainEl.classList.add('show');
+        }
+        updateScore(blank.closest('.exercise'));
+      });
+      wrap.appendChild(btn);
+    });
+
+    blank.parentNode.replaceChild(wrap, blank);
+    wrap.insertAdjacentElement('afterend', explainEl);
+    wrap.dataset.answered = '0';
+    wrap.dataset.correct = correct;
+    wrap.dataset.alsoOk = alsoOk.join('|');
+  });
+}
+
+function updateScore(ex) {
+  var wraps = ex.querySelectorAll('.choices');
+  var total = wraps.length;
+  var done = 0;
+  var correct = 0;
+  var close = 0;
+  wraps.forEach(function (w) {
+    if (w.dataset.answered === '1') {
+      done++;
+      if (w.querySelector('.selected-correct')) correct++;
+      else if (w.querySelector('.selected-close')) close++;
+    }
+  });
+  var scoreEl = document.getElementById(ex.id + '-score');
+  if (done === 0) { scoreEl.textContent = ''; return; }
+  var txt = 'Score: ' + correct + ' / ' + total;
+  if (close > 0) txt += ' (' + close + ' close — grammatical but not best fit)';
+  if (done === total && correct === total) txt += ' — perfect!';
+  scoreEl.textContent = txt;
+}
+
+function resetExercise(id) {
+  var ex = document.getElementById(id);
+  ex.querySelectorAll('.choices').forEach(function (w) {
+    w.dataset.answered = '0';
+    w.querySelectorAll('.choice').forEach(function (b) {
+      b.disabled = false;
+      b.classList.remove('selected-correct', 'selected-close', 'selected-wrong', 'correct-reveal');
+    });
+    var next = w.nextElementSibling;
+    if (next && next.classList.contains('explain')) {
+      next.classList.remove('show', 'ok', 'close');
+      next.innerHTML = '';
+    }
+  });
+  document.getElementById(id + '-score').textContent = '';
+}
+
+buildBlanks();
+</script>
+
+</body>
+</html>
