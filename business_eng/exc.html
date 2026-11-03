@@ -27,7 +27,14 @@
   ol { margin-top: 3px; margin-bottom: 8px; padding-left: 22px; }
   li { margin-bottom: 14px; }
 
-  /* Inline choices so the sentence stays on one line */
+  /* Legend */
+  .legend { font-size: 9pt; margin: 8px 0 4px; }
+  .legend span { display: inline-block; padding: 2px 9px; border-radius: 11px;
+                 border: 1.5px solid; margin-right: 8px; font-weight: bold; }
+  .legend .green { color: #1a7f37; border-color: #1a7f37; background: #e6f4ea; }
+  .legend .orange { color: #b45309; border-color: #d97706; background: #fff7ed; }
+  .legend .red { color: #c62828; border-color: #c62828; background: #fdecea; }
+
   .choices { display: inline-flex; flex-wrap: wrap; gap: 6px; margin: 0 2px; vertical-align: middle; }
   .choice {
     font-family: inherit; font-size: 9.5pt; padding: 4px 11px; border-radius: 14px;
@@ -39,6 +46,9 @@
     border-color: #c62828; background: #fdecea; color: #c62828;
     text-decoration: line-through;
   }
+  .choice.selected-close {
+    border-color: #d97706; background: #fff7ed; color: #b45309; font-weight: bold;
+  }
   .choice.correct-reveal {
     border-color: #1a7f37; background: #e6f4ea; color: #1a7f37; font-weight: bold;
   }
@@ -47,7 +57,6 @@
   }
   .choice:disabled { cursor: default; opacity: 0.85; }
 
-  /* Explanation drops below the sentence line */
   .explain {
     display: none;
     font-size: 8.5pt;
@@ -66,6 +75,11 @@
     background: #f0faf1;
     border-left-color: #1a7f37;
   }
+  .explain.close {
+    color: #7c4a03;
+    background: #fff7ed;
+    border-left-color: #d97706;
+  }
 
   .btn-row { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
   button.action {
@@ -83,22 +97,27 @@
 <div class="subtitle">Past simple · past continuous · past perfect · future forms</div>
 
 <div class="callout">
-  <strong>How to use:</strong> click the correct option for each blank. The answer locks in immediately —
-  green means correct, red means wrong (and the correct one is highlighted too). Read the explanation, then move on.
+  <strong>How to use:</strong> click the option that fits each blank best. The answer locks in immediately.
+  Read the explanation, then move on.
+</div>
+
+<div class="legend">
+  <span class="green">Green</span> best fit for this sentence —
+  <span class="orange">Orange</span> grammatical, but a different focus —
+  <span class="red">Red</span> not grammatical in this slot
 </div>
 
 <div class="callout">
-  <strong>What this sheet tests:</strong> grammatical correctness, not style. In each question only one option is
-  actually ungrammatical for that slot. The others may all be grammatical — but only one matches the meaning the
-  sentence is after. The explanation tells you which is which.
+  <strong>What this sheet tests:</strong> grammatical correctness <em>and</em> fit. In each question:
+  one option is genuinely ungrammatical (red), one is grammatical but a worse fit (orange),
+  and one matches the meaning the sentence is after (green).
 </div>
 
 <div class="callout">
-  <strong>Core idea:</strong> English signals time with the verb, not with extra words. Use <strong>past simple</strong>
-  for a finished action at a finished time. Use <strong>past continuous</strong> for something in progress around that time.
-  Use <strong>past perfect</strong> only when you need to show that one past action happened <em>before</em> another.
-  Use <strong>will / going to</strong> for future plans, and <strong>will have + past participle</strong> for something that
-  will be finished by a future deadline.
+  <strong>Core idea:</strong> English signals time with the verb. <strong>Past simple</strong> = finished action at a finished time.
+  <strong>Past continuous</strong> = action in progress around that time.
+  <strong>Past perfect</strong> = one past action happened <em>before</em> another.
+  <strong>Will / going to</strong> = future plans. <strong>Will have + past participle</strong> = finished by a future deadline.
 </div>
 
 <h2>1. The situation (read first)</h2>
@@ -109,13 +128,11 @@
   authentication. By the end of Q3 they will have shipped it.
 </div>
 
-<!-- ================= 2. PAST SIMPLE ================= -->
 <h2>2. Past simple — finished action, finished time</h2>
-
 <table>
   <thead><tr><th>Use</th><th>Example</th><th>Signal words</th></tr></thead>
   <tbody>
-    <tr><td>A completed action in the past</td><td>The provider <strong>fixed</strong> the bug on Tuesday.</td><td>yesterday, last week, on Tuesday, in 2023</td></tr>
+    <tr><td>A completed action in the past</td><td>The provider <strong>fixed</strong> the bug on Tuesday.</td><td>yesterday, last week, on Tuesday</td></tr>
     <tr><td>A sequence of finished actions</td><td>He <strong>stopped</strong>, <strong>waited</strong>, then <strong>resumed</strong>.</td><td>then, after that, finally</td></tr>
     <tr><td>A finished state</td><td>Mark <strong>couldn't</strong> keep working.</td><td>until, when</td></tr>
   </tbody>
@@ -125,7 +142,7 @@
   <h4>Exercise 1 — Choose the past simple form</h4>
   <ol>
     <li>Mark <span class="blank" data-answer="couldn't" data-options="can't|couldn't|hasn't been able to"
-        data-explain="<em>Can't</em> and <em>hasn't been able to</em> are both present-linked — they cannot describe a finished past situation. The only past form here is <strong>couldn't</strong>."></span>
+        data-explain="The story is in the past. <em>Can't</em> is present; <em>hasn't been able to</em> is present perfect, linked to now. Only <strong>couldn't</strong> is past."></span>
         keep working until the provider
         <span class="blank" data-answer="fixed" data-options="fixed|has fixed|will fix"
         data-explain="&quot;Until&quot; closes the wait at a finished past point, so <strong>fixed</strong>. <em>Has fixed</em> cannot sit with a finished past endpoint; <em>will fix</em> is future."></span>
@@ -136,7 +153,7 @@
         the patch last Tuesday.</li>
 
     <li>It took the provider <span class="blank" data-answer="two weeks" data-options="two days|two weeks|two weeks ago"
-        data-explain="The fix took <strong>two weeks</strong> to complete. <em>Two days</em> is a different length of time. <em>Two weeks ago</em> would mean the fixing happened two weeks before now, which is a different meaning entirely."></span>
+        data-explain="The fix took <strong>two weeks</strong> to complete. <em>Two days</em> is a different length. <em>Two weeks ago</em> would say the fixing happened two weeks before now — a different meaning."></span>
         to fix the bug.</li>
 
     <li>He <span class="blank" data-answer="waited" data-options="waits|waited|will wait"
@@ -148,7 +165,7 @@
         work on the login flow.</li>
 
     <li>The team <span class="blank" data-answer="lost" data-options="lost|has lost|will lose"
-        data-explain="A finished past fact — past simple <strong>lost</strong>. <em>Has lost</em> would tie it to now (the &quot;by the time&quot; frame is past); <em>will lose</em> is future."></span>
+        data-explain="A finished past fact — past simple <strong>lost</strong>. <em>Has lost</em> would tie it to now; <em>will lose</em> is future."></span>
         two weeks in total.</li>
   </ol>
   <div class="btn-row">
@@ -157,9 +174,7 @@
   <div class="score" id="ex1-score"></div>
 </div>
 
-<!-- ================= 3. PAST CONTINUOUS ================= -->
 <h2>3. Past continuous — action in progress</h2>
-
 <table>
   <thead><tr><th>Use</th><th>Example</th><th>Signal words</th></tr></thead>
   <tbody>
@@ -171,35 +186,34 @@
 
 <div class="callout">
   <strong>Your example:</strong> "Mark <em>couldn't keep working</em> until the provider fixed it" is <strong>past simple</strong>
-  — a finished state with a clear endpoint ("until… fixed"). If you say "Mark <em>was working</em> on the auth system
-  when the provider fixed the bug," you are describing the action <em>in progress</em> at the moment of interruption.
-  Both are correct; the choice depends on what you want to focus on.
+  — a finished state with a clear endpoint. If you say "Mark <em>was working</em> when the provider fixed the bug," you
+  describe the action <em>in progress</em> at the moment of interruption. Both are correct; the choice depends on focus.
 </div>
 
 <div class="exercise" id="ex2">
   <h4>Exercise 2 — Choose past simple or past continuous</h4>
   <ol>
-    <li>Mark <span class="blank" data-answer="was working" data-options="worked|was working|has worked"
-        data-explain="<em>Worked</em> is grammatical but presents the work as a finished block. <em>Has worked</em> is ungrammatical here — present perfect cannot be the background of a past &quot;when&quot;. The meaning of the sentence (work in progress when the call came) asks for <strong>was working</strong>."></span>
+    <li>Mark <span class="blank" data-answer="was working" data-also-ok="worked" data-options="worked|was working|has worked"
+        data-explain="<em>Worked</em> (orange) is also grammatical — past simple — but presents the work as a finished block. Here the focus is <em>in progress when the call came</em>, so <strong>was working</strong> fits best. <em>Has worked</em> is present perfect — wrong frame, red."></span>
         on the auth system when the provider
         <span class="blank" data-answer="called" data-options="called|has called|will call"
         data-explain="The call is the short finished interruption, so past simple <strong>called</strong>. <em>Has called</em> is present-linked; <em>will call</em> is future."></span>.</li>
 
-    <li>While the team <span class="blank" data-answer="was testing" data-options="tested|was testing|has tested"
-        data-explain="<em>Tested</em> is grammatical but closes the action as a finished block. <em>Has tested</em> breaks the past frame. &quot;While&quot; asks for the background action in progress, so <strong>was testing</strong> fits the meaning best."></span>
+    <li>While the team <span class="blank" data-answer="was testing" data-also-ok="tested" data-options="tested|was testing|has tested"
+        data-explain="<em>Tested</em> (orange) is also grammatical, but closes the action as a finished block. &quot;While&quot; asks for the background action in progress, so <strong>was testing</strong> fits best. <em>Has tested</em> breaks the past frame, red."></span>
         the login flow, the server
         <span class="blank" data-answer="crashed" data-options="crashed|has crashed|will crash"
         data-explain="The crash is the sudden finished event, so past simple <strong>crashed</strong>. <em>Has crashed</em> is present-linked; <em>will crash</em> is future."></span>.</li>
 
-    <li>He <span class="blank" data-answer="was debugging" data-options="debugged|was debugging|is debugging"
-        data-explain="&quot;All morning&quot; signals duration in progress, so <strong>was debugging</strong>. <em>Is debugging</em> is present — wrong frame. <em>Debugged</em> is grammatical but reads as a closed block, not an ongoing stretch."></span>
+    <li>He <span class="blank" data-answer="was debugging" data-also-ok="debugged" data-options="debugged|was debugging|is debugging"
+        data-explain="&quot;All morning&quot; signals duration in progress, so <strong>was debugging</strong> fits best. <em>Debugged</em> (orange) is grammatical, but reads as a closed block, not an ongoing stretch. <em>Is debugging</em> is present — red."></span>
         all morning, then he
         <span class="blank" data-answer="stopped" data-options="stopped|has stopped|will stop"
         data-explain="The short completed event after the long action — past simple <strong>stopped</strong>. <em>Has stopped</em> and <em>will stop</em> break the past sequence."></span>
         for lunch.</li>
 
-    <li>They <span class="blank" data-answer="were waiting" data-options="waited|were waiting|are waiting"
-        data-explain="They were <em>still waiting</em> when the patch arrived, so <strong>were waiting</strong> fits the meaning. <em>Are waiting</em> is present — wrong frame. <em>Waited</em> is grammatical but would say the wait was already finished before the patch arrived."></span>
+    <li>They <span class="blank" data-answer="were waiting" data-also-ok="waited" data-options="waited|were waiting|are waiting"
+        data-explain="They were <em>still waiting</em> when the patch arrived, so <strong>were waiting</strong> fits best. <em>Waited</em> (orange) is grammatical, but would say the wait was already finished before the patch arrived. <em>Are waiting</em> is present — red."></span>
         for the patch when it finally
         <span class="blank" data-answer="arrived" data-options="arrived|has arrived|will arrive"
         data-explain="&quot;Arrive&quot; is a finished point event, so past simple <strong>arrived</strong>. <em>Has arrived</em> is present-linked; <em>will arrive</em> is future."></span>.</li>
@@ -210,9 +224,7 @@
   <div class="score" id="ex2-score"></div>
 </div>
 
-<!-- ================= 4. PAST PERFECT ================= -->
 <h2>4. Past perfect — the "before that" tense</h2>
-
 <table>
   <thead><tr><th>Use</th><th>Example</th><th>Signal words</th></tr></thead>
   <tbody>
@@ -223,32 +235,30 @@
 </table>
 
 <div class="callout">
-  <strong>Rule of thumb:</strong> only reach for past perfect when the order of two past events would otherwise be unclear.
-  If you have "before" or "after" in the sentence, past simple often works too:
-  <em>The provider fixed it before Mark resumed</em> is fine. Past perfect is the <strong>safe choice</strong> when you
-  want the "earlier" action to be unmistakable: <em>The provider had fixed it by the time Mark resumed.</em>
+  <strong>Rule of thumb:</strong> past perfect is the safe choice when you want the "earlier" action unmistakable.
+  With "before" / "after" in the sentence, past simple often works too — but past perfect makes the order explicit.
 </div>
 
 <div class="exercise" id="ex3">
   <h4>Exercise 3 — Choose the past perfect where needed</h4>
   <ol>
-    <li>By the time Mark resumed, the provider <span class="blank" data-answer="had fixed" data-options="fixed|had fixed|will fix"
-        data-explain="Both <em>fixed</em> and <em>had fixed</em> are grammatical here. <em>Had fixed</em> is the better fit because &quot;by the time&quot; asks you to mark the earlier action explicitly. <em>Will fix</em> is future — ungrammatical in this frame."></span>
+    <li>By the time Mark resumed, the provider <span class="blank" data-answer="had fixed" data-also-ok="fixed" data-options="fixed|had fixed|will fix"
+        data-explain="<em>Fixed</em> (orange) is grammatical, but &quot;by the time&quot; asks you to mark the earlier action explicitly, so <strong>had fixed</strong> fits best. <em>Will fix</em> is future — red."></span>
         the bug.</li>
 
-    <li>The team <span class="blank" data-answer="had already lost" data-options="lost|had already lost|are losing"
-        data-explain="Both <em>lost</em> and <em>had already lost</em> are grammatical. <em>Had already lost</em> is the better fit because &quot;before the patch arrived&quot; asks for the earlier result made explicit. <em>Are losing</em> is present — wrong frame."></span>
+    <li>The team <span class="blank" data-answer="had already lost" data-also-ok="lost" data-options="lost|had already lost|are losing"
+        data-explain="<em>Lost</em> (orange) is grammatical. <em>Had already lost</em> fits better because &quot;before the patch arrived&quot; asks for the earlier result made explicit. <em>Are losing</em> is present — red."></span>
         two weeks before the patch arrived.</li>
 
-    <li>He realised he <span class="blank" data-answer="hadn't tested" data-options="didn't test|hadn't tested|hasn't tested"
-        data-explain="Both <em>didn't test</em> and <em>hadn't tested</em> are grammatical. After a past reporting verb (&quot;realised&quot;), <em>hadn't tested</em> is the better fit because the testing is earlier than the realisation. <em>Hasn't tested</em> is present-linked — wrong frame."></span>
+    <li>He realised he <span class="blank" data-answer="hadn't tested" data-also-ok="didn't test" data-options="didn't test|hadn't tested|hasn't tested"
+        data-explain="<em>Didn't test</em> (orange) is grammatical, but after a past reporting verb (&quot;realised&quot;), <em>hadn't tested</em> fits better because the testing is earlier than the realisation. <em>Hasn't tested</em> is present — red."></span>
         the edge case.</li>
 
-    <li>After the provider <span class="blank" data-answer="had deployed" data-options="deployed|had deployed|will deploy"
-        data-explain="Both <em>deployed</em> and <em>had deployed</em> are grammatical. <em>Had deployed</em> is the better fit because &quot;after&quot; asks for the order to be explicit. <em>Will deploy</em> is future — wrong frame."></span>
+    <li>After the provider <span class="blank" data-answer="had deployed" data-also-ok="deployed" data-options="deployed|had deployed|will deploy"
+        data-explain="<em>Deployed</em> (orange) is grammatical, but <em>had deployed</em> fits better because &quot;after&quot; asks for the order to be explicit. <em>Will deploy</em> is future — red."></span>
         the patch, the login flow
         <span class="blank" data-answer="worked" data-options="worked|had worked|is working"
-        data-explain="The later result — past simple <strong>worked</strong>. <em>Had worked</em> would be ungrammatical in this meaning: it would put the working <em>before</em> the deployment. <em>Is working</em> is present — wrong frame."></span>
+        data-explain="The later result — past simple <strong>worked</strong>. <em>Had worked</em> would wrongly put the working <em>before</em> the deployment; <em>is working</em> is present — wrong frame."></span>
         again.</li>
   </ol>
   <div class="btn-row">
@@ -257,47 +267,38 @@
   <div class="score" id="ex3-score"></div>
 </div>
 
-<!-- ================= 5. FUTURE ================= -->
 <h2>5. Future forms — the biometric auth next steps</h2>
-
 <table>
   <thead><tr><th>Form</th><th>Use</th><th>Example</th></tr></thead>
   <tbody>
     <tr><td><strong>will + base verb</strong></td><td>Decision made now, prediction, promise</td><td>I <strong>will</strong> check the logs.</td></tr>
-    <tr><td><strong>going to + base verb</strong></td><td>Plan already decided, visible evidence</td><td>We <strong>are going to add</strong> biometric auth next sprint.</td></tr>
-    <tr><td><strong>will be + -ing</strong></td><td>Action in progress at a future moment</td><td>At 10 a.m. tomorrow we <strong>will be testing</strong> the fingerprint flow.</td></tr>
-    <tr><td><strong>will have + past participle</strong></td><td>Finished <em>by</em> a future deadline</td><td>By the end of Q3 we <strong>will have shipped</strong> biometric auth.</td></tr>
+    <tr><td><strong>going to + base verb</strong></td><td>Plan already decided</td><td>We <strong>are going to add</strong> biometric auth next sprint.</td></tr>
+    <tr><td><strong>will be + -ing</strong></td><td>Action in progress at a future moment</td><td>At 10 a.m. we <strong>will be testing</strong> the fingerprint flow.</td></tr>
+    <tr><td><strong>will have + past participle</strong></td><td>Finished <em>by</em> a future deadline</td><td>By Q3 we <strong>will have shipped</strong> biometric auth.</td></tr>
   </tbody>
 </table>
-
-<div class="callout">
-  <strong>Your next-step scenario:</strong> the team <em>is going to</em> add biometric authentication
-  (a plan already decided). While they are building it, they <em>will be testing</em> on real devices
-  (in progress at a future time). And by the release date they <em>will have shipped</em> it
-  (finished by a deadline). Three different future forms, three different jobs.
-</div>
 
 <div class="exercise" id="ex4">
   <h4>Exercise 4 — Choose the correct future form</h4>
   <ol>
-    <li>Next sprint we <span class="blank" data-answer="are going to add" data-options="will add|are going to add|will be adding"
-        data-explain="All three are grammatical. <strong>Are going to add</strong> is the best fit because it states the plan itself — a decision already made. <em>Will add</em> sounds like a decision made now. <em>Will be adding</em> shifts the focus to the action <em>in progress during</em> next sprint, not the plan."></span>
+    <li>Next sprint we <span class="blank" data-answer="are going to add" data-also-ok="will be adding" data-options="are going to add|will be adding|will have been added"
+        data-explain="<strong>Are going to add</strong> states the plan itself — best fit. <em>Will be adding</em> (orange) is also common when you focus on the action <em>in progress during</em> next sprint. <em>Will have been added</em> is passive (someone else adding <em>us</em>) — ungrammatical here."></span>
         biometric authentication.</li>
 
-    <li>I <span class="blank" data-answer="will check" data-options="am going to check|will check|will be checking"
-        data-explain="All three are grammatical. <strong>Will check</strong> fits best because the decision is made on the spot. <em>Am going to check</em> would mean it was already planned. <em>Will be checking</em> describes the action in progress, not the decision."></span>
+    <li>I <span class="blank" data-answer="will check" data-also-ok="am going to check" data-options="will check|am going to check|will checking"
+        data-explain="<strong>Will check</strong> fits a decision made on the spot. <em>Am going to check</em> (orange) is also grammatical but would suggest it was already planned. <em>Will checking</em> is broken — missing the base verb after <em>will</em>."></span>
         the provider's docs tonight.</li>
 
-    <li>At 10 a.m. tomorrow the team <span class="blank" data-answer="will be testing" data-options="will test|will be testing|will have tested"
-        data-explain="All three are grammatical. <strong>Will be testing</strong> is the best fit because &quot;at 10 a.m.&quot; asks for the action in progress at that moment. <em>Will test</em> reads as a plan or prediction. <em>Will have tested</em> would mean finished by then."></span>
+    <li>At 10 a.m. tomorrow the team <span class="blank" data-answer="will be testing" data-also-ok="will test" data-options="will be testing|will test|is testing"
+        data-explain="<strong>Will be testing</strong> fits &quot;at 10 a.m.&quot; — action in progress at that moment. <em>Will test</em> (orange) is grammatical but reads as a plan or prediction, not an action in progress. <em>Is testing</em> is present — wrong frame."></span>
         the fingerprint flow.</li>
 
-    <li>By the end of Q3 we <span class="blank" data-answer="will have shipped" data-options="will ship|will have shipped|are going to ship"
-        data-explain="All three are grammatical. <strong>Will have shipped</strong> is the best fit because &quot;by the end of Q3&quot; asks for something finished by that time. <em>Will ship</em> and <em>are going to ship</em> are plans, not &quot;done by a deadline.&quot;"></span>
+    <li>By the end of Q3 we <span class="blank" data-answer="will have shipped" data-also-ok="will ship" data-options="will have shipped|will ship|will have ship"
+        data-explain="<strong>Will have shipped</strong> fits &quot;by the end of Q3&quot; — finished by that time. <em>Will ship</em> (orange) is grammatical but reads as a plan, not &quot;done by a deadline.&quot; <em>Will have ship</em> is broken — needs the past participle <em>shipped</em>."></span>
         biometric auth.</li>
 
-    <li>Don't worry — I <span class="blank" data-answer="will help" data-options="am going to help|will help|will be helping"
-        data-explain="All three are grammatical. <strong>Will help</strong> is the best fit for a promise made right now. <em>Am going to help</em> would suggest it was already planned. <em>Will be helping</em> describes an action in progress — odd as a promise."></span>
+    <li>Don't worry — I <span class="blank" data-answer="will help" data-also-ok="am going to help" data-options="will help|am going to help|will helped"
+        data-explain="<strong>Will help</strong> fits a promise made right now. <em>Am going to help</em> (orange) is grammatical but would suggest it was already planned. <em>Will helped</em> is broken — needs the base verb after <em>will</em>."></span>
         you with the migration.</li>
   </ol>
   <div class="btn-row">
@@ -306,36 +307,35 @@
   <div class="score" id="ex4-score"></div>
 </div>
 
-<!-- ================= 6. MIXED ================= -->
 <h2>6. Mixed practice — all tenses together</h2>
 
 <div class="exercise" id="ex5">
   <h4>Exercise 5 — Choose the correct tense</h4>
   <ol>
     <li>Mark <span class="blank" data-answer="couldn't" data-options="can't|couldn't|could not have"
-        data-explain="Past form of <em>can</em> — <strong>couldn't</strong>. <em>Can't</em> is present. <em>Could not have</em> is grammatical only with a past participle after it (e.g. <em>could not have known</em>), so it cannot take <em>keep</em>."></span>
+        data-explain="Past form of <em>can</em> — <strong>couldn't</strong>. <em>Can't</em> is present. <em>Could not have</em> needs a past participle after it (e.g. <em>could not have known</em>), so it cannot take <em>keep</em>."></span>
         keep working until the provider
-        <span class="blank" data-answer="fixed" data-options="fixed|had fixed|has fixed"
-        data-explain="<em>Fixed</em> and <em>had fixed</em> are both grammatical here, but &quot;until&quot; already closes the state, so past simple <strong>fixed</strong> is the better fit. <em>Has fixed</em> links to now — wrong frame."></span>
+        <span class="blank" data-answer="fixed" data-also-ok="had fixed" data-options="fixed|had fixed|has fixed"
+        data-explain="<strong>Fixed</strong> fits — &quot;until&quot; already closes the state. <em>Had fixed</em> (orange) is grammatical but adds an unnecessary &quot;before that&quot; layer. <em>Has fixed</em> is present-linked — red."></span>
         the bug.</li>
 
-    <li>While Mark <span class="blank" data-answer="was waiting" data-options="waited|was waiting|had waited"
-        data-explain="&quot;While&quot; sets a background action in progress — <strong>was waiting</strong> is the best fit. <em>Waited</em> is grammatical but reads as a closed block. <em>Had waited</em> would put the waiting before the other action, which is wrong for a &quot;while&quot; clause."></span>
+    <li>While Mark <span class="blank" data-answer="was waiting" data-also-ok="waited" data-options="waited|was waiting|had waited"
+        data-explain="&quot;While&quot; asks for the background action in progress, so <strong>was waiting</strong> fits best. <em>Waited</em> (orange) is grammatical but reads as a closed block. <em>Had waited</em> would put the waiting before the other action — wrong for a &quot;while&quot; clause."></span>
         for the fix, he
-        <span class="blank" data-answer="was reviewing" data-options="reviewed|was reviewing|had reviewed"
-        data-explain="Simultaneous activity — <strong>was reviewing</strong> is the best fit. <em>Reviewed</em> is grammatical but flatter about the simultaneity. <em>Had reviewed</em> would put the reviewing before the waiting — wrong meaning."></span>
+        <span class="blank" data-answer="was reviewing" data-also-ok="reviewed" data-options="reviewed|was reviewing|had reviewed"
+        data-explain="Simultaneous activity — <strong>was reviewing</strong> fits best. <em>Reviewed</em> (orange) is grammatical but flatter about the simultaneity. <em>Had reviewed</em> would put the reviewing before the waiting — wrong meaning."></span>
         other tickets.</li>
 
-    <li>By the time the patch arrived, the team <span class="blank" data-answer="had lost" data-options="lost|had lost|has lost"
-        data-explain="<em>Lost</em> and <em>had lost</em> are both grammatical. <em>Had lost</em> is the better fit because &quot;by the time&quot; asks you to mark the earlier result. <em>Has lost</em> is present-linked — wrong frame."></span>
+    <li>By the time the patch arrived, the team <span class="blank" data-answer="had lost" data-also-ok="lost" data-options="lost|had lost|has lost"
+        data-explain="<em>Had lost</em> fits &quot;by the time&quot; — marks the earlier result. <em>Lost</em> (orange) is grammatical but less clear about the order. <em>Has lost</em> is present-linked — red."></span>
         two weeks.</li>
 
-    <li>Next sprint we <span class="blank" data-answer="are going to add" data-options="will add|are going to add|will be adding"
-        data-explain="All three are grammatical. <strong>Are going to add</strong> is the best fit because it states the plan itself. <em>Will add</em> sounds like a decision made now. <em>Will be adding</em> focuses on the action in progress during next sprint."></span>
+    <li>Next sprint we <span class="blank" data-answer="are going to add" data-also-ok="will be adding" data-options="are going to add|will be adding|will have been added"
+        data-explain="<strong>Are going to add</strong> states the plan itself. <em>Will be adding</em> (orange) is also common when focusing on the action in progress during next sprint. <em>Will have been added</em> is passive — ungrammatical here."></span>
         biometric auth.</li>
 
-    <li>By the release date we <span class="blank" data-answer="will have shipped" data-options="will ship|will have shipped|are going to ship"
-        data-explain="All three are grammatical. <strong>Will have shipped</strong> is the best fit because it states &quot;finished by a deadline.&quot; <em>Will ship</em> and <em>are going to ship</em> are plans, not &quot;done by that time.&quot;"></span>
+    <li>By the release date we <span class="blank" data-answer="will have shipped" data-also-ok="will ship" data-options="will have shipped|will ship|will have ship"
+        data-explain="<strong>Will have shipped</strong> fits &quot;by the release date&quot; — finished by that time. <em>Will ship</em> (orange) is grammatical but reads as a plan, not &quot;done by then.&quot; <em>Will have ship</em> is broken."></span>
         it.</li>
   </ol>
   <div class="btn-row">
@@ -357,6 +357,7 @@ function buildBlanks() {
   document.querySelectorAll('.blank').forEach(function (blank) {
     var options = blank.dataset.options.split('|');
     var correct = blank.dataset.answer;
+    var alsoOk = (blank.dataset.alsoOk || '').split('|').filter(Boolean);
     var explain = blank.dataset.explain || '';
 
     var wrap = document.createElement('span');
@@ -376,19 +377,28 @@ function buildBlanks() {
         wrap.dataset.answered = '1';
 
         var isCorrect = (opt === correct);
+        var isAlsoOk = alsoOk.indexOf(opt) !== -1;
+
+        // Disable all; reveal the correct one if the click wasn't it
         wrap.querySelectorAll('.choice').forEach(function (b) {
           b.disabled = true;
-          if (b.dataset.value === correct) {
-            b.classList.add(isCorrect && b === btn ? 'selected-correct' : 'correct-reveal');
+          if (b.dataset.value === correct && b !== btn) {
+            b.classList.add('correct-reveal');
           }
         });
-        if (!isCorrect) {
-          btn.classList.add('selected-wrong');
-          explainEl.innerHTML = explain;
-          explainEl.classList.add('show');
-        } else {
+
+        if (isCorrect) {
+          btn.classList.add('selected-correct');
           explainEl.innerHTML = '✓ Correct. ' + explain;
           explainEl.classList.add('show', 'ok');
+        } else if (isAlsoOk) {
+          btn.classList.add('selected-close');
+          explainEl.innerHTML = '⚠ Grammatical, but not the best fit here. ' + explain;
+          explainEl.classList.add('show', 'close');
+        } else {
+          btn.classList.add('selected-wrong');
+          explainEl.innerHTML = '✗ Not grammatical in this slot. ' + explain;
+          explainEl.classList.add('show');
         }
         updateScore(blank.closest('.exercise'));
       });
@@ -399,6 +409,7 @@ function buildBlanks() {
     wrap.insertAdjacentElement('afterend', explainEl);
     wrap.dataset.answered = '0';
     wrap.dataset.correct = correct;
+    wrap.dataset.alsoOk = alsoOk.join('|');
   });
 }
 
@@ -407,17 +418,20 @@ function updateScore(ex) {
   var total = wraps.length;
   var done = 0;
   var correct = 0;
+  var close = 0;
   wraps.forEach(function (w) {
     if (w.dataset.answered === '1') {
       done++;
-      var picked = w.querySelector('.selected-correct');
-      if (picked) correct++;
+      if (w.querySelector('.selected-correct')) correct++;
+      else if (w.querySelector('.selected-close')) close++;
     }
   });
   var scoreEl = document.getElementById(ex.id + '-score');
   if (done === 0) { scoreEl.textContent = ''; return; }
-  scoreEl.textContent = 'Score: ' + correct + ' / ' + total +
-    (done === total && correct === total ? ' — perfect!' : '');
+  var txt = 'Score: ' + correct + ' / ' + total;
+  if (close > 0) txt += ' (' + close + ' close — grammatical but not best fit)';
+  if (done === total && correct === total) txt += ' — perfect!';
+  scoreEl.textContent = txt;
 }
 
 function resetExercise(id) {
@@ -426,11 +440,11 @@ function resetExercise(id) {
     w.dataset.answered = '0';
     w.querySelectorAll('.choice').forEach(function (b) {
       b.disabled = false;
-      b.classList.remove('selected-correct', 'selected-wrong', 'correct-reveal');
+      b.classList.remove('selected-correct', 'selected-close', 'selected-wrong', 'correct-reveal');
     });
     var next = w.nextElementSibling;
     if (next && next.classList.contains('explain')) {
-      next.classList.remove('show', 'ok');
+      next.classList.remove('show', 'ok', 'close');
       next.innerHTML = '';
     }
   });
