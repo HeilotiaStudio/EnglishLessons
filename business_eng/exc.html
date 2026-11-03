@@ -26,7 +26,7 @@
               padding: 10px 14px; margin: 12px 0; border-radius: 4px; }
   .exercise h4 { margin-top: 0; margin-bottom: 8px; color: #003366; font-size: 10.5pt; }
   ol { margin-top: 3px; margin-bottom: 8px; padding-left: 22px; }
-  li { margin-bottom: 10px; }
+  li { margin-bottom: 12px; }
   input.answer {
     border: none; border-bottom: 1.5px solid #333; background: transparent;
     font-family: inherit; font-size: 10pt; padding: 1px 4px; min-width: 90px;
@@ -39,6 +39,23 @@
   .feedback { font-size: 8.5pt; margin-left: 6px; font-weight: bold; }
   .feedback.ok { color: #1a7f37; }
   .feedback.no { color: #c62828; }
+  .explain {
+    display: none;
+    font-size: 8.5pt;
+    color: #8a2020;
+    background: #fff4f4;
+    border-left: 3px solid #c62828;
+    padding: 4px 8px;
+    margin-top: 5px;
+    border-radius: 0 3px 3px 0;
+    line-height: 1.35;
+  }
+  .explain.show { display: block; }
+  .explain.ok {
+    color: #1a5a25;
+    background: #f0faf1;
+    border-left-color: #1a7f37;
+  }
   .btn-row { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
   button {
     font-family: inherit; font-size: 9pt; padding: 5px 12px; border-radius: 4px;
@@ -93,14 +110,40 @@
 <div class="exercise" id="ex1">
   <h4>Exercise 1 — Put the verb in the past simple</h4>
   <ol>
-    <li>Mark <input class="answer" data-answer="couldn't|could not|couldnt"> keep working until the provider
-        <input class="answer" data-answer="fixed"> the auth bug. <span class="hint">(can't → past; fix)</span></li>
-    <li>The provider <input class="answer" data-answer="deployed|shipped|released"> the patch last Tuesday.
-        <span class="hint">(deploy / ship / release — one finished action, finished time)</span></li>
-    <li>He <input class="answer" data-answer="waited"> two days for the fix. <span class="hint">(wait)</span></li>
-    <li>After the fix, the team <input class="answer" data-answer="resumed|continued|restarted"> work on the login flow.
+    <li>Mark <input class="answer" data-answer="couldn't|could not|couldnt"
+        data-explain='{"can not|cannot|cant":"Use the past form of <em>can</em>: <strong>couldn&#39;t</strong> (could not). <em>can&#39;t</em> is present.",
+                       "wasn't able|was not able":"<em>Wasn&#39;t able to</em> is possible, but the target here is the single past form <strong>couldn&#39;t</strong>.",
+                       "didn't can|did not can":"<em>Didn&#39;t can</em> does not exist. <em>Can</em> has its own past form: <strong>couldn&#39;t</strong>."}'
+        data-hint="Use the past form of <em>can</em>."> keep working until the provider
+        <input class="answer" data-answer="fixed"
+        data-explain='{"fix":"<em>Fix</em> is the base form. You need the past simple: <strong>fixed</strong>.",
+                       "had fixed|'d fixed":"Past perfect would mark it as earlier than another past action. Here &#34;until&#34; already closes the state, so past simple <strong>fixed</strong> is enough.",
+                       "was fixing":"Past continuous would suggest the fixing was in progress. Here it is the single finished event that ends the wait: <strong>fixed</strong>.",
+                       "has fixed":"Present perfect ties to now. This whole situation is finished in the past: <strong>fixed</strong>."}'
+        data-hint="A single finished event that ends the wait."> the auth bug.
+        <span class="hint">(can't → past; fix)</span></li>
+    <li>The provider <input class="answer" data-answer="deployed|shipped|released"
+        data-explain='{"deploy":"Use the past simple: <strong>deployed</strong>.",
+                       "will deploy":"&#34;Last Tuesday&#34; is a finished past time — future forms do not work here.",
+                       "has deployed":"Present perfect with a finished time (&#34;last Tuesday&#34;) is wrong in English. Use <strong>deployed</strong>."}'
+        data-hint="One finished action at a finished time."> the patch last Tuesday.
+        <span class="hint">(deploy / ship / release)</span></li>
+    <li>He <input class="answer" data-answer="waited"
+        data-explain='{"wait":"Base form. Past simple is <strong>waited</strong>.",
+                       "was waiting":"Past continuous would focus on the waiting being in progress; here the two-day wait is a finished block of time, so <strong>waited</strong>.",
+                       "has waited":"Present perfect does not fit a finished past period: <strong>waited</strong>."}'
+        data-hint="A finished block of time."> two days for the fix. <span class="hint">(wait)</span></li>
+    <li>After the fix, the team <input class="answer" data-answer="resumed|continued|restarted"
+        data-explain='{"resume":"Base form. Past simple is <strong>resumed</strong>.",
+                       "had resumed":"Past perfect would mark it as earlier than another past action, but here it is the next event in the sequence: <strong>resumed</strong>.",
+                       "was resuming":"Not idiomatic here — this is a completed step in the sequence, so <strong>resumed</strong>."}'
+        data-hint="Next completed step in the sequence."> work on the login flow.
         <span class="hint">(resume / continue / restart)</span></li>
-    <li>The team <input class="answer" data-answer="lost"> two days in total. <span class="hint">(lose)</span></li>
+    <li>The team <input class="answer" data-answer="lost"
+        data-explain='{"lose":"Base form. Past simple is <strong>lost</strong>.",
+                       "has lost":"Present perfect is about the present result. This is a finished past fact: <strong>lost</strong>.",
+                       "had lost":"Past perfect would need another past action to be &#34;after&#34; it. Here it is simply a finished result: <strong>lost</strong>."}'
+        data-hint="A finished past fact."> two days in total. <span class="hint">(lose)</span></li>
   </ol>
   <div class="btn-row">
     <button onclick="checkExercise('ex1')">Check answers</button>
@@ -132,14 +175,44 @@
 <div class="exercise" id="ex2">
   <h4>Exercise 2 — Choose past simple or past continuous</h4>
   <ol>
-    <li>Mark <input class="answer" data-answer="was working"> on the auth system when the provider
-        <input class="answer" data-answer="called">. <span class="hint">(work — in progress; call — short interruption)</span></li>
-    <li>While the team <input class="answer" data-answer="was testing"> the login flow, the server
-        <input class="answer" data-answer="crashed">. <span class="hint">(test — background; crash — sudden)</span></li>
-    <li>He <input class="answer" data-answer="was debugging"> all morning, then he
-        <input class="answer" data-answer="stopped"> for lunch. <span class="hint">(debug — duration; stop — finished)</span></li>
-    <li>They <input class="answer" data-answer="were waiting"> for the patch when it finally
-        <input class="answer" data-answer="arrived">. <span class="hint">(wait — in progress; arrive — event)</span></li>
+    <li>Mark <input class="answer" data-answer="was working"
+        data-explain='{"worked":"Past simple would present the work as a finished block. The point here is it was <em>in progress</em> when the call came: <strong>was working</strong>.",
+                       "is working":"Present continuous. The frame is past (&#34;when the provider called&#34;): <strong>was working</strong>.",
+                       "had worked":"Past perfect marks it as earlier than another past action; here it is the background action being interrupted: <strong>was working</strong>."}'
+        data-hint="The background action that was in progress."> on the auth system when the provider
+        <input class="answer" data-answer="called"
+        data-explain='{"was calling":"Past continuous would make the call itself the long background action; the call is the short interruption: <strong>called</strong>.",
+                       "had called":"Past perfect would put the call before the working — wrong order here: <strong>called</strong>.",
+                       "calls":"Present tense. Keep the whole sentence in the past: <strong>called</strong>."}'
+        data-hint="The short interruption.">.
+        <span class="hint">(work — in progress; call — short interruption)</span></li>
+    <li>While the team <input class="answer" data-answer="was testing"
+        data-explain='{"tested":"Past simple would treat the testing as a finished block. &#34;While&#34; sets a background action in progress: <strong>was testing</strong>.",
+                       "were testing":"The team is singular in form here (&#34;the team was&#34;). Use <strong>was testing</strong>."}'
+        data-hint="&#34;While&#34; sets the background action."> the login flow, the server
+        <input class="answer" data-answer="crashed"
+        data-explain='{"was crashing":"The crash is the sudden event, not the background action: <strong>crashed</strong>.",
+                       "had crashed":"Past perfect would put the crash before the testing; the sentence says it happened during: <strong>crashed</strong>."}'
+        data-hint="The sudden event.">.
+        <span class="hint">(test — background; crash — sudden)</span></li>
+    <li>He <input class="answer" data-answer="was debugging"
+        data-explain='{"debugged":"Past simple would close the action. &#34;All morning&#34; signals duration in progress: <strong>was debugging</strong>.",
+                       "is debugging":"Present continuous. Keep the past frame: <strong>was debugging</strong>."}'
+        data-hint="Duration in progress (&#34;all morning&#34;)."> all morning, then he
+        <input class="answer" data-answer="stopped"
+        data-explain='{"was stopping":"&#34;Stop&#34; is the short completed event after the long action: <strong>stopped</strong>.",
+                       "had stopped":"Past perfect is not needed; this is the next event in the sequence: <strong>stopped</strong>."}'
+        data-hint="The short completed event."> for lunch.
+        <span class="hint">(debug — duration; stop — finished)</span></li>
+    <li>They <input class="answer" data-answer="were waiting"
+        data-explain='{"waited":"Past simple would present the wait as a finished block. The point is they were <em>still waiting</em> when the patch arrived: <strong>were waiting</strong>.",
+                       "was waiting":"&#34;They&#34; is plural: <strong>were waiting</strong>."}'
+        data-hint="Still in progress when the event happened."> for the patch when it finally
+        <input class="answer" data-answer="arrived"
+        data-explain='{"was arriving":"&#34;Arrive&#34; is a point event, not a background action: <strong>arrived</strong>.",
+                       "had arrived":"Past perfect would put the arrival before the waiting; here it ends the waiting: <strong>arrived</strong>."}'
+        data-hint="The point event that ends the wait.">.
+        <span class="hint">(wait — in progress; arrive — event)</span></li>
   </ol>
   <div class="btn-row">
     <button onclick="checkExercise('ex2')">Check answers</button>
@@ -171,14 +244,32 @@
 <div class="exercise" id="ex3">
   <h4>Exercise 3 — Put the verb in the past perfect where needed</h4>
   <ol>
-    <li>By the time Mark resumed, the provider <input class="answer" data-answer="had fixed|'d fixed"> the bug.
+    <li>By the time Mark resumed, the provider <input class="answer" data-answer="had fixed|'d fixed"
+        data-explain='{"fixed":"Past simple is close, but &#34;by the time&#34; asks you to mark the earlier action clearly: <strong>had fixed</strong>.",
+                       "has fixed":"Present perfect links to now. The anchor is a past moment (&#34;the time Mark resumed&#34;): <strong>had fixed</strong>.",
+                       "was fixing":"Past continuous would make it the background action; here it is the completed earlier action: <strong>had fixed</strong>."}'
+        data-hint="The earlier action, marked with &#34;by the time&#34;."> the bug.
         <span class="hint">(fix — earlier action)</span></li>
-    <li>The team <input class="answer" data-answer="had already lost|had lost|'d already lost|'d lost"> two days
+    <li>The team <input class="answer" data-answer="had already lost|had lost|'d already lost|'d lost"
+        data-explain='{"lost":"Past simple is possible in speech, but with &#34;before&#34; the past perfect makes the earlier result unmistakable: <strong>had already lost</strong>.",
+                       "has lost":"Present perfect links to now. The anchor is a past moment (&#34;before the patch arrived&#34;): <strong>had lost</strong>.",
+                       "was losing":"Past continuous is not a completed earlier result: <strong>had lost</strong>."}'
+        data-hint="The earlier result, anchored to a past moment."> two days
         before the patch arrived. <span class="hint">(lose — earlier action)</span></li>
-    <li>He realised he <input class="answer" data-answer="hadn't tested|had not tested"> the edge case.
+    <li>He realised he <input class="answer" data-answer="hadn't tested|had not tested"
+        data-explain='{"didn't test":"&#34;Realised&#34; is past; the testing that did not happen is <em>earlier</em>: <strong>hadn&#39;t tested</strong>.",
+                       "hasn't tested":"Present perfect does not fit after a past reporting verb (&#34;realised&#34;): <strong>hadn&#39;t tested</strong>.",
+                       "wasn't testing":"Past continuous suggests it was in progress, not that it never happened: <strong>hadn&#39;t tested</strong>."}'
+        data-hint="Earlier than the realisation."> the edge case.
         <span class="hint">(not test — earlier than the realisation)</span></li>
-    <li>After the provider <input class="answer" data-answer="had deployed|'d deployed"> the patch, the login flow
-        <input class="answer" data-answer="worked"> again. <span class="hint">(deploy — first; work — second)</span></li>
+    <li>After the provider <input class="answer" data-answer="had deployed|'d deployed"
+        data-explain='{"deployed":"With &#34;after&#34;, past simple is acceptable. The target here is the past perfect that makes the order explicit: <strong>had deployed</strong>.",
+                       "has deployed":"Present perfect breaks the past frame of the sentence: <strong>had deployed</strong>."}'
+        data-hint="First event, made explicit with &#34;after&#34;."> the patch, the login flow
+        <input class="answer" data-answer="worked"
+        data-explain='{"had worked":"Past perfect would put the working <em>before</em> the deployment — wrong order: <strong>worked</strong>.",
+                       "was working":"The sentence states a result, not an action in progress: <strong>worked</strong>."}'
+        data-hint="The later result."> again. <span class="hint">(deploy — first; work — second)</span></li>
   </ol>
   <div class="btn-row">
     <button onclick="checkExercise('ex3')">Check answers</button>
@@ -211,15 +302,35 @@
 <div class="exercise" id="ex4">
   <h4>Exercise 4 — Choose the correct future form</h4>
   <ol>
-    <li>Next sprint we <input class="answer" data-answer="are going to add|'re going to add"> biometric authentication.
+    <li>Next sprint we <input class="answer" data-answer="are going to add|'re going to add"
+        data-explain='{"will add":"&#34;Will&#34; is for a decision made now. This is a plan already decided: <strong>are going to add</strong>.",
+                       "add":"Base form. You need a future form: <strong>are going to add</strong>.",
+                       "will be adding":"&#34;Will be adding&#34; would focus on the action in progress; the sentence states the plan itself: <strong>are going to add</strong>."}'
+        data-hint="A plan already decided."> biometric authentication.
         <span class="hint">(plan already decided → going to)</span></li>
-    <li>I <input class="answer" data-answer="will check|'ll check"> the provider's docs tonight.
+    <li>I <input class="answer" data-answer="will check|'ll check"
+        data-explain='{"am going to check":"&#34;Going to&#34; is for plans decided earlier. This decision is made on the spot: <strong>will check</strong>.",
+                       "check":"Base form. You need a future form: <strong>will check</strong>.",
+                       "will be checking":"&#34;Will be checking&#34; is an action in progress, not a decision made now: <strong>will check</strong>."}'
+        data-hint="A decision made on the spot."> the provider's docs tonight.
         <span class="hint">(decision made now → will)</span></li>
-    <li>At 10 a.m. tomorrow the team <input class="answer" data-answer="will be testing|'ll be testing"> the fingerprint flow.
+    <li>At 10 a.m. tomorrow the team <input class="answer" data-answer="will be testing|'ll be testing"
+        data-explain='{"will test":"&#34;Will test&#34; reads as a plan or prediction, not as an action <em>in progress</em> at 10 a.m.: <strong>will be testing</strong>.",
+                       "are going to test":"&#34;Going to&#34; is a plan, but &#34;at 10 a.m.&#34; asks for the action in progress at that moment: <strong>will be testing</strong>.",
+                       "will have tested":"&#34;Will have tested&#34; means finished by 10 a.m. The sentence says they are doing it at that time: <strong>will be testing</strong>."}'
+        data-hint="In progress at a future moment."> the fingerprint flow.
         <span class="hint">(in progress at a future moment → will be + -ing)</span></li>
-    <li>By the end of Q3 we <input class="answer" data-answer="will have shipped|'ll have shipped"> biometric auth.
+    <li>By the end of Q3 we <input class="answer" data-answer="will have shipped|'ll have shipped"
+        data-explain='{"will ship":"&#34;Will ship&#34; is a plan or prediction, not &#34;finished by a deadline&#34;: <strong>will have shipped</strong>.",
+                       "are going to ship":"&#34;Going to&#34; is a plan. &#34;By the end of Q3&#34; asks for finished by that time: <strong>will have shipped</strong>.",
+                       "ship":"Base form. You need a future form: <strong>will have shipped</strong>."}'
+        data-hint="Finished by a future deadline."> biometric auth.
         <span class="hint">(finished by a future deadline → will have + past participle)</span></li>
-    <li>Don't worry — I <input class="answer" data-answer="will help|'ll help"> you with the migration.
+    <li>Don't worry — I <input class="answer" data-answer="will help|'ll help"
+        data-explain='{"am going to help":"&#34;Going to&#34; is a plan. A promise made right now takes <strong>will help</strong>.",
+                       "help":"Base form. You need a future form: <strong>will help</strong>.",
+                       "will be helping":"&#34;Will be helping&#34; is an action in progress, not a promise: <strong>will help</strong>."}'
+        data-hint="A promise made now."> you with the migration.
         <span class="hint">(promise → will)</span></li>
   </ol>
   <div class="btn-row">
@@ -236,23 +347,52 @@
 <div class="exercise" id="ex5">
   <h4>Exercise 5 — Fill in the correct tense</h4>
   <ol>
-    <li>Mark <input class="answer" data-answer="couldn't|could not|couldnt"> keep working on the auth system
-        until the provider <input class="answer" data-answer="fixed"> the bug.
+    <li>Mark <input class="answer" data-answer="couldn't|could not|couldnt"
+        data-explain='{"can not|cannot|cant":"<em>Can&#39;t</em> is present. The story is in the past: <strong>couldn&#39;t</strong>."}'
+        data-hint="Past form of <em>can</em>."> keep working on the auth system
+        until the provider <input class="answer" data-answer="fixed"
+        data-explain='{"had fixed|'d fixed":"&#34;Until&#34; already marks the endpoint, so past perfect is not needed: <strong>fixed</strong>.",
+                       "has fixed":"This whole situation is finished in the past: <strong>fixed</strong>.",
+                       "was fixing":"&#34;Until&#34; closes the state at a point, not during an action: <strong>fixed</strong>."}'
+        data-hint="A single finished event."> the bug.
         <span class="hint">(finished state + finished action → past simple both)</span></li>
-    <li>While Mark <input class="answer" data-answer="was waiting"> for the fix, he
-        <input class="answer" data-answer="was reviewing|reviewed"> other tickets.
+    <li>While Mark <input class="answer" data-answer="was waiting"
+        data-explain='{"waited":"&#34;While&#34; sets a background action in progress: <strong>was waiting</strong>.",
+                       "had waited":"Past perfect marks it as earlier than another past action; here it is the background action: <strong>was waiting</strong>."}'
+        data-hint="Background action with &#34;while&#34;."> for the fix, he
+        <input class="answer" data-answer="was reviewing|reviewed"
+        data-explain='{"had reviewed":"Past perfect would put the reviewing before the waiting; the sentence presents it as simultaneous: <strong>was reviewing</strong> (or <strong>reviewed</strong>).",
+                       "reviews":"Present tense. Keep the past frame: <strong>was reviewing</strong> (or <strong>reviewed</strong>)."}'
+        data-hint="Simultaneous activity."> other tickets.
         <span class="hint">(two things in progress, or background + activity)</span></li>
-    <li>By the time the patch arrived, the team <input class="answer" data-answer="had lost|'d lost"> two days.
+    <li>By the time the patch arrived, the team <input class="answer" data-answer="had lost|'d lost"
+        data-explain='{"lost":"&#34;By the time&#34; asks you to mark the earlier result clearly: <strong>had lost</strong>.",
+                       "has lost":"Present perfect links to now, not to a past anchor: <strong>had lost</strong>.",
+                       "was losing":"Past continuous is not a completed earlier result: <strong>had lost</strong>."}'
+        data-hint="Earlier result, anchored in the past."> two days.
         <span class="hint">(earlier result → past perfect)</span></li>
-    <li>Next sprint we <input class="answer" data-answer="are going to add|'re going to add"> biometric auth.
+    <li>Next sprint we <input class="answer" data-answer="are going to add|'re going to add"
+        data-explain='{"will add":"A decision made now takes &#34;will&#34;. This is a plan already decided: <strong>are going to add</strong>.",
+                       "will be adding":"&#34;Will be adding&#34; is an action in progress, not the plan itself: <strong>are going to add</strong>."}'
+        data-hint="A plan already decided."> biometric auth.
         <span class="hint">(plan → going to)</span></li>
-    <li>By the release date we <input class="answer" data-answer="will have shipped|'ll have shipped"> it.
+    <li>By the release date we <input class="answer" data-answer="will have shipped|'ll have shipped"
+        data-explain='{"will ship":"&#34;By the release date&#34; asks for finished by that time: <strong>will have shipped</strong>.",
+                       "are going to ship":"&#34;Going to&#34; is a plan, not &#34;finished by a deadline&#34;: <strong>will have shipped</strong>.",
+                       "ship":"Base form. You need a future form: <strong>will have shipped</strong>."}'
+        data-hint="Finished by a future deadline."> it.
         <span class="hint">(finished by deadline → will have + pp)</span></li>
     <li>Translate: "He couldn't keep working until the provider fixed it."
-        <input class="answer answer-wide" data-answer="he couldn't keep working until the provider fixed it|he could not keep working until the provider fixed it|he couldnt keep working until the provider fixed it">
+        <input class="answer answer-wide" data-answer="he couldn't keep working until the provider fixed it|he could not keep working until the provider fixed it|he couldnt keep working until the provider fixed it"
+        data-explain='{"he cant keep working until the provider fixed it":"<em>Can&#39;t</em> is present. The story is in the past: <strong>couldn&#39;t</strong>.",
+                       "he couldnt keep working until the provider had fixed it":"&#34;Until&#34; already closes the state, so past perfect is not needed: <strong>fixed</strong>."}'
+        data-hint="Past simple on both verbs.">
     </li>
     <li>Translate: "By the end of Q3 we will have shipped biometric authentication."
-        <input class="answer answer-wide" data-answer="by the end of q3 we will have shipped biometric authentication|by the end of q3 we'll have shipped biometric authentication">
+        <input class="answer answer-wide" data-answer="by the end of q3 we will have shipped biometric authentication|by the end of q3 we'll have shipped biometric authentication"
+        data-explain='{"by the end of q3 we will ship biometric authentication":"&#34;Will ship&#34; is a plan, not &#34;finished by a deadline&#34;: <strong>will have shipped</strong>.",
+                       "by the end of q3 we are going to ship biometric authentication":"&#34;Going to&#34; is a plan. &#34;By the end of Q3&#34; asks for finished by that time: <strong>will have shipped</strong>."}'
+        data-hint="Future perfect for a deadline.">
     </li>
   </ol>
   <div class="btn-row">
@@ -309,6 +449,31 @@ function acceptableAnswers(raw) {
   return raw.split('|').map(function (s) { return normalise(s); });
 }
 
+/* Find or create the explanation element right after an input. */
+function getExplainEl(input) {
+  var next = input.nextElementSibling;
+  if (next && next.classList && next.classList.contains('explain')) return next;
+  var el = document.createElement('div');
+  el.className = 'explain';
+  input.parentNode.insertBefore(el, input.nextSibling);
+  return el;
+}
+
+/* Pick the best explanation for a wrong answer. */
+function pickExplanation(input, studentVal) {
+  var map = {};
+  try { map = JSON.parse(input.dataset.explain || '{}'); } catch (e) { map = {}; }
+
+  // Try exact match first, then normalised match
+  if (map[input.value]) return map[input.value];
+  for (var key in map) {
+    if (normalise(key) === studentVal) return map[key];
+  }
+  // Fallback: generic hint
+  if (input.dataset.hint) return 'Hint: ' + input.dataset.hint;
+  return 'Not quite — try the form shown in the section table above.';
+}
+
 function checkExercise(id) {
   var ex = document.getElementById(id);
   var inputs = ex.querySelectorAll('input.answer');
@@ -319,7 +484,19 @@ function checkExercise(id) {
     var ok = val !== '' && accepted.indexOf(val) !== -1;
     input.classList.remove('correct', 'wrong');
     input.classList.add(ok ? 'correct' : 'wrong');
-    if (ok) correct++;
+
+    var expl = getExplainEl(input);
+    expl.classList.remove('show', 'ok');
+
+    if (ok) {
+      correct++;
+      // Silent on success — no clutter. Uncomment below to show a green tick line.
+      // expl.textContent = '✓ Correct.';
+      // expl.classList.add('show', 'ok');
+    } else {
+      expl.innerHTML = pickExplanation(input, val);
+      expl.classList.add('show');
+    }
   });
   var scoreEl = document.getElementById(id + '-score');
   scoreEl.textContent = 'Score: ' + correct + ' / ' + inputs.length +
@@ -334,6 +511,8 @@ function revealExercise(id) {
     input.value = first;
     input.classList.remove('correct', 'wrong');
     input.classList.add('correct');
+    var expl = getExplainEl(input);
+    expl.classList.remove('show', 'ok');
   });
   document.getElementById(id + '-score').textContent =
     'All answers shown. Press Reset to try again.';
@@ -345,6 +524,8 @@ function resetExercise(id) {
   inputs.forEach(function (input) {
     input.value = '';
     input.classList.remove('correct', 'wrong');
+    var expl = getExplainEl(input);
+    expl.classList.remove('show', 'ok');
   });
   document.getElementById(id + '-score').textContent = '';
 }
