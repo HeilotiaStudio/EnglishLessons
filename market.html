@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Word Building Games</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#fff6dd,#ffd59e);
+    color:#4a3100;
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
+}
+
+h1,h2{
+    text-align:center;
+    color:#c96e00;
+}
+
+.game{
+    background:white;
+    padding:20px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.row{
+    margin:12px 0;
+}
+
+select{
+    padding:8px;
+    border-radius:8px;
+    border:2px solid #ffbf66;
+    min-width:150px;
+}
+
+button{
+    background:#d98200;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:25px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover{
+    background:#f09b16;
+}
+
+.correct{
+    background:#dff6dd !important;
+    border-color:green !important;
+}
+
+.wrong{
+    background:#ffdede !important;
+    border-color:red !important;
+}
+
+.score{
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    color:#b85f00;
+    margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<h1>International Trade Vocabulary Games</h1>
+
+<div class="game">
+
+<h2>🎮 Game 1: Word Building</h2>
+
+<p>Match the person with the correct verb.</p>
+
+<div class="row">
+consumer →
+<select id="wb1">
+<option></option>
+<option>consume</option>
+<option>export</option>
+<option>retail</option>
+</select>
+</div>
+
+<div class="row">
+producer →
+<select id="wb2">
+<option></option>
+<option>trade</option>
+<option>produce</option>
+<option>supply</option>
+</select>
+</div>
+
+<div class="row">
+retailer →
+<select id="wb3">
+<option></option>
+<option>retail</option>
+<option>consume</option>
+<option>import</option>
+</select>
+</div>
+
+<div class="row">
+importer →
+<select id="wb4">
+<option></option>
+<option>export</option>
+<option>import</option>
+<option>trade</option>
+</select>
+</div>
+
+<div class="row">
+supplier →
+<select id="wb5">
+<option></option>
+<option>supply</option>
+<option>manufacture</option>
+<option>consume</option>
+</select>
+</div>
+
+<div class="row">
+exporter →
+<select id="wb6">
+<option></option>
+<option>produce</option>
+<option>export</option>
+<option>retail</option>
+</select>
+</div>
+
+<button onclick="checkGame1()">Check Game 1</button>
+
+<div id="score1" class="score"></div>
+
+</div>
+
+<div class="game">
+
+<h2>🎮 Game 2: Nintendo Wii Story</h2>
+
+<p>Choose the correct form of the word.</p>
+
+<p>
+Most psychologists know that the best way to create massive
+<select id="g1">
+<option></option>
+<option>consumer</option>
+<option>consume</option>
+<option>consumers</option>
+</select>
+demand for a new
+<select id="g2">
+<option></option>
+<option>product</option>
+<option>producer</option>
+<option>production</option>
+</select>
+is to convince people they want it.
+</p>
+
+<p>
+Nintendo didn't know how popular its new console would be and limited its
+<select id="g3">
+<option></option>
+<option>produce</option>
+<option>production</option>
+<option>producer</option>
+</select>.
+</p>
+
+<p>
+Nintendo decided to focus on US markets, which meant
+<select id="g4">
+<option></option>
+<option>retailers</option>
+<option>retails</option>
+<option>retailing</option>
+</select>
+in other countries ran out of stock.
+</p>
+
+<p>
+They were unable to
+<select id="g5">
+<option></option>
+<option>import</option>
+<option>imports</option>
+<option>imported</option>
+</select>
+many more units.
+</p>
+
+<p>
+It is not clear if the lack of
+<select id="g6">
+<option></option>
+<option>supply</option>
+<option>supplier</option>
+<option>supplied</option>
+</select>
+was part of Nintendo's strategy.
+</p>
+
+<button onclick="checkGame2()">Check Game 2</button>
+
+<div id="score2" class="score"></div>
+
+</div>
+
+<script>
+
+function mark(select,ok){
+    select.classList.remove("correct","wrong");
+    select.classList.add(ok ? "correct" : "wrong");
+}
+
+function checkGame1(){
+
+    let score=0;
+
+    const answers={
+        wb1:"consume",
+        wb2:"produce",
+        wb3:"retail",
+        wb4:"import",
+        wb5:"supply",
+        wb6:"export"
+    };
+
+    Object.keys(answers).forEach(id=>{
+
+        const el=document.getElementById(id);
+
+        const correct=
+            el.value===answers[id];
+
+        mark(el,correct);
+
+        if(correct) score++;
+
+    });
+
+    document.getElementById("score1")
+        .innerHTML=`Score: ${score}/6`;
+
+}
+
+function checkGame2(){
+
+    let score=0;
+
+    const answers={
+        g1:"consumer",
+        g2:"product",
+        g3:"production",
+        g4:"retailers",
+        g5:"import",
+        g6:"supply"
+    };
+
+    Object.keys(answers).forEach(id=>{
+
+        const el=document.getElementById(id);
+
+        const correct=
+            el.value===answers[id];
+
+        mark(el,correct);
+
+        if(correct) score++;
+
+    });
+
+    document.getElementById("score2")
+        .innerHTML=`Score: ${score}/6`;
+
+}
+
+</script>
+
+</body>
+</html>
