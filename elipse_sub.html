@@ -87,22 +87,31 @@
 <p>Complete the dialogue with the omitted words.</p>
 
 <div class="dialogue">
+
 <span class="speaker">Jake:</span> Have you started training for the marathon?<br>
+
 <span class="speaker">Tom:</span> I was intending to <b>(1) __________</b>, but then I injured my knee.<br><br>
 
 <span class="speaker">Jake:</span> That's unfortunate. Do you still want to take part?<br>
+
 <span class="speaker">Tom:</span> Yes, I want <b>(2) __________</b>.<br><br>
 
 <span class="speaker">Jake:</span> I'll run the race this year, and my brother will <b>(3) __________</b> too.<br><br>
 
 <span class="speaker">Tom:</span> Great! The event has advantages, but it also has <b>(4) __________</b> disadvantages.
+
 </div>
 
 <p>
-1. <input id="e1"><br>
-2. <input id="e2"><br>
-3. <input id="e3"><br>
-4. <input id="e4"><br>
+
+<input id="e1"><br>
+
+<input id="e2"><br>
+
+<input id="e3"><br>
+
+<input id="e4"><br>
+
 </p>
 
 <button onclick="checkEllipsis()">Check Task 1</button>
@@ -156,12 +165,17 @@
 
 function checkEllipsis(){
 
-    let answers = [
-        "start training for the marathon",
-        "to",
-        "too",
-        "its"
-    ];
+ let answers = [
+
+"to",
+
+"too",
+
+"to",
+
+"to"
+
+];
 
     let student = [
         document.getElementById('e1').value.trim().toLowerCase(),
