@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ellipsis and Substitution Practice - Sport</title>
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        max-width:900px;
+        margin:auto;
+        padding:20px;
+        background:#f4f6f8;
+    }
+
+    h1,h2{
+        color:#2c3e50;
+    }
+
+    .task{
+        background:white;
+        padding:20px;
+        margin-bottom:25px;
+        border-radius:10px;
+        box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .dialogue{
+        background:#eef6ff;
+        padding:15px;
+        border-radius:8px;
+        margin-bottom:15px;
+        line-height:1.8;
+    }
+
+    .speaker{
+        font-weight:bold;
+        color:#1d4ed8;
+    }
+
+    input{
+        padding:6px;
+        font-size:16px;
+        width:220px;
+        margin:4px;
+    }
+
+    button{
+        padding:10px 15px;
+        background:#2563eb;
+        color:white;
+        border:none;
+        border-radius:6px;
+        cursor:pointer;
+        margin-top:10px;
+    }
+
+    button:hover{
+        background:#1d4ed8;
+    }
+
+    .result{
+        margin-top:15px;
+        font-weight:bold;
+    }
+
+    .question{
+        margin-bottom:15px;
+    }
+
+    .correct{
+        color:green;
+    }
+
+    .wrong{
+        color:red;
+    }
+</style>
+</head>
+<body>
+
+<h1>Ellipsis and Substitution Practice</h1>
+
+<div class="task">
+<h2>Task 1 – Ellipsis in a Dialogue</h2>
+
+<p>Complete the dialogue with the omitted words.</p>
+
+<div class="dialogue">
+<span class="speaker">Jake:</span> Have you started training for the marathon?<br>
+<span class="speaker">Tom:</span> I was intending to <b>(1) __________</b>, but then I injured my knee.<br><br>
+
+<span class="speaker">Jake:</span> That's unfortunate. Do you still want to take part?<br>
+<span class="speaker">Tom:</span> Yes, I want <b>(2) __________</b>.<br><br>
+
+<span class="speaker">Jake:</span> I'll run the race this year, and my brother will <b>(3) __________</b> too.<br><br>
+
+<span class="speaker">Tom:</span> Great! The event has advantages, but it also has <b>(4) __________</b> disadvantages.
+</div>
+
+<p>
+1. <input id="e1"><br>
+2. <input id="e2"><br>
+3. <input id="e3"><br>
+4. <input id="e4"><br>
+</p>
+
+<button onclick="checkEllipsis()">Check Task 1</button>
+
+<div id="result1" class="result"></div>
+</div>
+
+
+
+<div class="task">
+<h2>Task 2 – Complete the Responses</h2>
+
+<p>Use <b>so</b>, <b>not</b> or the correct auxiliary verb.</p>
+
+<div class="question">
+1. Will the team win the championship? (think ✓)<br>
+<input id="s1">
+</div>
+
+<div class="question">
+2. Does the coach seem happy with the players? (appear ✗)<br>
+<input id="s2">
+</div>
+
+<div class="question">
+3. Have they improved their fitness this season? (believe ✓)<br>
+<input id="s3">
+</div>
+
+<div class="question">
+4. Will he return after the injury? (be afraid ✗)<br>
+<input id="s4">
+</div>
+
+<div class="question">
+5. Is the referee correct? (suspect ✗)<br>
+<input id="s5">
+</div>
+
+<div class="question">
+6. Is football becoming more popular among young people? (seem ✓)<br>
+<input id="s6">
+</div>
+
+<button onclick="checkSubstitution()">Check Task 2</button>
+
+<div id="result2" class="result"></div>
+</div>
+
+<script>
+
+function checkEllipsis(){
+
+    let answers = [
+        "start training for the marathon",
+        "to",
+        "too",
+        "its"
+    ];
+
+    let student = [
+        document.getElementById('e1').value.trim().toLowerCase(),
+        document.getElementById('e2').value.trim().toLowerCase(),
+        document.getElementById('e3').value.trim().toLowerCase(),
+        document.getElementById('e4').value.trim().toLowerCase()
+    ];
+
+    let score = 0;
+
+    for(let i=0;i<answers.length;i++){
+        if(student[i] === answers[i]){
+            score++;
+        }
+    }
+
+    document.getElementById("result1").innerHTML =
+    `You got ${score}/4 correct.`;
+}
+
+
+function checkSubstitution(){
+
+    let answers = [
+        "i think so",
+        "it doesn't appear so",
+        "i believe so",
+        "i'm afraid not",
+        "i suspect not",
+        "it seems so"
+    ];
+
+    let student = [
+        document.getElementById('s1').value.trim().toLowerCase(),
+        document.getElementById('s2').value.trim().toLowerCase(),
+        document.getElementById('s3').value.trim().toLowerCase(),
+        document.getElementById('s4').value.trim().toLowerCase(),
+        document.getElementById('s5').value.trim().toLowerCase(),
+        document.getElementById('s6').value.trim().toLowerCase()
+    ];
+
+    let score = 0;
+
+    for(let i=0;i<answers.length;i++){
+        if(student[i] === answers[i]){
+            score++;
+        }
+    }
+
+    document.getElementById("result2").innerHTML =
+    `You got ${score}/6 correct.`;
+}
+
+</script>
+
+</body>
+</html>
